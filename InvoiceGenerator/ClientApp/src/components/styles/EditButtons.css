@@ -1,0 +1,11 @@
+﻿body {
+}
+
+.up-down-buttons{
+    display:inline-block;
+    margin-left: 5px;
+}
+
+.button-edit:hover{
+    cursor: pointer;
+}

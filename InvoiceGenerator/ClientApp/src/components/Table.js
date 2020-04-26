@@ -8,16 +8,17 @@ export class Table extends Component {
         super(props)
         this.state = {
             invoiceData: [
-                {
-                    "Name": "Nazwa",
-                    "Quantity": "Ilosc",
-                    "jm": "jm",
-                    "NettoPrice": "Cena netto",
-                    "NettoValue":"123",
+                {   "id":1,
+                    "Name": "STR19/01877",
+                    "Quantity": "1",
+                    "jm": "ryczalt",
+                    "NettoPrice": "850,00",
+                    "NettoValue":"850,00",
                     "Vat": "23%",
-                    "VatValue": "400"
+                    "VatValue": "195,50"
                 },
                 {
+                    "id": 2,
                     "Name": "Nazwa2",
                     "Quantity": "Ilosc2",
                     "jm": "jm2",
@@ -27,8 +28,9 @@ export class Table extends Component {
                     "VatValue": "777"
                 },
                 {
-                    "Name": "Nazwa2",
-                    "Quantity": "Ilosc2",
+                    "id": 3,
+                    "Name": "Nazwa3",
+                    "Quantity": "Ilosc3",
                     "jm": "jm2",
                     "NettoPrice": "Cena netto2",
                     "NettoValue": "222",
@@ -37,6 +39,10 @@ export class Table extends Component {
                 }
             ]
         }
+
+        this.removeRow = this.removeRow.bind(this);
+        this.moveRowUp = this.moveRowUp.bind(this);
+        this.moveRowDown = this.moveRowDown.bind(this);
     }
 
   render () {
@@ -65,18 +71,19 @@ export class Table extends Component {
 
     renderRows() {
         return this.state.invoiceData.map((data, i) => (
-            <TableRow key={i} value={data} onChange={value => this.onChange(data,value)} />
+            <TableRow key={data.id} id={i} value={data} onChange={value => this.onChange(data, value)} onRemoveRow={this.removeRow} onMoveRowUp={this.moveRowUp} onMoveRowDown={this.moveRowDown} />
         ))
 
     }
 
-    onChange(data,value) {
+    onChange(data, value) {
        this.setState({ [data]: value })
     }
 
     addEmptyRow() {
         this.setState({
             invoiceData: this.state.invoiceData.concat({
+                "id": this.state.invoiceData.length + 1, // TODO - fix key repetition
                 "Name": "",
                 "Quantity": "",
                 "jm": "",
@@ -88,4 +95,36 @@ export class Table extends Component {
             
         });
     }
+
+    removeRow(rowId)
+    {
+        const newlist = this.state.invoiceData;
+        newlist.splice(rowId, 1);
+  
+
+        this.setState({ invoiceData: newlist});
+    }
+
+    moveRowUp(rowId) { 
+        
+        var moveUpArray = this.state.invoiceData;
+        if (rowId !== -1 && rowId !==0) {
+            var index = rowId;
+            var f = moveUpArray.splice(index, 1)[0];
+            moveUpArray.splice(index - 1, 0, f);
+            this.setState({ invoiceData: moveUpArray});
+        }
+    }
+
+    moveRowDown(rowId) {
+      var moveDownArray = this.state.invoiceData;
+        if (rowId !== -1 && rowId !== this.state.invoiceData.length) {
+            var index = rowId;
+            var f = moveDownArray.splice(index, 1)[0];
+            moveDownArray.splice(index + 1, 0, f);
+            this.setState({ invoiceData: moveDownArray });
+        }
+    }
 }
+
+

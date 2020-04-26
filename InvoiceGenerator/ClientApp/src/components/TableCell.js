@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { InputField } from './InputField';
 
 export class TableCell extends Component {
 
@@ -10,9 +11,11 @@ export class TableCell extends Component {
 	render() {
 
 		const { value, onChange } = this.props;
-
-		return (this.state.editing || value==="") ?
-			<td className="no-pad"><input className="form-control editor edit-text" ref='input' value={value} onChange={e => onChange(e.target.value)} onBlur={ e => this.onBlur()} /></td> :
+		if (value === "") {
+			this.state.editing = true;
+        }
+		return this.state.editing ?
+			<td className="no-pad"><input className="form-control editor edit-text" ref='input' value={value} onChange={e => onChange(e.target.value)} onBlur={e => this.onBlur()} /></td> :
 			<td onClick={() => this.onFocus()}>{value}</td>
 	}
 

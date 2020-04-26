@@ -2,22 +2,19 @@
 import { TableCell } from './TableCell';
 import { EditButton } from './EditButton';
 
-
 export class TableRow extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: this.props.value
+            data: this.props.value,
         }
-
     }
 
     render() {
         return (
-            <tr value={this.props.value}> {this.renderCells()}
-
-<EditButton/>
+            <tr> {this.renderCells()}
+                <EditButton id={this.props.id} removeRow={this.props.onRemoveRow} moveRowUp={this.props.onMoveRowUp} moveRowDown={this.props.onMoveRowDown} />
             </tr>
         );
     }
@@ -29,7 +26,13 @@ export class TableRow extends Component {
 
     onChange(value, field) {
         this.state.data[field] = value;
+        this.calculateData();
 
+        this.props.onChange(this.state.data);
+    }
+
+    calculateData() {
+        this.state.data['NettoValue'] = this.state.data['NettoPrice'] * this.state.data['Quantity'];
         this.props.onChange(this.state.data);
     }
 }

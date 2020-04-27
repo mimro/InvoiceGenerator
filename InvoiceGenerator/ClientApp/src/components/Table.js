@@ -8,21 +8,22 @@ export class Table extends Component {
         super(props)
         this.state = {
             invoiceData: [
-                {   "id":1,
+                {
+                    "id": 1,
                     "Name": "STR19/01877",
                     "Quantity": "1",
-                    "jm": "ryczalt",
-                    "NettoPrice": "850,00",
-                    "NettoValue":"850,00",
+                    "jm": "Ryczalt",
+                    "NettoPrice": "850",
+                    "NettoValue": "850",
                     "Vat": "23%",
-                    "VatValue": "195,50"
+                    "VatValue": "195"
                 },
                 {
                     "id": 2,
                     "Name": "Nazwa2",
-                    "Quantity": "Ilosc2",
-                    "jm": "jm2",
-                    "NettoPrice": "Cena netto2",
+                    "Quantity": "5",
+                    "jm": "Ryczalt",
+                    "NettoPrice": "400",
                     "NettoValue": "222",
                     "Vat": "23%",
                     "VatValue": "777"
@@ -30,9 +31,9 @@ export class Table extends Component {
                 {
                     "id": 3,
                     "Name": "Nazwa3",
-                    "Quantity": "Ilosc3",
-                    "jm": "jm2",
-                    "NettoPrice": "Cena netto2",
+                    "Quantity": "4",
+                    "jm": "Ryczalt",
+                    "NettoPrice": "400",
                     "NettoValue": "222",
                     "Vat": "23%",
                     "VatValue": "777"
@@ -48,7 +49,7 @@ export class Table extends Component {
   render () {
     return (
         <div className="container">
-            <table className="table table-bordered table-responsive-sm table-hover">
+            <table className="table table-borderless table-responsive-sm table-hover">
                 <thead>
                     <th>Nazwa</th>
                     <th>Ilosc</th>

@@ -9,6 +9,7 @@ export class TableRow extends Component {
         this.state = {
             data: this.props.value,
         }
+        this.calculateData();
     }
 
     render() {
@@ -19,7 +20,7 @@ export class TableRow extends Component {
         );
     }
     renderCells() {    
-        return ['Name', 'Quantity', 'jm', 'NettoPrice', 'NettoValue', 'Vat', 'VatValue'].map(field => (
+        return ['Name', 'Quantity', 'jm', 'NettoPrice', 'NettoValue', 'Vat', 'VatValue', 'GrossValue'].map(field => (
             <TableCell key={field} id={field} value={this.state.data[field]} onChange={value => this.onChange(value,field)} />
         ))
     }
@@ -34,7 +35,7 @@ export class TableRow extends Component {
     calculateData() {
         this.state.data['NettoValue'] = this.state.data['NettoPrice'] * this.state.data['Quantity'];
         this.state.data['VatValue'] = (this.state.data['NettoValue'] * this.state.data['Vat'].replace("%", ""))/100;
-
+        this.state.data['GrossValue'] = this.state.data['NettoValue'] - this.state.data['VatValue']
         this.props.onChange(this.state.data);
     }
 }

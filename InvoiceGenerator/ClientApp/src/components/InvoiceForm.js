@@ -9,24 +9,30 @@ export class InvoiceForm extends Component {
 
 	render() {
 		return (
-			<InputGroup className = "invoice-input-group">
+			<div class="container seller-container">
+				<label class="seller">Sprzedawca</label>
+				<InputGroup className="invoice-input-group mb-3">
 				<InputGroup.Prepend className="prepend">
-					<InputGroup.Text className="prepend-text">Sprzedawca</InputGroup.Text>
+					<InputGroup.Text className="prepend-text">Nazwa Firmy</InputGroup.Text>
 				</InputGroup.Prepend>
-				<FormControl as="textarea" aria-label="With textarea"
-					placeholder="Nazwa Firmy 
-Adres
-NIP" />
+						<FormControl id="basic-url" aria-describedby="basic-addon3" />
+				</InputGroup>
 
-				<InputGroup.Prepend className="prepend">
-					<InputGroup.Text>Nabywca</InputGroup.Text>
-				</InputGroup.Prepend>
-				<FormControl as="textarea"
-					placeholder="Nazwa Firmy 
-Adres
-NIP" />
-				
-			</InputGroup>
+					<InputGroup className="invoice-input-group mb-3">
+					<InputGroup.Prepend className="prepend">
+						<InputGroup.Text className="prepend-text">Ulica</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl id="basic-url" aria-describedby="basic-addon3" />
+				</InputGroup>
+
+
+				<InputGroup className="invoice-input-group mb-3">
+					<InputGroup.Prepend className="prepend">
+						<InputGroup.Text className="prepend-text">Miejscowość</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl id="basic-url" aria-describedby="basic-addon3" />
+				</InputGroup>
+				</div>
 			)
 	}
 }

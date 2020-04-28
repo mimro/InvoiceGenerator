@@ -1,0 +1,12 @@
+﻿body {
+}
+
+.table th {
+    border-left: 1px solid #000 !important;
+    border-right: 1px solid #000 !important;
+    border-bottom: 1px solid #000 !important;
+}
+
+.table  {
+    border: 1px solid #000 !important;
+}

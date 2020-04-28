@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { TableRow } from './TableRow';
 import { Button } from 'reactstrap';
+import './styles/Table.css'
+import { TableHeader } from './TableHeader';
+import { SummaryTable } from './SummaryTable';
+
 
 export class Table extends Component {
 
@@ -14,19 +18,21 @@ export class Table extends Component {
                     "Quantity": "1",
                     "jm": "Ryczalt",
                     "NettoPrice": "850",
-                    "NettoValue": "850",
+                    "NettoValue": "",
                     "Vat": "23%",
-                    "VatValue": "195"
+                    "VatValue": "",
+                    "GrossValue": ""
                 },
                 {
                     "id": 2,
-                    "Name": "Nazwa2",
+                    "Name": "ê¹Ÿæ",
                     "Quantity": "5",
                     "jm": "Ryczalt",
                     "NettoPrice": "400",
-                    "NettoValue": "222",
+                    "NettoValue": "",
                     "Vat": "23%",
-                    "VatValue": "777"
+                    "VatValue": "",
+                    "GrossValue": ""
                 },
                 {
                     "id": 3,
@@ -34,40 +40,69 @@ export class Table extends Component {
                     "Quantity": "4",
                     "jm": "Ryczalt",
                     "NettoPrice": "400",
-                    "NettoValue": "222",
+                    "NettoValue": "",
                     "Vat": "23%",
-                    "VatValue": "777"
+                    "VatValue": "",
+                    "GrossValue": ""
                 }
-            ]
+            ],
+            config: {
+                properties: ['Name',
+                    'Quantity',
+                    'jm',
+                    'NettoPrice',
+                    'NettoValue',
+                    'Vat',
+                    'VatValue',
+                    'GrossValue'],
+                headers: ["Nazwa",
+                    "Iloœæ",
+                    "J.M",
+                    "Cena jednostkowa netto",
+                    "Wartoœæ netto",
+                    "Vat",
+                    "Wartoœæ vat",
+                    "Wartoœæ brutto",
+                    "Edytuj"],
+                fields: [
+                    ["text", "true", "required"],
+                    ["number", "true", "required"],
+                    ["select:", "true", "required"],
+                    ["number:money", "true", "required"],
+                    ["number:money", "false", "calculated"],
+                    ["number:percent", "true", "required"],
+                    ["number:money", "true", "calculated"]
+                ]
+            }
         }
 
         this.removeRow = this.removeRow.bind(this);
         this.moveRowUp = this.moveRowUp.bind(this);
         this.moveRowDown = this.moveRowDown.bind(this);
-    }
 
-  render () {
+        this.SumValues = this.SumValues.bind(this);
+    }
+    render() {
     return (
         <div className="container">
             <table className="table table-borderless table-responsive-sm table-hover">
                 <thead>
-                    <th>Nazwa</th>
-                    <th>Ilosc</th>
-                    <th>jm</th>
-                    <th>Cena jednostkowa netto</th>
-                    <th>Wartosc netto</th>
-                    <th>Vat</th>
-                    <th>Wartosc vat</th>
-                    <th>Edytuj</th>
+                    {this.renderHeaders()}
                 </thead>
                 <tbody>
                     {this.renderRows()}
                 </tbody>
             </table>
-
             <Button onClick={() => this.addEmptyRow()}>+</Button>
+            <SummaryTable value={this.SumValues()} />
         </div>
     );
+    }
+
+    renderHeaders() {
+        return this.state.config.headers.map((data, i) => (
+            <TableHeader value={data} id={i} />
+        ))
     }
 
     renderRows() {
@@ -125,6 +160,24 @@ export class Table extends Component {
             moveDownArray.splice(index + 1, 0, f);
             this.setState({ invoiceData: moveDownArray });
         }
+    }
+
+    SumValues() {
+        var sumNV = 0;
+        this.state.invoiceData.forEach((x) => {
+            sumNV += x.NettoValue;
+        });
+
+            var sumVV = 0;
+            this.state.invoiceData.forEach((x) => {
+                sumVV += x.VatValue;
+            });
+
+            var sumGV = 0;
+            this.state.invoiceData.forEach((x) => {
+                sumGV += x.GrossValue;
+            });
+            return [sumNV, sumVV, sumGV];
     }
 }
 

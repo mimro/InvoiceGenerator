@@ -25,9 +25,9 @@ export class TableCell extends Component {
 			if (id === "jm")
 			{
 				return <select id="jm" name="jm" ref='input' value={value} onChange={e => onChange(e.target.value)} onBlur={e => this.onBlur()}>
-					<option value="ryczałt">Ryczałt</option>
+					<option value="ryczałt">ryczałt</option>
 					<option value="km">km</option>
-					<option value="szt">szt.</option>
+					<option value="szt">szt</option>
 				</select>
 			}
 				else {

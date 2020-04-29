@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+ï»¿import React, { Component } from 'react';
 import { TableRow } from './TableRow';
 import { Button } from 'reactstrap';
 import './styles/Table.css'
 import { TableHeader } from './TableHeader';
 import { SummaryTable } from './SummaryTable';
 
-export class Table extends Component {
+export class InvoiceTable extends Component {
 
     constructor(props) {
         super(props)
@@ -15,7 +15,7 @@ export class Table extends Component {
                     "id": 1,
                     "Name": "STR19/01877",
                     "Quantity": "1",
-                    "jm": "Rycza³t",
+                    "jm": "RyczaÅ‚t",
                     "NettoPrice": "850",
                     "NettoValue": "",
                     "Vat": "23%",
@@ -24,7 +24,7 @@ export class Table extends Component {
                 },
                 {
                     "id": 2,
-                    "Name": "ê¹Ÿæ",
+                    "Name": "Ä™Ä…ÅºÄ‡",
                     "Quantity": "5",
                     "jm": "Ryczalt",
                     "NettoPrice": "400",
@@ -58,13 +58,13 @@ export class Table extends Component {
                 ],
                 "headers": [
                     "Nazwa",
-                    "Iloœæ",
+                    "IloÅ›Ä‡",
                     "J.M",
                     "Cena jednostkowa netto",
-                    "Wartoœæ netto",
+                    "WartoÅ›Ä‡ netto",
                     "Vat",
-                    "Wartoœæ vat",
-                    "Wartoœæ brutto",
+                    "WartoÅ›Ä‡ vat",
+                    "WartoÅ›Ä‡ brutto",
                     "Edytuj"
                 ],
                 "fields": [
@@ -75,7 +75,16 @@ export class Table extends Component {
                     ["number:money", "false", "calculated"],
                     ["number:percent", "true", "required"],
                     ["number:money", "true", "calculated"]
-                ]
+                ],
+                "types": 
+                   [ { "type": "text", "editable": "true" },
+        { "type": "number", "editable": "true"},
+        { "type": "select:", "editable":"true"},
+        { "type": "number:money", "editable":"true"},
+        { "type": "number:money", "editable":"false"},
+        { "type":"number:percent", "editable":"true"},
+        { "type":"number:money", "editable":"true"}]
+                
             }
         }
 
@@ -87,20 +96,19 @@ export class Table extends Component {
     }
     render() {
         return (
-            <div className="container">               
-            <table className="table table-borderless table-responsive-sm table-hover">
-                <thead>
-                    {this.renderHeaders()}
-                </thead>
-                <tbody>
-                    {this.renderRows()}
-                </tbody>
-            </table>
-            <Button onClick={() => this.addEmptyRow()}>+</Button>
-            <SummaryTable value={this.SumValues()} />
-            <table><thead><th>¹œæ</th></thead><tbody>¹œæ</tbody></table>
-        </div>
-    );
+            <div className="container">
+                <table className="table table-borderless table-responsive-sm table-hover">
+                    <thead>
+                        {this.renderHeaders()}
+                    </thead>
+                    <tbody>
+                        {this.renderRows()}
+                    </tbody>
+                </table>
+                <Button onClick={() => this.addEmptyRow()}>+</Button>
+                <SummaryTable value={this.SumValues()} />
+            </div>
+        );
     }
 
     renderHeaders() {
@@ -117,7 +125,7 @@ export class Table extends Component {
     }
 
     onChange(data, value) {
-       this.setState({ [data]: value })
+        this.setState({ [data]: value })
     }
 
     addEmptyRow() {
@@ -132,32 +140,31 @@ export class Table extends Component {
                 "Vat": "23%",
                 "VatValue": ""
             })
-            
+
         });
     }
 
-    removeRow(rowId)
-    {
+    removeRow(rowId) {
         const newlist = this.state.invoiceData;
         newlist.splice(rowId, 1);
-  
 
-        this.setState({ invoiceData: newlist});
+
+        this.setState({ invoiceData: newlist });
     }
 
-    moveRowUp(rowId) { 
-        
+    moveRowUp(rowId) {
+
         var moveUpArray = this.state.invoiceData;
-        if (rowId !== -1 && rowId !==0) {
+        if (rowId !== -1 && rowId !== 0) {
             var index = rowId;
             var f = moveUpArray.splice(index, 1)[0];
             moveUpArray.splice(index - 1, 0, f);
-            this.setState({ invoiceData: moveUpArray});
+            this.setState({ invoiceData: moveUpArray });
         }
     }
 
     moveRowDown(rowId) {
-      var moveDownArray = this.state.invoiceData;
+        var moveDownArray = this.state.invoiceData;
         if (rowId !== -1 && rowId !== this.state.invoiceData.length) {
             var index = rowId;
             var f = moveDownArray.splice(index, 1)[0];
@@ -172,16 +179,16 @@ export class Table extends Component {
             sumNV += x.NettoValue;
         });
 
-            var sumVV = 0;
-            this.state.invoiceData.forEach((x) => {
-                sumVV += x.VatValue;
-            });
+        var sumVV = 0;
+        this.state.invoiceData.forEach((x) => {
+            sumVV += x.VatValue;
+        });
 
-            var sumGV = 0;
-            this.state.invoiceData.forEach((x) => {
-                sumGV += x.GrossValue;
-            });
-            return [sumNV, sumVV, sumGV];
+        var sumGV = 0;
+        this.state.invoiceData.forEach((x) => {
+            sumGV += x.GrossValue;
+        });
+        return [sumNV, sumVV, sumGV];
     }
 }
 

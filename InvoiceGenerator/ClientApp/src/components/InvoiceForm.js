@@ -16,19 +16,30 @@ export class InvoiceForm extends Component {
 					<InputGroup.Text className="prepend-text">Nazwa Firmy</InputGroup.Text>
 				</InputGroup.Prepend>
 						<FormControl id="basic-url" aria-describedby="basic-addon3" />
-				</InputGroup>
+				
 
-					<InputGroup className="invoice-input-group mb-3">
+					
 					<InputGroup.Prepend className="prepend">
 						<InputGroup.Text className="prepend-text">Ulica</InputGroup.Text>
 					</InputGroup.Prepend>
 					<FormControl id="basic-url" aria-describedby="basic-addon3" />
-				</InputGroup>
+			
 
 
-				<InputGroup className="invoice-input-group mb-3">
+				
 					<InputGroup.Prepend className="prepend">
 						<InputGroup.Text className="prepend-text">Miejscowość</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl id="basic-url" aria-describedby="basic-addon3" />
+					<InputGroup.Prepend className="prepend">
+						<InputGroup.Text className="prepend-text">Kod pocztowy</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl id="basic-url" aria-describedby="basic-addon3" />
+				
+
+				
+					<InputGroup.Prepend className="prepend">
+						<InputGroup.Text className="prepend-text">Ulica</InputGroup.Text>
 					</InputGroup.Prepend>
 					<FormControl id="basic-url" aria-describedby="basic-addon3" />
 				</InputGroup>

@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Table } from './InvoiceTable/Table';
 import { InvoiceForm } from './InvoiceForm';
-
+import { InvoiceTable } from './InvoiceTable/InvoiceTable';
 
 
 export class Invoice extends Component {
@@ -13,8 +13,8 @@ export class Invoice extends Component {
 	render() {
 		return (
 			<div className="container">
-			<InvoiceForm/>
-			<Table />
+				<InvoiceForm/>
+				<InvoiceTable />
 			</div>
 		)
 	}

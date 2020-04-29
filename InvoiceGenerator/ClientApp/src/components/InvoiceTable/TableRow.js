@@ -20,6 +20,7 @@ export class TableRow extends Component {
         );
     }
     renderCells() {    
+        console.log(this.state.data);
         return ['Name', 'Quantity', 'jm', 'NettoPrice', 'NettoValue', 'Vat', 'VatValue', 'GrossValue'].map(field => (
             <TableCell key={field} id={field} value={this.state.data[field]} onChange={value => this.onChange(value,field)} />
         ))

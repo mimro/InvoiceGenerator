@@ -10,9 +10,9 @@ export class SummaryTable extends Component {
             config: {
                 properties: ['NettoValueSummary', 'VatValueSummary', 'GrossValueSummary'],
                 headers: [
-                    "Wartosc netto",
+                    "Wartość netto",
                     "Vat",
-                    "Wartosc brutto",
+                    "Wartość brutto",
                     ]
             }
         }

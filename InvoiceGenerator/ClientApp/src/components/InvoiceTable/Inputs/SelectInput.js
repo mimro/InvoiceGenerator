@@ -7,7 +7,7 @@ export class SelectInput extends Component {
 	}
 
 	render() {
-		return		<select id="jm" name="jm" ref='input' value={this.props.value} onChange={e => this.props.onChange(e.target.value)} onBlur={this.props.onBlur}>
+		return	<select id="jm" name="jm" ref='input' value={this.props.value} onChange={e => this.props.onChange(e.target.value)} onBlur={this.props.onBlur}>
 				<option value="ryczałt">ryczałt</option>
 				<option value="km">km</option>
 				<option value="szt">szt</option>

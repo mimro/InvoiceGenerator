@@ -10,82 +10,8 @@ export class InvoiceTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            invoiceData: [
-                {
-                    "id": 1,
-                    "Name": "STR19/01877",
-                    "Quantity": "1",
-                    "jm": "Ryczałt",
-                    "NettoPrice": "850",
-                    "NettoValue": "",
-                    "Vat": "23%",
-                    "VatValue": "",
-                    "GrossValue": ""
-                },
-                {
-                    "id": 2,
-                    "Name": "ęąźć",
-                    "Quantity": "5",
-                    "jm": "Ryczalt",
-                    "NettoPrice": "400",
-                    "NettoValue": "",
-                    "Vat": "23%",
-                    "VatValue": "",
-                    "GrossValue": ""
-                },
-                {
-                    "id": 3,
-                    "Name": "Nazwa3",
-                    "Quantity": "4",
-                    "jm": "Ryczalt",
-                    "NettoPrice": "400",
-                    "NettoValue": "",
-                    "Vat": "23%",
-                    "VatValue": "",
-                    "GrossValue": ""
-                }
-            ],
-            config: {
-                "properties": [
-                    "Name",
-                    "Quantity",
-                    "jm",
-                    "NettoPrice",
-                    "NettoValue",
-                    "Vat",
-                    "VatValue",
-                    "GrossValue"
-                ],
-                "headers": [
-                    "Nazwa",
-                    "Ilość",
-                    "J.M",
-                    "Cena jednostkowa netto",
-                    "Wartość netto",
-                    "Vat",
-                    "Wartość vat",
-                    "Wartość brutto",
-                    "Edytuj"
-                ],
-                "fields": [
-                    ["text", "true", "required"],
-                    ["number", "true", "required"],
-                    ["select:", "true", "required"],
-                    ["number:money", "true", "required"],
-                    ["number:money", "false", "calculated"],
-                    ["number:percent", "true", "required"],
-                    ["number:money", "true", "calculated"]
-                ],
-                "types": 
-                   [ { "type": "text", "editable": "true" },
-        { "type": "number", "editable": "true"},
-        { "type": "select:", "editable":"true"},
-        { "type": "number:money", "editable":"true"},
-        { "type": "number:money", "editable":"false"},
-        { "type":"number:percent", "editable":"true"},
-        { "type":"number:money", "editable":"true"}]
-                
-            }
+            invoiceData: this.props.invoiceData,
+            config: this.props.config
         }
 
         this.removeRow = this.removeRow.bind(this);

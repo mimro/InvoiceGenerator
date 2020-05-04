@@ -30,10 +30,26 @@ export class InvoiceSpecificData extends Component {
 				float: "right"
 			},
 
-			inputStyleDate: {
+			inputStyle: {
 				width: "30%",
 				display: "block",
 				"margin-top": "10px"
+			},
+
+			dateContainer:{
+			"margin-top":"10px",
+			width:"100%"
+			},
+
+			inputStyleDateOfIssue:{
+				display:"inline-block",
+				float: "left",
+				"margin-rigt": "2px"
+			},
+			
+			inputStyleDateOfSelling:{
+				display:"inline-block",
+				float: "right"
 			}
 
 		}
@@ -42,9 +58,9 @@ export class InvoiceSpecificData extends Component {
 		
 				<FormControl style={style.inputStyleNumber} className="invoice-specific-data" placeholder="numer" />
 				<FormControl style={style.inputStylePlace} className="invoice-specific-data" placeholder="miejsce wystawienia" />
-				<div>
-				<DatePicker style={style.inputStyleDate} locale="pl" placeholderText="Data wystawienia" className="form-control" />
-					<DatePicker style={style.inputStyleDate} locale="pl" placeholderText="Data sprzedarzy" className="form-control" />
+				<div style={style.dateContainer}>
+				<DatePicker style={style.inputStyleDateOfIssue} locale="pl" placeholderText="Data wystawienia" className="form-control" />
+					<DatePicker style={style.inputStyleDateOfSelling} locale="pl" placeholderText="Data sprzedarzy" className="form-control" />
 					</div>
 
 

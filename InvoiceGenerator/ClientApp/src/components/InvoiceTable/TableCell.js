@@ -19,6 +19,12 @@ export class TableCell extends Component {
 		this.onBlur = this.onBlur.bind(this)
     }
 
+	const styles={
+	editableInput:{
+	
+	}
+	}
+
 	render() {
 
 		const { value, onChange } = this.props;
@@ -39,10 +45,10 @@ export class TableCell extends Component {
 		}
 		let current = components[this.props.id];
 		const TagName = current[0];
-
+		const isEditable =current[1];
 		return this.state.editing ?
 			<td className="no-pad"><TagName value={this.props.value} ref={this.child} onChange={this.props.onChange} onBlur={this.onBlur} /></td> :
-			<td onClick={() => this.onFocus(current[1])}>{value}</td>
+			<td onClick={() => this.onFocus(isEditable)}>{value}</td>
 	}
 
 

@@ -34,9 +34,9 @@ export class TableRow extends Component {
     }
 
     calculateData() {
-        this.state.data['NettoValue'] = this.state.data['NettoPrice'] * this.state.data['Quantity'];
-        this.state.data['VatValue'] = (this.state.data['NettoValue'] * this.state.data['Vat'].replace("%", ""))/100;
-        this.state.data['GrossValue'] = this.state.data['NettoValue'] - this.state.data['VatValue']
+        this.state.data.NettoValue = this.state.data.NettoPrice * this.state.data.Quantity;
+        this.state.data.VatValue = (this.state.data.NettoValue * this.state.data.Vat.replace("%", ""))/100;
+        this.state.data.GrossValue = this.state.data.NettoValue - this.state.data.VatValue;
         this.props.onChange(this.state.data);
     }
 }

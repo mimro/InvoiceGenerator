@@ -15,13 +15,17 @@ export class InvoiceCompanyDataInputs extends Component {
 		const conf = this.state.companyConfig;
 		return (
 			<div className="companyData">
-				<FormControl className="invoice-input" placeholder={conf.CompanyName.name} />
+				<FormControl className="invoice-input" placeholder={conf.CompanyName.name} onChange={(e)=>this.onChange(e)} />
 				<FormControl className="invoice-input" placeholder={conf.VATID.name}/>
 				<FormControl className="invoice-input" placeholder={conf.Street.name}/>
 				<FormControl className="invoice-input inline-input" id = "city" placeholder={conf.City.name}/>
 				<FormControl className="invoice-input inline-input" id = "zipcode" placeholder={conf.ZipCode.name}/>
 			</div>
 		)
+	}
+
+	onChange(e){
+	console.log(e.target.value);
 	}
 }
 

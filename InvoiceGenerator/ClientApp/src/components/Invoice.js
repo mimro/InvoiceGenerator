@@ -76,7 +76,11 @@ export class Invoice extends Component {
                     Street: { name: "Ulica" },
                     City: { name: "Miasto" },
                     ZipCode: { name: "Kod pocztowy" }
-                }
+                },
+				SpecificData:{
+					Number:{name:"numer"},
+					DateOfIssue:{name:"Data wystawuenia"},
+				}
             },
             formData: {
                 Company: {

@@ -19,11 +19,6 @@ export class TableCell extends Component {
 		this.onBlur = this.onBlur.bind(this)
     }
 
-	const styles={
-	editableInput:{
-	
-	}
-	}
 
 	render() {
 

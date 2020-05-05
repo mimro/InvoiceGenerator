@@ -4,6 +4,8 @@ import { Button } from 'reactstrap';
 import './styles/Table.css'
 import { TableHeader } from './TableHeader';
 import { SummaryTable } from './SummaryTable';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 export class Table extends Component {
 
@@ -96,6 +98,9 @@ export class Table extends Component {
                     {this.renderRows()}
                 </tbody>
             </table>
+
+
+        <AddIcon />
             <Button onClick={() => this.addEmptyRow()}>+</Button>
             <SummaryTable value={this.SumValues()} />
             <table><thead><th>¹œæ</th></thead><tbody>¹œæ</tbody></table>

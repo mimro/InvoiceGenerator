@@ -4,6 +4,8 @@ import { Button } from 'reactstrap';
 import './styles/Table.css'
 import { TableHeader } from './TableHeader';
 import { SummaryTable } from './SummaryTable';
+import {Tooltip,Fab} from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add'
 
 export class InvoiceTable extends Component {
 
@@ -31,8 +33,13 @@ export class InvoiceTable extends Component {
                         {this.renderRows()}
                     </tbody>
                 </table>
-                <Button onClick={() => this.addEmptyRow()}>+</Button>
-                <SummaryTable value={this.SumValues()} />
+
+<Tooltip title="Dodaj wiersz" aria-label="add" onClick={() => this.addEmptyRow()}>
+<Fab color="primary">
+    <AddIcon />
+	</Fab>
+  </Tooltip>
+               <SummaryTable value={this.SumValues()} />
             </div>
         );
     }

@@ -3,6 +3,12 @@ import { Table } from './InvoiceTable/Table';
 import { InvoiceForm } from './InvoiceForm/InvoiceForm';
 import { InvoiceTable } from './InvoiceTable/InvoiceTable';
 import { InvoiceSpecificData } from './InvoiceForm/InvoiceSpecificData'
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+
+
 
 export class Invoice extends Component {
 
@@ -92,11 +98,24 @@ export class Invoice extends Component {
 
 	render() {
 		return (
-            <div className="container">
+			  <Grid container direction={'row'}  justify="center" alignItems="center" spacing={2}>
+			  <Grid item xs={12}>
+			  <Paper elevation ={3}>
+			  <Box  p={5}>
                 <InvoiceSpecificData/>
+				</Box>
+				</Paper>
+				</Grid>
                 <InvoiceForm formConfig={this.state.formConfig}/>
+				 <Grid item xs={12}>
+			  <Paper elevation ={3}>
+			  <Box  p={5}>
                 <InvoiceTable invoiceData={this.state.invoiceTableData} config={this.state.tableConfig} />
-			</div>
+				</Box>
+				</Paper>
+				</Grid>
+				</Grid>
+
 		)
 	}
 

@@ -1,10 +1,8 @@
 ﻿import React, { Component } from 'react';
 import { InputGroup, FormControl } from 'react-bootstrap'
-import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css"
 import { registerLocale } from "react-datepicker";
-import pl from "date-fns/locale/pl"; // the locale you want
-registerLocale("pl", pl); // register it with the name you want
+import TextField from '@material-ui/core/TextField'
+import DatePicker from '@material-ui/pickers'
 
 export class InvoiceSpecificData extends Component {
 
@@ -54,18 +52,11 @@ export class InvoiceSpecificData extends Component {
 
 		}
 		return (
-			<div className="container specificData">
-		
-				<FormControl style={style.inputStyleNumber} className="invoice-specific-data" placeholder="numer" />
-				<FormControl style={style.inputStylePlace} className="invoice-specific-data" placeholder="miejsce wystawienia" />
-				<div style={style.dateContainer}>
-				<DatePicker style={style.inputStyleDateOfIssue} locale="pl" placeholderText="Data wystawienia" className="form-control" />
-					<DatePicker style={style.inputStyleDateOfSelling} locale="pl" placeholderText="Data sprzedarzy" className="form-control" />
-					</div>
-
-
-
-			</div>
+			<div>	
+			<TextField id="standard-basic" label="numer" variant="outlined" />
+			<TextField id="standard-basic" label="miejsce wystawienia" variant="outlined" />
+			<TextField id="date" label="data wystawienia"   type="date"    defaultValue="2017-05-24"   variant="outlined"/>
+		</div>
 		)
 	}
 }

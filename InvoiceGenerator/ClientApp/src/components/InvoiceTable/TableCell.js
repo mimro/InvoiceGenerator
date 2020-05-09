@@ -4,12 +4,18 @@ import { TextInput } from './Inputs/TextInput';
 import { NumberInput } from './Inputs/NumberInput';
 import { SelectInput } from './Inputs/SelectInput';
 import { Label } from './Inputs/Label';
+import { connect } from "react-redux";
 
+import {
+	updateItem,
+} from "../../actions";
 
 import './styles/TableCell.css'
 
-
-export class TableCell extends Component {
+type Props = {
+   updateItem:Function,
+};
+class TableCell extends Component {
 
     constructor(props) {
         super(props);
@@ -38,7 +44,7 @@ export class TableCell extends Component {
 		if (this.props.value === "") {
 			this.state.editing = true;
 		}
-		let current = components[this.props.id];
+		let current = components[this.props.name];
 		const TagName = current[0];
 		const isEditable =current[1];
 		return this.state.editing ?
@@ -58,4 +64,16 @@ export class TableCell extends Component {
 	}
 }
 
+function mapStateToProps(state, ownProps) {
+    return {
+        invoiceTableDetails: state.invoiceTableDetails,
+    }
+}
 
+function mapDispatchToProps(dispatch) {
+    return {
+		updateItem: (id, name, value) => dispatch(updateItem(id, name, value))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableCell);

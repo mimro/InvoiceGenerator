@@ -1,26 +1,43 @@
 ﻿import React, { Component } from 'react';
-import { TableRow } from './TableRow';
+import  TableRow  from './TableRow';
 import { Button } from 'reactstrap';
 import './styles/Table.css'
 import { TableHeader } from './TableHeader';
-import { SummaryTable } from './SummaryTable';
+import  SummaryTable  from './SummaryTable';
 import {Tooltip,Fab} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
+import { connect } from "react-redux";
 
-export class InvoiceTable extends Component {
+import {
+    addItem,
+	updateItem,
+	setWidth,
+	calculateTable
+} from "../../actions";
 
-    constructor(props) {
+type Props = {
+  invoiceTableDetails:{
+	table: Array,
+	NettoValueSum:?number,
+	VatValueSum:?number,
+	GrossValueSum:?number
+},
+   addItem:Function,
+   updateItem:Function,
+   calculateTable:Function
+};
+
+ class InvoiceTable extends Component {
+
+    constructor(props: Props) {
         super(props)
         this.state = {
-            invoiceData: this.props.invoiceData,
+            invoiceData: this.props.invoiceTableDetails.table,
             config: this.props.config
         }
 
-        this.removeRow = this.removeRow.bind(this);
         this.moveRowUp = this.moveRowUp.bind(this);
         this.moveRowDown = this.moveRowDown.bind(this);
-
-        this.SumValues = this.SumValues.bind(this);
     }
     render() {
         return (
@@ -39,7 +56,7 @@ export class InvoiceTable extends Component {
     <AddIcon />
 	</Fab>
   </Tooltip>
-               <SummaryTable value={this.SumValues()} />
+               <SummaryTable />
             </div>
         );
     }
@@ -51,18 +68,15 @@ export class InvoiceTable extends Component {
     }
 
     renderRows() {
-        return this.state.invoiceData.map((data, i) => (
-            <TableRow key={data.id} id={i} value={data} onChange={value => this.onChange(data, value)} onRemoveRow={this.removeRow} onMoveRowUp={this.moveRowUp} onMoveRowDown={this.moveRowDown} />
+	let {invoiceTableDetails} =this.props;
+        return invoiceTableDetails.table.map((data, i) => (
+            <TableRow key={data.id} id={i} value={data} onChange={this.props.calculateTable} onMoveRowUp={this.moveRowUp} onMoveRowDown={this.moveRowDown} />
         ))
 
     }
 
-    onChange(data, value) {
-        this.setState({ [data]: value })
-    }
-
     addEmptyRow() {
-        this.setState({
+      /*  this.setState({
             invoiceData: this.state.invoiceData.concat({
                 "id": this.state.invoiceData.length + 1, // TODO - fix key repetition
                 "Name": "",
@@ -74,15 +88,18 @@ export class InvoiceTable extends Component {
                 "VatValue": ""
             })
 
-        });
-    }
+        });*/
 
-    removeRow(rowId) {
-        const newlist = this.state.invoiceData;
-        newlist.splice(rowId, 1);
-
-
-        this.setState({ invoiceData: newlist });
+		this.props.addItem({
+                "id": this.props.invoiceTableDetails.length+1, // TODO - fix key repetition
+                "Name": "",
+                "Quantity": "",
+                "jm": "",
+                "NettoPrice": "",
+                "NettoValue": "",
+                "Vat": "23%",
+                "VatValue": ""
+            })
     }
 
     moveRowUp(rowId) {
@@ -105,24 +122,22 @@ export class InvoiceTable extends Component {
             this.setState({ invoiceData: moveDownArray });
         }
     }
+}
 
-    SumValues() {
-        var sumNV = 0;
-        this.state.invoiceData.forEach((x) => {
-            sumNV += x.NettoValue;
-        });
-
-        var sumVV = 0;
-        this.state.invoiceData.forEach((x) => {
-            sumVV += x.VatValue;
-        });
-
-        var sumGV = 0;
-        this.state.invoiceData.forEach((x) => {
-            sumGV += x.GrossValue;
-        });
-        return [sumNV, sumVV, sumGV];
+function mapStateToProps(state, ownProps) {
+    return {
+        invoiceTableDetails: state.invoiceTableDetails,
+        width: state.width
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        addItem: (id, value) => dispatch(addItem(id, value)),
+		updateItem: (id, name, value) => dispatch(updateItem(id, name, value)),
+		calculateTable:  () => dispatch(calculateTable()),
+        setWidth: (width) => dispatch(setWidth(width))
+    }
+}
 
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceTable);

@@ -1,14 +1,17 @@
 ﻿import React, { Component } from 'react';
 import { TableHeader } from './TableHeader';
 import './styles/SummaryTable.css'
+import { connect } from "react-redux";
 
-export class SummaryTable extends Component {
 
-    constructor(props) {
+
+ class SummaryTable extends Component {
+
+    constructor(props ) {
         super(props);
         this.state = {
             config: {
-                properties: ['NettoValueSummary', 'VatValueSummary', 'GrossValueSummary'],
+                properties: ['NettoValueSum', 'VatValueSum', 'GrossValueSum'],
                 headers: [
                     "Wartość netto",
                     "Vat",
@@ -19,13 +22,16 @@ export class SummaryTable extends Component {
     }
 
     render() {
+	let {invoiceTableDetails} = this.props;
         return (
             <table className="table table-borderless table-responsive-sm table-hover summary-table">
                 <thead>
                     {this.renderHeaders()}
                 </thead>
                 <tbody>
-                    {this.renderCells()}
+                    <td>{invoiceTableDetails.NettoValueSum}</td>
+                    <td>{invoiceTableDetails.VatValueSum}</td>
+                    <td>{invoiceTableDetails.GrossValueSum}</td>
                 </tbody>
             </table>
         );
@@ -43,3 +49,11 @@ export class SummaryTable extends Component {
         ))
     }
 }
+
+function mapStateToProps(state, ownProps) {
+    return {
+        invoiceTableDetails: state.invoiceTableDetails,
+    }
+}
+
+export default connect(mapStateToProps)(SummaryTable);

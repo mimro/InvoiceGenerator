@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
 
 export class TextInput extends Component {
 
@@ -7,7 +8,7 @@ export class TextInput extends Component {
 	}
 
 	render() {
-		return <input className="form-control editor edit-text" ref='input' value={this.props.value} onChange={e => this.props.onChange(e.target.value)} onBlur={this.props.onBlur} />
+		return <TextField  label="Nazwa"  className="editor edit-text" ref='input' value={this.props.value} onChange={e => this.props.onChange(e.target.value)} onBlur={this.props.onBlur} />
 	}
 
 	onFocus = () => this.refs.input.focus();

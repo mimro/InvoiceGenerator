@@ -8,15 +8,19 @@ import Box from '@material-ui/core/Box';
 import PictureAsPdfOutlinedIcon from '@material-ui/icons/PictureAsPdfOutlined';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import  InvoicePreview  from '../Preview/InvoicePreview'
+
 import { connect } from "react-redux";
 import './styles/InvoiceForm.css'
 import {
-    previewInvoice
+    setPreviewInvoice
 } from "../../actions";
 
+
+
 type Props = {
-   previewInvoice: Function,
-   isPreviewEnabled:boolean
+   setPreviewInvoice: Function,
+   previewInvoice:boolean
 };
 
 
@@ -54,23 +58,23 @@ type Props = {
         variant="contained"
         color="primary"
         size="large"
-		onClick={()=>this.props.previewInvoice(true)}
+		onClick={()=>this.props.setPreviewInvoice(true)}
         startIcon={<PictureAsPdfOutlinedIcon />}>
         Generuj PDF
       </Button>
 	   <Modal
         open={this.props.previewInvoice}
-        onClose={()=>this.props.previewInvoice(false)}
+        onClose={()=>this.props.setPreviewInvoice(false)}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Paper> test</Paper>
+        <InvoicePreview/>
       </Modal>
 			</Grid>
 			<Grid item xs={12} sm={4}>
 			 <Paper elevation ={3}>
 			  <Box p={3} >
-					<InvoiceReceipant id companyDataConfig={this.state.invoiceFormConfig.CompanyInputs}  />
+					<InvoiceReceipant  companyDataConfig={this.state.invoiceFormConfig.CompanyInputs}  />
 				  </Box>
 
 			</Paper>
@@ -83,7 +87,7 @@ type Props = {
 
 function mapDispatchToProps(dispatch) {
     return {
-        previewInvoice: (name, value) => dispatch(previewInvoice(name, value)),
+        setPreviewInvoice: (previewInvoice) => dispatch(setPreviewInvoice(previewInvoice)),
     }
 }
 

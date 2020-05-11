@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import  TableCell  from './TableCell';
 import  EditButton from './EditButton';
+import { $,multiply,divide,minus } from 'moneysafe';
 
 import { connect } from "react-redux";
 
@@ -45,9 +46,11 @@ type Props = {
     }
 
     calculateData() {
-        this.state.data.NettoValue = this.state.data.NettoPrice * this.state.data.Quantity;
-        this.state.data.VatValue = (this.state.data.NettoValue * this.state.data.Vat.replace("%", ""))/100;
-        this.state.data.GrossValue = this.state.data.NettoValue - this.state.data.VatValue;
+	console.log(multiply($(this.state.data.NettoPrice), $(this.state.data.Quantity)));
+        this.state.data.NettoValue = multiply($(this.state.data.NettoPrice), $(this.state.data.Quantity)).toNumber().toFixed(2);
+		let vatPercent = divide($(this.state.data.Vat.replace("%", "")),$(100));
+        this.state.data.VatValue = multiply($(this.state.data.NettoValue), $(vatPercent)).toNumber().toFixed(2);
+        this.state.data.GrossValue = $(this.state.data.NettoValue).minus($(this.state.data.VatValue)).toNumber().toFixed(2);
         this.props.onChange(this.state.data);
     }
 }

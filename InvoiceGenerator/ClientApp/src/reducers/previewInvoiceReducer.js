@@ -1,12 +1,10 @@
 import type { Action } from "../actions";
 
-export type isPreviewEnabled = boolean;
+export type previewInvoiceFlag = boolean;
 
-const initialState: isPreviewEnabled = true; 
-
-export default function previewInvoice(state: isPreviewEnabled = false, action: Action) {
+export default function previewInvoice(state: previewInvoiceFlag = false, action: Action) {
     if (action.type === "PREVIEW_INVOICE") {
-        return action.previewInvoice;
+        return action.previewInvoiceFlag;
     }
     return state;
 }

@@ -10,10 +10,9 @@ export type invoiceDetailState = {
         placeOfIssue: string,
 };
 
-let today = new Date();
 const initialState: invoiceSpecificData = {
         number: "",
-        issueDate: today.getFullYear()+'-0'+(today.getMonth()+1)+'-0'+today.getDate(),
+        issueDate: new Date().toISOString().substr(0, 10),
         sellingDate: "",
         placeOfIssue: "",
 };

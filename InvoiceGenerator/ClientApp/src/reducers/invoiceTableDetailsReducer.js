@@ -1,4 +1,5 @@
 ﻿import type { Action } from "../actions";
+import { $,plus } from 'moneysafe';
 
 let id =1;
 export type tableRow = {
@@ -56,25 +57,33 @@ return  Object.assign({}, state, {
 }
 else if(action.type === "CALCULATE_TABLE")
 {
-        var NettoValueSum = 0;
+        let NettoValueSum = $(0);
+		let VatValueSum =  $(0);
+        let GrossValueSum = $(0);
+
 		let calTable= [...state.table];
         calTable.forEach((x) => {
-            NettoValueSum += x.NettoValue;
+          NettoValueSum =  $(NettoValueSum).plus(x.NettoValue);
+          VatValueSum =  $(VatValueSum).plus(x.VatValue);
+          GrossValueSum =  $(GrossValueSum).plus(x.GrossValue);
         });
 
-        var VatValueSum = 0;
-        calTable.forEach((x) => {
-            VatValueSum += x.VatValue;
-        });
+		if(NettoValueSum.toFixed()==='NaN'){
+		NettoValueSum=0;
+		}
 
-        var GrossValueSum = 0;
-        calTable.forEach((x) => {
-            GrossValueSum += x.GrossValue;
-        });
+		if(VatValueSum.toFixed()==='NaN'){
+		VatValueSum=0;
+		}
+
+		if(GrossValueSum.toFixed()==='NaN'){
+		GrossValueSum=0;
+		}
+
         return Object.assign({}, state, {
-        NettoValueSum: NettoValueSum,
-		VatValueSum:VatValueSum,
-		GrossValueSum:parseFloat(GrossValueSum)
+        NettoValueSum: NettoValueSum.toFixed(2),
+		VatValueSum:VatValueSum.toFixed(2),
+		GrossValueSum:parseFloat(GrossValueSum).toFixed(2)
       })
 
 }

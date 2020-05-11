@@ -6,8 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-
-
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 export class Invoice extends Component {
 
@@ -108,11 +107,12 @@ this.setState({someProperty})
 
 	render() {
 		return (
+					 <ThemeProvider theme={theme}>
 			  <Grid container direction={'row'}  justify="center" alignItems="center" spacing={2}>
 			  <Grid item xs={12}>
-			  <Paper elevation ={3}>
+			  <Paper elevation ={3} >
 			  <Box  p={5} mt={3}>
-                <InvoiceSpecificData formData = {this.state.formData.SpecificData} onChange = {this.onChange}/>
+                <InvoiceSpecificData  formData = {this.state.formData.SpecificData} onChange = {this.onChange}/>
 				</Box>
 				</Paper>
 				</Grid>
@@ -125,7 +125,7 @@ this.setState({someProperty})
 				</Paper>
 				</Grid>
 				</Grid>
-
+				</ThemeProvider>
 		)
 	}
 
@@ -133,4 +133,19 @@ this.setState({someProperty})
 
 }
 
-
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#009bd6',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#00415a',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});

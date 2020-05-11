@@ -42,7 +42,7 @@ type Props = {
     render() {
         return (
             <div className="container">
-                <table className="table table-borderless table-responsive-sm table-hover">
+                <table className="table table-borderless table-responsive-sm table-responsive-md table-hover">
                     <thead>
                         {this.renderHeaders()}
                     </thead>
@@ -52,7 +52,7 @@ type Props = {
                 </table>
 
 <Tooltip title="Dodaj wiersz" aria-label="add" onClick={() => this.addEmptyRow()}>
-<Fab color="primary">
+<Fab color="secondary">
     <AddIcon />
 	</Fab>
   </Tooltip>
@@ -76,20 +76,6 @@ type Props = {
     }
 
     addEmptyRow() {
-      /*  this.setState({
-            invoiceData: this.state.invoiceData.concat({
-                "id": this.state.invoiceData.length + 1, // TODO - fix key repetition
-                "Name": "",
-                "Quantity": "",
-                "jm": "",
-                "NettoPrice": "",
-                "NettoValue": "",
-                "Vat": "23%",
-                "VatValue": ""
-            })
-
-        });*/
-
 		this.props.addItem({
                 "id": this.props.invoiceTableDetails.length+1, // TODO - fix key repetition
                 "Name": "",

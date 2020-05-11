@@ -86,10 +86,11 @@ export function calculateTable(): Action {
     }
 }
 	
-export function previewInvoice(previewInvoice:boolean): Action {
+export function setPreviewInvoice(previewInvoiceFlag:boolean): Action {
+console.log("setPreviewInvoice" + previewInvoiceFlag);
     return {
         type: "PREVIEW_INVOICE",
-		previewInvoice
+		previewInvoiceFlag
     }
 }
 

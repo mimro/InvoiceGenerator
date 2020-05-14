@@ -65,11 +65,12 @@ export function setWidth(width: number): Action {
     }
 }
 
-export function updateItem(val: string,data:Object): Action {
+export function updateItem(id: string,field:string, val: string): Action {
     return {
         type: "UPDATE_ITEM",
-        val,
-        data
+        id,
+        field,
+		val
     }
 }
 

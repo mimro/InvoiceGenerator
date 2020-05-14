@@ -23,6 +23,7 @@
     "react-router-dom": "^5.1.2",
     "react-router-redux": "^4.0.8",
     "react-scripts": "^3.4.0",
+    "react-sortable-hoc": "^1.11.0",
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
     "rimraf": "^2.6.2"
@@ -48,7 +49,7 @@
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/",
-	"deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -62,5 +63,5 @@
       "last 1 safari version"
     ]
   },
-	"homepage":"http://mimro.github.io/invoicegenerator"
+  "homepage": "http://mimro.github.io/invoicegenerator"
 }

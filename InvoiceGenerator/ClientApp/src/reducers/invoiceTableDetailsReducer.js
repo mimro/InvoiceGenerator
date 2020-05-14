@@ -1,6 +1,6 @@
 ﻿import type { Action } from "../actions";
 import { $,plus } from 'moneysafe';
-
+import {calculateRow, calculateSummaryTable} from "../ApplicationLogic/Calculations"
 let id =1;
 export type tableRow = {
 	
@@ -18,41 +18,85 @@ const initialStateRow:tableRow={
                 "Name": "",
                 "Quantity": "",
                 "jm": "",
-                "NettoPrice": "",
-                "NettoValue": "",
+                "NettoPrice":"",
+                "NettoValue": 0,
                 "Vat": "23%",
-                "VatValue": ""
+                "VatValue": 0,
+				"GrossValue":0
             }
+const newRow:tableRow=(id)=>{
+	        return{  
+				"id": id, 
+                "Name": "",
+                "Quantity": "",
+                "jm": "",
+                "NettoPrice": "",
+                "NettoValue": 0,
+                "Vat": "23%",
+                "VatValue": 0,
+				"GrossValue":0
+				}
+}
 
 export type invoiceTableDetails ={
 	table: Array,
 	NettoValueSum:?number,
 	VatValueSum:?number,
-	GrossValueSum:?number
+	GrossValueSum:?number,
+	indexes:Array
 }
 
 const initialState:invoiceTableDetails={
 	table: [initialStateRow],
 	NettoValueSum:0,
 	VatValueSum:0,
-	GrossValueSum:0
+	GrossValueSum:0,
+	indexes:1
 }
 
 export default function invoiceTableDetailsReducer(state: State=initialState, action: Action): State {
     if (action.type === "ADD_ITEM" ) {
        return  Object.assign({}, state, {
-        table: state.table.concat([action.obj])
+        table: state.table.concat([newRow(state.table.length+1)])
     })}
 	else if(action.type === "UPDATE_ITEM"){
-	//console.log("Name "+state[0]["Name"] +"val"+ action.val);
-	        return state;//{...state, [action.data]: action.val};
+
+let newState = [...state.table];
+let {id,field, val} = action; 
+let summaryValues={NettoValueSum:0, VatValueSum:0, GrossValueSum:0};
+	newState[id].field = val;
+
+	if(field === 'Quantity' || field === 'NettoPrice'|| field === 'Vat'){
+	let calcResult = calculateRow(newState[id].NettoPrice,newState[id].Quantity, newState[id].Vat);	
+	newState[id].GrossValue = calcResult.GrossValue;
+	newState[id].VatValue = calcResult.VatValue;
+	newState[id].NettoValue = calcResult.NettoValue;
+	summaryValues = calculateSummaryTable(newState);
+
+	return Object.assign({},state,{
+	table: newState,
+	NettoValueSum: summaryValues.NettoValueSum.toFixed(2),
+	VatValueSum:summaryValues.VatValueSum.toFixed(2),
+	GrossValueSum:summaryValues.GrossValueSum.toFixed(2)
+	});	
+	}	
+	else{
+	return Object.assign({},state,{
+	table: newState,
+	})
+	}
    
   }
     else if (action.type === "REMOVE_ITEM") {
 let newState = [...state.table];
 newState.splice(action.id, 1);
+let summaryValues = calculateSummaryTable(newState);
+let normalized = normalizeIndexes(newState);
 return  Object.assign({}, state, {
-        table: newState   
+        table: normalized,
+	NettoValueSum: summaryValues.NettoValueSum.toFixed(2),
+	VatValueSum:summaryValues.VatValueSum.toFixed(2),
+	GrossValueSum:summaryValues.GrossValueSum.toFixed(2)
 		})
 }
 else if(action.type === "CALCULATE_TABLE")
@@ -90,4 +134,10 @@ else if(action.type === "CALCULATE_TABLE")
 	else {
     return state;
   }
+}
+
+function normalizeIndexes(table)
+{
+ table.forEach((o, i) => o.id = i +1 );
+return table;
 }

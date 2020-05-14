@@ -21,7 +21,6 @@ type Props = {
             data: this.props.value,
 			id:this.props.id,
         }
-        this.calculateData();
     }
 
     render() {
@@ -33,25 +32,19 @@ type Props = {
     }
     renderCells() {    
         return ['Name', 'Quantity', 'jm', 'NettoPrice', 'NettoValue', 'Vat', 'VatValue', 'GrossValue'].map(field => (
-            <TableCell key={field} id={this.state.id} name={field} value={this.state.data[field]} onChange={value => this.onChange(this.state.id,field,value)} />
+            <TableCell key={field} id={this.props.id} name={field} value={this.props.value[field]} onChange={value => this.onChange(this.props.id,field,value)} />
         ))
     }
 
     onChange(id, field,value) {
+
+	console.log(id+"  " +field+"  "+value);
+
         this.state.data[field] = value;
-        this.calculateData();
-		this.props.updateItem(value,this.state.data);
 
-        this.props.onChange(this.state.data);
-    }
+		this.props.updateItem(id,field,value);
 
-    calculateData() {
-	console.log(multiply($(this.state.data.NettoPrice), $(this.state.data.Quantity)));
-        this.state.data.NettoValue = multiply($(this.state.data.NettoPrice), $(this.state.data.Quantity)).toNumber().toFixed(2);
-		let vatPercent = divide($(this.state.data.Vat.replace("%", "")),$(100));
-        this.state.data.VatValue = multiply($(this.state.data.NettoValue), $(vatPercent)).toNumber().toFixed(2);
-        this.state.data.GrossValue = $(this.state.data.NettoValue).minus($(this.state.data.VatValue)).toNumber().toFixed(2);
-        this.props.onChange(this.state.data);
+
     }
 }
 
@@ -63,7 +56,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-		updateItem: (id, value) => dispatch(updateItem(id, value))
+		updateItem: (id, field,val) => dispatch(updateItem(id, field,val))
     }
 }
 

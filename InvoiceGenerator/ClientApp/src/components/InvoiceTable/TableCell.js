@@ -40,7 +40,7 @@ class TableCell extends Component {
 			VatValue: [NumberInput, false],
 			GrossValue: [NumberInput,false]
 		}
-
+		console.log("value" + this.props.value)
 		if (this.props.value === "") {
 			this.state.editing = true;
 		}
@@ -52,7 +52,12 @@ class TableCell extends Component {
 			<td onClick={() => this.onFocus(isEditable)}>{value}</td>
 	}
 
-
+	onChange(id,field,value)
+	{
+	console.log(id+"  " +field+"  "+value);
+	this.props.updateItem(id,field,3);
+	
+	}
 	onFocus(isEditable) {
 		if (isEditable) {
 			this.setState({ editing: true }, () => { this.child.current.onFocus() });
@@ -62,6 +67,8 @@ class TableCell extends Component {
 	onBlur() {
 		this.setState({ editing: false });
 	}
+
+
 }
 
 function mapStateToProps(state, ownProps) {

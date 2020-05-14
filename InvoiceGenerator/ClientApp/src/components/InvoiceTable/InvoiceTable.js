@@ -82,9 +82,9 @@ type Props = {
                 "Quantity": "",
                 "jm": "",
                 "NettoPrice": "",
-                "NettoValue": "",
+                "NettoValue": 0,
                 "Vat": "23%",
-                "VatValue": ""
+                "VatValue": 0
             })
     }
 

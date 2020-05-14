@@ -6,6 +6,9 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import PictureAsPdfOutlinedIcon from '@material-ui/icons/PictureAsPdfOutlined';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+
+
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import  InvoicePreview  from '../Preview/InvoicePreview'
@@ -42,7 +45,7 @@ type Props = {
 		 <Grid container direction={'row'} align="center"  item xs={12} spacing={15}>
 
 			<Grid item xs={12} sm={4}>
-			  <Paper elevation ={3}>
+			  <Paper elevation ={3} >
 			  <Box p={3}>
 					<InvoiceIssuer companyDataConfig={this.state.invoiceFormConfig.CompanyInputs} />
 			  </Box>
@@ -59,8 +62,8 @@ type Props = {
         color="primary"
         size="large"
 		onClick={()=>this.props.setPreviewInvoice(true)}
-        startIcon={<PictureAsPdfOutlinedIcon />}>
-        Generuj PDF
+        startIcon={<VisibilityIcon />}>
+        Podgląd
       </Button>
 	   <Modal
         open={this.props.previewInvoice}

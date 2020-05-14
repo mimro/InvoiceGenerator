@@ -1,10 +1,11 @@
 ﻿import React, { Component } from 'react';
 import { Name } from './Inputs/Name' ;
-import { TextInput } from './Inputs/TextInput';
+import { TextInput} from './Inputs/TextInput';
 import { NumberInput } from './Inputs/NumberInput';
 import { SelectInput } from './Inputs/SelectInput';
 import { Label } from './Inputs/Label';
 import { connect } from "react-redux";
+import { NameInput, QuantityInput,JmInput,NettoPriceInput,VatInput  } from './Inputs/Inputs';
 
 import {
 	updateItem,
@@ -31,12 +32,12 @@ class TableCell extends Component {
 		const { value, onChange } = this.props;
 
 		const components = {
-			Name: [TextInput, true],
-			Quantity: [NumberInput,true],
-			jm: [SelectInput, true],
-			NettoPrice: [NumberInput, true],
+			Name: [NameInput, true],
+			Quantity: [QuantityInput,true],
+			jm: [JmInput, true],
+			NettoPrice: [NettoPriceInput, true],
 			NettoValue: [NumberInput, false],
-			Vat: [TextInput, true],
+			Vat: [VatInput, true],
 			VatValue: [NumberInput, false],
 			GrossValue: [NumberInput,false]
 		}
@@ -48,19 +49,18 @@ class TableCell extends Component {
 		const TagName = current[0];
 		const isEditable =current[1];
 		return this.state.editing ?
-			<td className="no-pad"><TagName value={this.props.value} ref={this.child} onChange={this.props.onChange} onBlur={this.onBlur} /></td> :
+			<td className="no-pad"><TagName value={this.props.value} ref={this.child} onChange={value=>this.onChange(this.props.id,this.props.name,value)} onBlur={this.onBlur} /></td> :
 			<td onClick={() => this.onFocus(isEditable)}>{value}</td>
 	}
 
 	onChange(id,field,value)
 	{
-	console.log(id+"  " +field+"  "+value);
-	this.props.updateItem(id,field,3);
+	this.props.updateItem(id,field,value);
 	
 	}
 	onFocus(isEditable) {
 		if (isEditable) {
-			this.setState({ editing: true }, () => { this.child.current.onFocus() });
+			this.setState({ editing: true });
 		}
 	}
 
@@ -79,7 +79,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-		updateItem: (id, name, value) => dispatch(updateItem(id, name, value))
+		updateItem: (id, field, value) => dispatch(updateItem(id, field, value))
     }
 }
 

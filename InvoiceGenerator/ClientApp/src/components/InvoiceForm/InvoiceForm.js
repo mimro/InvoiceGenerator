@@ -7,7 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import PictureAsPdfOutlinedIcon from '@material-ui/icons/PictureAsPdfOutlined';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -71,8 +72,20 @@ type Props = {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
+
         <InvoicePreview/>
       </Modal>
+	  	       <FormControlLabel
+        control={
+          <Switch
+            checked={true}
+            //onChange={}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label="Primary"
+      />
 			</Grid>
 			<Grid item xs={12} sm={4}>
 			 <Paper elevation ={3}>

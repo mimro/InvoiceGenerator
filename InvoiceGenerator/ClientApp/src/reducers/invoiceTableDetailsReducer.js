@@ -43,7 +43,7 @@ export type invoiceTableDetails ={
 	NettoValueSum:?number,
 	VatValueSum:?number,
 	GrossValueSum:?number,
-	indexes:Array
+	payedOff:boolean
 }
 
 const initialState:invoiceTableDetails={
@@ -51,7 +51,7 @@ const initialState:invoiceTableDetails={
 	NettoValueSum:0,
 	VatValueSum:0,
 	GrossValueSum:0,
-	indexes:1
+	payedOff:true
 }
 
 export default function invoiceTableDetailsReducer(state: State=initialState, action: Action): State {
@@ -64,8 +64,7 @@ export default function invoiceTableDetailsReducer(state: State=initialState, ac
 let newState = [...state.table];
 let {id,field, val} = action; 
 let summaryValues={NettoValueSum:0, VatValueSum:0, GrossValueSum:0};
-	newState[id].field = val;
-
+	newState[id][field] = val;
 	if(field === 'Quantity' || field === 'NettoPrice'|| field === 'Vat'){
 	let calcResult = calculateRow(newState[id].NettoPrice,newState[id].Quantity, newState[id].Vat);	
 	newState[id].GrossValue = calcResult.GrossValue;

@@ -35,9 +35,6 @@ type Props = {
             invoiceData: this.props.invoiceTableDetails.table,
             config: this.props.config
         }
-
-        this.moveRowUp = this.moveRowUp.bind(this);
-        this.moveRowDown = this.moveRowDown.bind(this);
     }
     render() {
         return (
@@ -76,37 +73,7 @@ type Props = {
     }
 
     addEmptyRow() {
-		this.props.addItem({
-                "id": this.props.invoiceTableDetails.length+1, // TODO - fix key repetition
-                "Name": "",
-                "Quantity": "",
-                "jm": "",
-                "NettoPrice": "",
-                "NettoValue": 0,
-                "Vat": "23%",
-                "VatValue": 0
-            })
-    }
-
-    moveRowUp(rowId) {
-
-        var moveUpArray = this.state.invoiceData;
-        if (rowId !== -1 && rowId !== 0) {
-            var index = rowId;
-            var f = moveUpArray.splice(index, 1)[0];
-            moveUpArray.splice(index - 1, 0, f);
-            this.setState({ invoiceData: moveUpArray });
-        }
-    }
-
-    moveRowDown(rowId) {
-        var moveDownArray = this.state.invoiceData;
-        if (rowId !== -1 && rowId !== this.state.invoiceData.length) {
-            var index = rowId;
-            var f = moveDownArray.splice(index, 1)[0];
-            moveDownArray.splice(index + 1, 0, f);
-            this.setState({ invoiceData: moveDownArray });
-        }
+		this.props.addItem()
     }
 }
 

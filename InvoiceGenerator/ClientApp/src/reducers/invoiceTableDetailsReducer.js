@@ -20,7 +20,7 @@ const initialStateRow:tableRow={
                 "jm": "",
                 "NettoPrice":"",
                 "NettoValue": 0,
-                "Vat": "23%",
+                "Vat": "23",
                 "VatValue": 0,
 				"GrossValue":0
             }
@@ -32,7 +32,7 @@ const newRow:tableRow=(id)=>{
                 "jm": "",
                 "NettoPrice": "",
                 "NettoValue": 0,
-                "Vat": "23%",
+                "Vat": "23",
                 "VatValue": 0,
 				"GrossValue":0
 				}
@@ -129,6 +129,36 @@ else if(action.type === "CALCULATE_TABLE")
 		GrossValueSum:parseFloat(GrossValueSum).toFixed(2)
       })
 
+}
+else if(action.type === "MOVE_ROW_UP")
+{
+let newTable= [...state.table];
+ if (action.rowId !== -1 && action.rowId !== 0) {
+            let index = action.rowId;
+            let f = newTable.splice(index, 1)[0];
+            newTable.splice(index - 1, 0, f);
+
+       return  Object.assign({}, state, {
+        table: newTable,
+		})
+}
+		return state;
+}
+else if(action.type === "MOVE_ROW_DOWN")
+{
+let newTable= [...state.table];
+
+        if (action.rowId !== -1 && action.rowId !== newTable.length) {
+            let index = action.rowId;
+            let f = newTable.splice(index, 1)[0];
+            newTable.splice(index + 1, 0, f);
+
+             return  Object.assign({}, state, {
+        table: newTable
+		});
+        
+		}
+		return state;
 }
 	else {
     return state;

@@ -32,14 +32,14 @@ class TableCell extends Component {
 		const { value, onChange } = this.props;
 
 		const components = {
-			Name: [NameInput, true],
-			Quantity: [QuantityInput,true],
-			jm: [JmInput, true],
-			NettoPrice: [NettoPriceInput, true],
-			NettoValue: [NumberInput, false],
-			Vat: [VatInput, true],
-			VatValue: [NumberInput, false],
-			GrossValue: [NumberInput,false]
+			Name: [NameInput, true,''],
+			Quantity: [QuantityInput,true,''],
+			jm: [JmInput, true,''],
+			NettoPrice: [NettoPriceInput, true,' PLN'],
+			NettoValue: [NumberInput, false,''],
+			Vat: [VatInput, true, '%'],
+			VatValue: [NumberInput, false,''],
+			GrossValue: [NumberInput,false,'']
 		}
 		console.log("value" + this.props.value)
 		if (this.props.value === "") {
@@ -48,9 +48,10 @@ class TableCell extends Component {
 		let current = components[this.props.name];
 		const TagName = current[0];
 		const isEditable =current[1];
+		const additionalDisplayChar = current[2];
 		return this.state.editing ?
 			<td className="no-pad"><TagName value={this.props.value} ref={this.child} onChange={value=>this.onChange(this.props.id,this.props.name,value)} onBlur={this.onBlur} /></td> :
-			<td onClick={() => this.onFocus(isEditable)}>{value}</td>
+			<td onClick={() => this.onFocus(isEditable)}>{value + additionalDisplayChar}</td>
 	}
 
 	onChange(id,field,value)

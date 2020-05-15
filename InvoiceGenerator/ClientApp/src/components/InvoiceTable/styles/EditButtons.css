@@ -3,9 +3,39 @@
 
 .up-down-buttons{
     display:inline-block;
-    margin-left: 5px;
+    margin-right: 5px;
+	float: right;
 }
 
 .button-edit:hover{
     cursor: pointer;
+}
+
+#removeBin{
+float:left;
+}
+#removeBin:hover{
+color: #e16;
+
+}
+#moveRowUp{
+background-color: #eee;
+border-radius:5px;
+	display:block;
+}
+#moveRowDown{
+background-color: #eee;
+border-radius:5px;
+
+	display:block;
+}
+
+#moveRowUp:hover{
+color: #e16;
+background-color: #61d2ff;
+
+}
+#moveRowDown:hover{
+background-color: #61d2ff;
+color: #ff698e;
 }

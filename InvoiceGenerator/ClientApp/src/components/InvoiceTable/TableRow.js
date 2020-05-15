@@ -15,7 +15,7 @@ export default class TableRow extends Component {
 				{
 					this.renderCells()
 				}
-                <EditButton id={this.props.id} removeRow={this.props.onRemoveRow} moveRowUp={this.props.onMoveRowUp} moveRowDown={this.props.onMoveRowDown} />
+                <EditButton id={this.props.id}   />
             </tr>
         );
     }

@@ -3,14 +3,22 @@
 import { faTrashAlt, faArrowUp,faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './styles/EditButtons.css'
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import { connect } from "react-redux";
 
 import {
 	removeItem,
+	moveRowUp,
+	moveRowDown
 } from "../../actions";
 
 type Props = {
-   removeItem:Function
+   removeItem:Function,
+   moveRowUp:Function,
+	moveRowDown:Function
 };
 class EditButton extends Component {
 
@@ -19,14 +27,17 @@ class EditButton extends Component {
     }
 
     render() {
+	let {removeItem,moveRowUp,moveRowDown} = this.props
         return (
             <td>
-                <a className="button-edit" title="Usuń" onClick={()=>this.removeRow(this.props.id)}><FontAwesomeIcon icon={faTrashAlt} /></a>
+                <a id="removeBin" title="Usuń" onClick={()=>removeItem(this.props.id)}><DeleteIcon/></a>
                 <div class="up-down-buttons">
-                    <a className="button-edit" title="Przenieś do góry" onClick={() => this.props.moveRowUp(this.props.id)}><FontAwesomeIcon icon={faArrowUp} /></a>
+				
+				<a id="moveRowUp" title="Przenieś do góry" onClick={() => moveRowUp(this.props.id)}><ArrowDropUpIcon id="arrowUpIcon"  /></a>
+				<a id="moveRowDown" title="Przenieś do dołu" onClick={() => moveRowDown(this.props.id)}><ArrowDropDownIcon  id="arrowDownIcon" /></a>
+				</div>
 
-                    <a className="button-edit" title="Przenieś do dołu" onClick={() => this.props.moveRowDown(this.props.id)}><FontAwesomeIcon icon={faArrowDown} /></a>
-                </div>
+					
                 </td>
         );
     }
@@ -44,6 +55,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
        removeItem: (id) => dispatch(removeItem(id)),
+       moveRowUp: (id) => dispatch(moveRowUp(id)),
+       moveRowDown: (id) => dispatch(moveRowDown(id)),
     }
 }
 

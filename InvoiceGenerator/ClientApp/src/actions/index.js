@@ -88,10 +88,29 @@ export function calculateTable(): Action {
 }
 	
 export function setPreviewInvoice(previewInvoiceFlag:boolean): Action {
-console.log("setPreviewInvoice" + previewInvoiceFlag);
     return {
         type: "PREVIEW_INVOICE",
 		previewInvoiceFlag
     }
 }
 
+export function moveRowUp(rowId:number){
+return{
+	type: "MOVE_ROW_UP",
+	rowId
+}
+}
+
+export function moveRowDown(rowId:number){
+return{
+	type: "MOVE_ROW_DOWN",
+	rowId
+}
+}
+
+export function setIsInvoicePaidOff(isInvoicePaidOff:boolean){
+return{
+	type: "SET_INVOICE_PAID_OFF",
+	isInvoicePaidOff
+}
+}

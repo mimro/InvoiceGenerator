@@ -75,8 +75,9 @@ type Props = {
 
         <InvoicePreview/>
       </Modal>
-	  	       <FormControlLabel
-        control={
+	  <Box component={FormControlLabel}
+	  display={{  lg: 'block' }}
+	  control={
           <Switch
             checked={true}
             //onChange={}
@@ -84,12 +85,12 @@ type Props = {
             color="primary"
           />
         }
-        label="Primary"
+        label="Opłacona"
       />
-			</Grid>
+	</Grid>
 			<Grid item xs={12} sm={4}>
 			 <Paper elevation ={3}>
-			  <Box p={3} >
+			  <Box p={3}  >
 					<InvoiceReceipant  companyDataConfig={this.state.invoiceFormConfig.CompanyInputs}  />
 				  </Box>
 

@@ -1,8 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import Template1 from './InvoiceViewTemplates/Template1';
-
+import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
@@ -17,24 +19,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-  function InvoicePreview(props) {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [open, setOpen] = React.useState(false);
+function InvoicePreview(props) {
+    const classes = useStyles();
 
-  const invoiceData={
-		invoiceSpecificData: props.invoiceSpecificData,
-		issuerDetails: props.issuerDetails,
-		recipientDetails: props.recipientDetails,
-		invoiceTableDetails: props.invoiceTableDetails,
-  }
+    const invoiceData = {
+        invoiceSpecificData: props.invoiceSpecificData,
+        issuerDetails: props.issuerDetails,
+        recipientDetails: props.recipientDetails,
+        invoiceTableDetails: props.invoiceTableDetails,
+    }
 
-  return (
-    <div  className={classes.paper}>
-        <Template1 invoiceData={invoiceData} />
+    return (
+        <div className={classes.paper}>
+            <Template1 invoiceData={invoiceData} />
+            <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                onClick={() =>  generatePdf() }>
+                Generuj
+      </Button>
+        </div>
+    );
+}
 
-    </div>
-  );
+const generatePdf = () => {
+    let element = document.querySelector(".invoice-preview-container");
+    const pdf = new jsPDF();
+    if (pdf) {
+        html2canvas(element, {
+            useCORS: true
+        })
+            .then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                console.log(imgData);
+                let width = (element.offsetWidth * 0.7) ;
+                let height = element.offsetHeight * 0.7;
+                pdf.deletePage(1);
+                pdf.addPage(width, height);
+                pdf.addImage(imgData, 'PNG', 10, 10);
+                pdf.save('download.pdf');
+            });
+    }
 }
 
 const mapStateToProps = (state , ownProps) => {

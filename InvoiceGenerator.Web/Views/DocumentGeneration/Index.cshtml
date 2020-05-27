@@ -1,0 +1,106 @@
+﻿@model InvoiceGenerator.Web.Models.Invoice.InvoiceViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IndexView</title>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="row">
+            <div id="section1" class="specificData">
+                <div>@Model.IssuerDetails.CompanyName</div>
+                <div>@Model.IssuerDetails.Street</div>
+                <div>@Model.IssuerDetails.ZipCode @Model.IssuerDetails.City</div>
+            </div>
+
+            <div id="section2" class="specificData">
+                <div>Miejsce wystawienia:  @Model.InvoiceSpecificData.PlaceOfIssue</div>
+                <div>Data wystawienia: @Model.InvoiceSpecificData.IssueDate r.</div>
+                <div>Data sprzedaży: @Model.InvoiceSpecificData.SellingDate r.</div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="seller" class="companyData">
+                <div class="invoice-part-name">Sprzedawca</div>
+                <div>EG TRANS Elżbieta Żodzik</div>
+                <div>ul.Międzyrzecka 20A, 08-200 Łosice</div>
+                <div>NIP : 5371420130</div>
+            </div>
+            <div id="buyer" class="companyData">
+                <div class="invoice-part-name">Nabywca</div>
+                <div>Termo Organika sp. z o.o</div>
+                <div>ul. Bolesława Prusa 33, 30-117 Kraków</div>
+                <div>NIP: 679-25-71-223</div>
+            </div>
+            <div class="row">
+                <div class="invoice-header">Faktura VAT</div>
+                <div class="invoice-header-bottom">oryginał / kopia</div>
+                <div class="invoice-header-bottom">Nr 22/2019</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    .invoice-container {
+        font-family: "Times New Roman", Times, serif;
+        margin-left: 1cm;
+        margin-right: 2cm;
+        margin-top: 2.5cm;
+        height: 100%;
+    }
+
+    .row {
+        margin: 0.5cm;
+    }
+
+    .specificData {
+        font-size: 20px;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    #section1 {
+        display: inline-block;
+    }
+
+    #section2 {
+        display: inline-block;
+        float: right;
+    }
+
+    .companyData {
+        display: inline-block;
+    }
+
+    #buyer {
+        float: right;
+    }
+
+    .invoice-part-name {
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    .invoice-header {
+        font-weight: bold;
+        font-size: 38px;
+        text-align: center;
+    }
+
+    .invoice-header-bottom {
+        font-weight: bold;
+        font-size: 25px;
+        text-align: center;
+    }
+</style>
+</html>
+

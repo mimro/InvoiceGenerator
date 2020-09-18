@@ -1,12 +1,12 @@
 ﻿import React, { Component } from 'react';
 import  TableRow  from './TableRow';
-import { Button } from 'reactstrap';
 import './styles/Table.css'
 import { TableHeader } from './TableHeader';
 import  SummaryTable  from './SummaryTable';
 import {Tooltip,Fab} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
 import { connect } from "react-redux";
+import tableConfig from "./TableConfig"
 
 import {
     addItem,
@@ -33,8 +33,7 @@ type Props = {
     constructor(props: Props) {
         super(props)
         this.state = {
-            invoiceData: this.props.invoiceTableDetails.table,
-            config: this.props.config
+            config: tableConfig
         }
     }
     render() {

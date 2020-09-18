@@ -1,6 +1,8 @@
 ﻿  import React from 'react';
-  import './Template1.css';
-  export default function Template1(props) {
+import './Template1.css';
+import { connect } from "react-redux";
+
+ function Template1(props) {
 
   return (
   <div class="invoice-preview-container">
@@ -66,3 +68,18 @@ const renderRows= (arr)=>{
 		   </tr>
         ))
 }
+
+
+const mapStateToProps = (state, ownProps) => {
+	return {
+		invoiceSpecificData: state.invoiceSpecificData,
+		issuerDetails: state.issuerDetails,
+		recipientDetails: state.recipientDetails,
+		invoiceTableDetails: state.invoiceTableDetails,
+	}
+}
+
+
+export default connect(
+	mapStateToProps
+)(Template1)

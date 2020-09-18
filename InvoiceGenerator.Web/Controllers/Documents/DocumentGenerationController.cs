@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using InvoiceGenerator.Web.Models.Invoice;
 using jsreport.AspNetCore;
 using jsreport.Types;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace InvoiceGenerator.Web.Controllers.Documents.DocumentGeneration
 {
@@ -14,6 +15,7 @@ namespace InvoiceGenerator.Web.Controllers.Documents.DocumentGeneration
     public class DocumentGenerationViewController : Controller
     {
        [MiddlewareFilter(typeof(JsReportPipeline))]
+       [HttpGet]
         public IActionResult Index(string invoiceData)
         {
             HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
@@ -22,26 +24,33 @@ namespace InvoiceGenerator.Web.Controllers.Documents.DocumentGeneration
             {
                 PropertyNameCaseInsensitive = false,
             };
-            var invoiceViewModel = JsonSerializer.Deserialize<InvoiceViewModel>(invoiceData, options);
+            var invoiceViewModel = invoiceData;
+           // dynamic json = JsonConvert.DeserializeObject(invoiceData);
+            var invoice = JsonConvert.DeserializeObject<InvoiceData>(invoiceData);
 
-            var invoice = new InvoiceViewModel()
-            {
-                InvoiceSpecificData = new InvoiceSpecificDataModel()
-                {
-                    IssueDate = new DateTime(),
-                    Number = "ABC123",
-                    PlaceOfIssue = "Warszawa",
-                    SellingDate = new DateTime()
-                },
-                IssuerDetails = new IssuerDetailsViewModel()
-                {
-                    City = "Łosice",
-                    CompanyName = "EG Trans Elżbieta żodzik",
+            ////var invoice = new InvoiceData()
+            ////{
+            ////    InvoiceSpecificData = new InvoiceSpecificData()
+            ////    {
+            ////        IssueDate = new DateTime(),
+            ////        Number = "ABC123",
+            ////        PlaceOfIssue = "Warszawa",
+            ////        SellingDate = new DateTime()
+            ////    },
+            ////    IssuerDetails = new IssuerDetailsViewModel()
+            ////    {
+            ////        City = "Łosice",
+            ////        CompanyName = "EG Trans Elżbieta żodzik",
 
-                }
-            };
+            ////    }
+            ////};
 
             return View(invoice);
         }
+    }
+
+    public class MyModel
+    {
+        public string invoiceData { get; set; }
     }
 }

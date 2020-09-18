@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,14 +7,15 @@ using System.Threading.Tasks;
 namespace InvoiceGenerator.Web.Models.Invoice
 {
     [Serializable]
-    public class InvoiceViewModel
+    public class InvoiceData
     {
-        public InvoiceSpecificDataModel InvoiceSpecificData { get; set; }
+        [JsonProperty(PropertyName = "invoiceSpecificData")]
+        public InvoiceSpecificData InvoiceSpecificData { get; set; }
 
         public IssuerDetailsViewModel IssuerDetails { get; set; }
         
         public RecipentDetailsViewModel RecipentDetails { get; set; }
         
-        public List<Product> ProductList { get; set; }
+        public IEnumerable<Product> Table { get; set; }
     }
 }

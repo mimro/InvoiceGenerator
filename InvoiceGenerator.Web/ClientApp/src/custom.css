@@ -15,5 +15,5 @@ code {
 
 body {
     font-family: 'Lato', sans-serif;
-    background-color: #f1f1f2;
+    background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
 }

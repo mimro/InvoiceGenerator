@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { InputGroup, FormControl, } from 'react-bootstrap'
-import './styles/InvoiceCompanyDataInput.css'
+
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles'
@@ -28,7 +28,6 @@ type Props = {
 	constructor(props : Props) {
 		super(props);
 		this.state = {
-			companyConfig: this.props.companyDataConfig,
 			data:this.props.companyData
 		}
 	}
@@ -36,26 +35,26 @@ type Props = {
 
 
 	render() {
-		const conf = this.state.companyConfig;
+		
 		const { recipientDetails} = this.props;
 		return (
 		 <form noValidate autoComplete="on">
 		<label className="buyer">Nabywca</label>
-		<Grid container direction={'column'}  justify="center" alignItems="center" xs={12} spacing={3}>
+		<Grid container direction={'column'}  xs={12} spacing={2}>
 			<Grid item xs={12}>
-			<TextField required name="companyName" value ={recipientDetails.companyName} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label={conf.CompanyName.name} />
+			<TextField  name="companyName" value ={recipientDetails.companyName} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Nazwa firmy" />
 			</Grid>
 			<Grid item xs={12}>
-			<TextField required name="vatId" value ={recipientDetails.vatId} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label={conf.VATID.name} />
+			<TextField  name="vatId" value ={recipientDetails.vatId} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="NIP" />
 			</Grid>
 			<Grid item xs={12}>
-			<TextField required name="street" value ={recipientDetails.street} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label={conf.Street.name}/>
+			<TextField  name="street" value ={recipientDetails.street} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Ulica"/>
 			</Grid>
 			<Grid item xs={12}>
-			<TextField required name="city" value ={recipientDetails.city} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label={conf.City.name}  />
+			<TextField  name="city" value ={recipientDetails.city} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Miasto"  />
 			</Grid>
 			<Grid item xs={12}>
-			<TextField required name="zipCode" value ={recipientDetails.zipCode} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label={conf.ZipCode.name} />
+			<TextField  name="zipCode" value ={recipientDetails.zipCode} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Kod pocztowy" />
 			</Grid>
 			</Grid>
 		</form>

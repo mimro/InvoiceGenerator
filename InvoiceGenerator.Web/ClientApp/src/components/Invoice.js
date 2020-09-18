@@ -12,91 +12,7 @@ export class Invoice extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state={
-            invoiceTableData: [
-                {
-                    "id": 1,
-                    "Name": "ABC123",
-                    "Quantity": "1",
-                    "jm": "ryczałt",
-                    "NettoPrice": "850",
-                    "NettoValue": "",
-                    "Vat": "23%",
-                    "VatValue": "",
-                    "GrossValue": ""
-                },
-                {
-                    "id": 2,
-                    "Name": "EFG456",
-                    "Quantity": "5",
-                    "jm": "szt",
-                    "NettoPrice": "400",
-                    "NettoValue": "",
-                    "Vat": "23%",
-                    "VatValue": "",
-                    "GrossValue": ""
-                },
-                {
-                    "id": 3,
-                    "Name": "HIJ678",
-                    "Quantity": "4",
-                    "jm": "km",
-                    "NettoPrice": "220",
-                    "NettoValue": "",
-                    "Vat": "23%",
-                    "VatValue": "",
-                    "GrossValue": ""
-                }
-            ],
-            tableConfig: {
-                "properties": [
-                    "Name",
-                    "Quantity",
-                    "jm",
-                    "NettoPrice",
-                    "NettoValue",
-                    "Vat",
-                    "VatValue",
-                    "GrossValue"
-                ],
-                "headers": [
-                    "Nazwa",
-                    "Ilość",
-                    "jm",
-                    "Cena jednostkowa netto",
-                    "Wartość netto",
-                    "Vat",
-                    "Wartość vat",
-                    "Wartość brutto",
-                    "Edytuj"
-                ]
-            },
-            formConfig: {
-                CompanyInputs: {
-                    Seller: { text: "Sprzedawca" },
-                    Buyer: { text: "Nabywca" },
-                    CompanyName: { name: "Nazwa Firmy" },
-                    VATID: { name: "NIP" },
-                    Street: { name: "Ulica" },
-                    City: { name: "Miasto" },
-                    ZipCode: { name: "Kod pocztowy" }
-                },
-				SpecificData:{
-					Number:{name:"numer"},
-					DateOfIssue:{name:"Data wystawuenia"},
-				}
-            },
-            formData: {
-                Company: {
-				    
-                },
 
-				SpecificData:{
-
-
-				}
-            }
-        }
 	}
 
 onChange = (e) => {
@@ -107,24 +23,25 @@ this.setState({someProperty})
 
 	render() {
 		return (
-					 <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+                <Paper elevation={3} style={{ marginTop:'50px' }}>
 			  <Grid container direction={'row'}  justify="center" alignItems="center" spacing={2}>
 			  <Grid item xs={12}>
-			  <Paper elevation ={3} >
+			  
 			  <Box  p={5} mt={3}>
-                <InvoiceSpecificData  formData = {this.state.formData.SpecificData} onChange = {this.onChange}/>
+                <InvoiceSpecificData />
 				</Box>
-				</Paper>
 				</Grid>
-                <InvoiceForm formConfig={this.state.formConfig}/>
+                <InvoiceForm />
 				 <Grid item xs={12}>
-			  <Paper elevation ={3}>
+			  
 			  <Box  p={5}>
-                <InvoiceTable invoiceData={this.state.invoiceTableData} config={this.state.tableConfig} />
+                <InvoiceTable/>
 				</Box>
-				</Paper>
+				
 				</Grid>
-				</Grid>
+                 </Grid>
+                </Paper>
 				</ThemeProvider>
 		)
 	}

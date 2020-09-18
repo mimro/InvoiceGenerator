@@ -5,6 +5,8 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Template1 from './InvoiceViewTemplates/Template1';
 import Button from '@material-ui/core/Button';
+import $ from "jquery";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
@@ -45,16 +47,35 @@ function InvoicePreview(props) {
 
 const generatePdf = (invoiceData) => {
 
-    fetch('https://localhost:44330/Documents/DocumentGeneration/Index', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            invoiceData
-        })
-    })
+    //fetch('/Documents/DocumentGeneration/Index', {
+    //    method: 'POST',
+    //    headers: {
+    //        'Content-Type': 'application/json'
+    //    },
+    //    body: { invoiceData: JSON.stringify( invoiceData ) }
+    //})
+    //var data = { invoiceData: invoiceData }
+    //const requestOptions = {
+    //    method: 'POST',
+    //    headers: {'Content-Type': 'application/json'},
+    //    body: { invoiceData: JSON.stringify(invoiceData) },
+    //    dataType: 'json'
+    //};
+
+    //fetch('/Documents/DocumentGeneration/Index', requestOptions)
+    //    .then(response => response.json())
+    //    .then(data => data);
+
+
+    $.ajax({
+        type: "POST",
+        url: '/Documents/DocumentGeneration/Index',
+        dataType: 'JSON',
+        data: { invoiceData: JSON.stringify(invoiceData) },
+        success: function (data) { console.log(data) },
+        error: function (data) { console.log(data) }
+    });
+
 
     //let element = document.querySelector(".invoice-preview-container");
     //const pdf = new jsPDF();

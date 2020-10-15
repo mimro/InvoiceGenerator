@@ -7,7 +7,10 @@ import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizat
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
 import { Invoice } from './components/Invoice';
 import Template1 from './components/Preview/InvoiceViewTemplates/Template1';
+import Preview from './components/Preview/Preview';
+
 import LoginPage from './components/Login/LoginPage'
+
 
 import './custom.css'
 
@@ -20,8 +23,8 @@ export default class App extends Component {
            <Route exact path='/' component={Invoice} />
         <Route path='/temp' component={Template1} />
         <AuthorizeRoute path='/fetch-data' component={FetchData} />
-         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
-         <Route path="/login" component={LoginPage}/>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/preview" component={Preview}/>
       </Layout>
     );
   }

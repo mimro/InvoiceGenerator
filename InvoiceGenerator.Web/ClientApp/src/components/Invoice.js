@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import InvoiceInfo from './InvoiceForm/InvoiceInfo';
+
 
 export class Invoice extends Component {
 
@@ -15,23 +17,21 @@ export class Invoice extends Component {
 
 	}
 
-onChange = (e) => {
-var someProperty = {...this.state.formData.SpecificData.number}
-someProperty = e.target.value;
-this.setState({someProperty})
- }
-
 	render() {
 		return (
             <ThemeProvider theme={theme}>
-                <Paper elevation={3} style={{ marginTop:'50px' }}>
-			  <Grid container direction={'row'}  justify="center" alignItems="center" spacing={2}>
+               
+                    <InvoiceInfo />
+
+                    <Grid container direction={'row'} justify="center" alignItems="center" spacing={2}>
+
 			  <Grid item xs={12}>
 			  
 			  <Box  p={5} mt={3}>
                 <InvoiceSpecificData />
 				</Box>
-				</Grid>
+                        </Grid>
+
                 <InvoiceForm />
 				 <Grid item xs={12}>
 			  
@@ -41,7 +41,8 @@ this.setState({someProperty})
 				
 				</Grid>
                  </Grid>
-                </Paper>
+                 
+                 
 				</ThemeProvider>
 		)
 	}

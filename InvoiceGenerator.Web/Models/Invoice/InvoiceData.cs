@@ -9,7 +9,6 @@ namespace InvoiceGenerator.Web.Models.Invoice
     [Serializable]
     public class InvoiceData
     {
-        [JsonProperty(PropertyName = "invoiceSpecificData")]
         public InvoiceSpecificData InvoiceSpecificData { get; set; }
 
         public IssuerDetailsViewModel IssuerDetails { get; set; }

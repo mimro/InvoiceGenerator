@@ -10,6 +10,7 @@
   <GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
   <UserSecretsId>a4b698c7-830b-4592-ab53-3e9d4659082d</UserSecretsId>
   <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerfileFastModeStage>base</DockerfileFastModeStage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,7 +26,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
@@ -37,7 +38,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\components\InvoiceForm\styles\" />
+    <Folder Include="ClientApp\src\components\Invoice\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+@model InvoiceGenerator.Web.Models.Invoice.InvoiceData
+<body>
+
+    <div class="billApp">
+        <div class="billheader">
+
+            <div class="firstline d-flex">
+                <span>@Html.DisplayNameFor(a => a.InvoiceSpecificData.Number) :</span>
+                <input type="text" name="" id="" value="@Html.DisplayFor(a => a.InvoiceSpecificData.PlaceOfIssue)" readonly>
+
+                <span>@Html.DisplayNameFor(a=>a.InvoiceSpecificData.PlaceOfIssue) :</span>
+                <input type="text" name="" id="" value="@Html.DisplayFor(a => a.InvoiceSpecificData.PlaceOfIssue)" readonly>
+
+                <span>@Html.DisplayNameFor(a => a.InvoiceSpecificData.IssueDate) :</span>
+                <input type="text" name="" id="" value="@Html.DisplayFor(a => a.InvoiceSpecificData.IssueDate.Date)" readonly>
+            </div>
+
+            <div class="name d-flex">
+                <span>M/s.</span>
+                <input type="text" name="" id="">
+            </div>
+            <p class="text-center m-1">(&nbsp; Delivery At Navsari &nbsp;)</p>
+
+            <div class="businessinfo d-flex">
+                <span>GSTIN NO.  &nbsp;:</span>
+                <input type="text" name="" id="">
+
+                <span>STATE CODE &nbsp;:</span>
+                <input type="text" name="" id="">
+            </div>
+
+        </div>
+        <div class="billbody">
+            <!-- <div class="row m-0 description">
+              <div class="col-md-1">No.</div>
+              <div class="col-md-4">Description</div>
+              <div class="col-md-2">HSN CODE</div>
+              <div class="col-md-1" style="padding: 5px!important;">Qty. (k.g.)</div>
+              <div class="col-md-2">Rate</div>
+              <div class="col-md-2 ">Amount</div>
+            </div>
+            <div class="row m-0 content">
+              <div class="col-md-1"><input type="text" name="" id=""></div>
+              <div class="col-md-4"><input type="text" name="" id=""></div>
+              <div class="col-md-2"><input type="text" name="" id=""></div>
+              <div class="col-md-1"><input type="text" name="" id=""></div>
+              <div class="col-md-2"><input type="text" name="" id=""></div>
+              <div class="col-md-2 amount"><input type="text" name="" id=""></div>
+            </div>  -->
+
+            <div>
+
+            </div>
+
+
+
+            <table class="">
+                <thead>
+                <th style="width: 58px;"><div>No.</div></th>
+                <th style="width: 231px;"><div>Description</div></th>
+                <th style="width: 115px;"><div>HSN CODE</div></th>
+                <th style="width: 58px; "><div style="padding: 5px!important;">Qty. (k.g.)</div></th>
+                <th style="width: 115px;"><div>Rate</div></th>
+                <th style="width: 115px;"><div>Amount</div></th>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><div><input type="text" name="" id=""></div></td>
+                        <td><div><input type="text" name="" id=""></div></td>
+                        <td><div><input type="text" name="" id=""></div></td>
+                        <td><div><input type="text" name="" id=""></div></td>
+                        <td><div><input type="text" name="" id=""></div></td>
+                        <td><div><input type="text" name="" id=""></div></td>
+                    </tr>
+                    <tr>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                    </tr>
+                    <tr>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td colspan="2"><div style="border-top: 2px solid #FF9494;">Sub Total</div></td>
+                        <td><div style="border: 2px solid #FF9494; border-bottom: 0px;"><input type="text" name="" id=""></div></td>
+                    </tr>
+                    <tr>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td colspan="2"><div style="border-top:2px solid #FF9494"><span>CGST</span><input type="text" name="" id="" style="width:calc(100% - 100px)!important;margin-left:10px">%</div></td>
+                        <td><div style="border: 2px solid #FF9494; border-bottom: 0px;"><input type="text" name="" id=""></div></td>
+                    </tr>
+                    <tr>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td colspan="2"><div style="border-top:2px solid #FF9494 ;"><span>SGST</span><input type="text" name="" id="" style="width:calc(100% - 100px)!important;margin-left:10px">%</div></td>
+                        <td><div style="border: 2px solid #FF9494; border-bottom: 0px;"><input type="text" name="" id=""></div></td>
+                    </tr>
+                    <tr>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td colspan="2"><div style="border-top: 2px solid #FF9494;border-bottom: 2px solid #FF9494;"><span>IGST</span><input type="text" name="" id="" style="width:calc(100% - 100px)!important;margin-left:10px">%</div></td>
+                        <td><div style="border: 2px solid #FF9494; border-bottom: 0px;"><input type="text" name="" id=""></div></td>
+                    </tr>
+                    <tr>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div></div></td>
+                        <td><div>Gr. Total</div></td>
+                        <td><div style="border: 2px solid #FF9494; border-bottom: 0px;"><input type="text" name="" id=""></div></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    <script src="./assets/js/jquery-3.5.1.min.js" charset="utf-8"></script>
+    <script src="./assets/js/index.js" charset="utf-8"></script>
+</body>
+</html>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    body {
+        background-color: #f0f2f5 !important;
+    }
+
+    div.billApp {
+        background-color: #ffffff;
+        height: 100vh;
+        width: 700px;
+        margin: 10px auto 0 auto;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+        div.billApp div.billheader {
+            color: #FF6161;
+            margin: 5px auto;
+            border: 2px solid #FF9494;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border-color: #FF9494;
+        }
+
+            div.billApp div.billheader div.firstline span {
+                color: #FF6161;
+                width: fit-content;
+                margin: 5px 10px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            div.billApp div.billheader div.firstline input {
+                width: 140px;
+                outline: none;
+                border: 0;
+                border-bottom: 1px solid #FF9494;
+                margin-bottom: 5px;
+                text-align: center;
+                border-color: #FF9494;
+            }
+
+            div.billApp div.billheader div.name span {
+                color: #FF6161;
+                width: fit-content;
+                margin: 5px 10px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            div.billApp div.billheader div.name input {
+                width: 100%;
+                outline: none;
+                border: 0;
+                border-bottom: 1px solid #FF9494;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+
+            div.billApp div.billheader div.businessinfo span {
+                color: #FF6161;
+                width: fit-content;
+                margin: 5px 10px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            div.billApp div.billheader div.businessinfo input {
+                width: calc(100% - 420px);
+                outline: none;
+                border: 0;
+                border-bottom: 1px solid #FF9494;
+                margin-bottom: 5px;
+                text-align: center;
+                border-color: #FF9494;
+            }
+
+        div.billApp div.billbody {
+            width: calc(100% - 5px);
+            margin: auto;
+        }
+
+            div.billApp div.billbody table {
+                table-layout: fixed;
+            }
+
+                div.billApp div.billbody table th > div {
+                    color: #FF6161;
+                    background-color: #FED2D2;
+                    border-color: #FF9494;
+                    margin: 5px auto;
+                    border: 2px solid #FF9494;
+                    border-radius: 1px;
+                    padding: 15px;
+                    text-align: center;
+                    margin: 0px 5px;
+                    margin: auto;
+                    height: 60px;
+                    border-radius: 10px;
+                    font-weight: bold;
+                }
+
+                    div.billApp div.billbody table th > div input {
+                        width: calc(100% - 10px);
+                        outline: none;
+                        border: 0;
+                        border-bottom: 1px solid #FF9494;
+                        margin-bottom: 5px;
+                        text-align: center;
+                        text-align: center;
+                    }
+
+                div.billApp div.billbody table tbody {
+                    border-bottom: 2px solid #FF6161;
+                }
+
+                    div.billApp div.billbody table tbody td div {
+                        color: #FF6161;
+                        margin: 5px auto;
+                        border: 2px solid #FF9494;
+                        border-radius: 1px;
+                        padding: 10px;
+                        text-align: center;
+                        margin: 0px 5px;
+                        margin: auto;
+                        border-top: none;
+                        border-bottom: none;
+                        height: 45px;
+                        font-weight: bold;
+                    }
+
+                        div.billApp div.billbody table tbody td div input {
+                            width: 100%;
+                            outline: none;
+                            border: 0;
+                            border-bottom: 1px solid #FF9494;
+                            margin-bottom: 5px;
+                            text-align: center;
+                            text-align: center;
+                        }
+
+                        div.billApp div.billbody table tbody td div:nth-child(4) {
+                            display: none;
+                            border-top: 2px solid red !important;
+                        }
+
+            div.billApp div.billbody div.description div {
+                color: #FF6161;
+                background-color: #FED2D2;
+                margin: 5px auto;
+                border: 2px solid #FF9494;
+                border-radius: 1px;
+                padding: 15px;
+                text-align: center;
+                margin: 0px 5px;
+                margin: auto;
+                height: 60px;
+                border-radius: 10px;
+                font-weight: bold;
+            }
+
+                div.billApp div.billbody div.description div:nth-child(6) {
+                    border-right: 2px solid #FF9494;
+                }
+
+            div.billApp div.billbody div.content div {
+                margin: 5px auto;
+                border: 2px solid #FF9494;
+                border-radius: 1px;
+                padding: 5px;
+                text-align: center;
+                height: 300px;
+                border-radius: 10px;
+                border-right: none;
+                font-weight: bold;
+            }
+
+                div.billApp div.billbody div.content div input {
+                    width: calc(100% - 10px);
+                    outline: none;
+                    border: 0;
+                    border-bottom: 1px solid #FF9494;
+                    margin-bottom: 5px;
+                    text-align: center;
+                }
+
+                div.billApp div.billbody div.content div:nth-child(4), div.billApp div.billbody div.content div:nth-child(5), div.billApp div.billbody div.content div:nth-child(6) {
+                    margin: 5px auto;
+                    border: 2px solid #FF9494;
+                    border-radius: 1px;
+                    padding: 5px;
+                    text-align: center;
+                    height: 300px;
+                    border-radius: 10px;
+                    border-right: none;
+                    font-weight: bold;
+                }
+
+                div.billApp div.billbody div.content div:nth-child(6) {
+                    border-right: 2px solid #FF9494;
+                }
+
+            div.billApp div.billbody div.subtotal div, div.billApp div.billbody div.sgst div, div.billApp div.billbody div.cgst div, div.billApp div.billbody div.igst div {
+                margin: 5px auto;
+                border: 2px solid #FF9494;
+                border-radius: 1px;
+                padding: 5px;
+                text-align: center;
+                height: 50px;
+                border-radius: 10px;
+                border-right: none;
+                font-weight: bold;
+                border: none;
+                margin: 0px !important;
+            }
+
+                div.billApp div.billbody div.subtotal div input, div.billApp div.billbody div.sgst div input, div.billApp div.billbody div.cgst div input, div.billApp div.billbody div.igst div input {
+                    width: calc(100% - 10px);
+                    outline: none;
+                    border: 0;
+                    border-bottom: 1px solid #FF9494;
+                    margin-bottom: 5px;
+                    text-align: center;
+                }
+
+                div.billApp div.billbody div.subtotal div:nth-child(4), div.billApp div.billbody div.subtotal div:nth-child(5), div.billApp div.billbody div.subtotal div:nth-child(6), div.billApp div.billbody div.sgst div:nth-child(4), div.billApp div.billbody div.sgst div:nth-child(5), div.billApp div.billbody div.sgst div:nth-child(6), div.billApp div.billbody div.cgst div:nth-child(4), div.billApp div.billbody div.cgst div:nth-child(5), div.billApp div.billbody div.cgst div:nth-child(6), div.billApp div.billbody div.igst div:nth-child(4), div.billApp div.billbody div.igst div:nth-child(5), div.billApp div.billbody div.igst div:nth-child(6) {
+                    margin: 5px auto;
+                    border: 2px solid #FF9494;
+                    border-radius: 1px;
+                    padding: 5px;
+                    text-align: center;
+                    height: 50px;
+                    border-radius: 10px;
+                    border-right: none;
+                    font-weight: bold;
+                }
+
+                div.billApp div.billbody div.subtotal div:nth-child(6), div.billApp div.billbody div.sgst div:nth-child(6), div.billApp div.billbody div.cgst div:nth-child(6), div.billApp div.billbody div.igst div:nth-child(6) {
+                    border-right: 2px solid #FF9494;
+                }
+</style>

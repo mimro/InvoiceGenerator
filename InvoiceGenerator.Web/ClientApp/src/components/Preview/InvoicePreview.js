@@ -6,6 +6,7 @@ import html2canvas from "html2canvas";
 import Template1 from './InvoiceViewTemplates/Template1';
 import Button from '@material-ui/core/Button';
 import $ from "jquery";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,20 +34,23 @@ function InvoicePreview(props) {
 
     return (
         <div className={classes.paper}>
-            <Template1 invoiceData={invoiceData} />
-            <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                onClick={() => generatePdf(invoiceData) }>
-                Generuj
-      </Button>
+            {generatePreview(invoiceData)} 
+           
         </div>
     );
 }
 
-const generatePdf = (invoiceData) => {
-
+const generatePreview = (invoiceData) => {
+    axios.get('/Preview/Index', {
+        params: {
+            invoiceData: JSON.stringify(invoiceData),
+        }
+    }).then(resp => {
+        {
+          
+        }
+    });
+    }
     //fetch('/Documents/DocumentGeneration/Index', {
     //    method: 'POST',
     //    headers: {
@@ -67,14 +71,14 @@ const generatePdf = (invoiceData) => {
     //    .then(data => data);
 
 
-    $.ajax({
-        type: "POST",
-        url: '/Documents/DocumentGeneration/Index',
-        dataType: 'JSON',
-        data: { invoiceData: JSON.stringify(invoiceData) },
-        success: function (data) { console.log(data) },
-        error: function (data) { console.log(data) }
-    });
+    //$.ajax({
+    //    type: "POST",
+    //    url: '/Documents/DocumentGeneration/Index',
+    //    dataType: 'JSON',
+    //    data: { invoiceData: JSON.stringify(invoiceData) },
+    //    success: function (data) { console.log(data) },
+    //    error: function (data) { console.log(data) }
+    //});
 
 
     //let element = document.querySelector(".invoice-preview-container");
@@ -94,7 +98,7 @@ const generatePdf = (invoiceData) => {
     //            pdf.save('download.pdf');
     //        });
     //}
-}
+
 
 const mapStateToProps = (state , ownProps) => {
   return {

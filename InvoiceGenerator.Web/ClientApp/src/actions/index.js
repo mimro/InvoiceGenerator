@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export type Action = {
     type: string,
     id?: number,
@@ -119,5 +121,21 @@ export function amountInWords(amount: number) {
     return {
         type: "AMOUNT_IN_WORDS",
         amount
+    }
+}
+
+
+
+export function postInvoiceData()
+{
+    return function (dispatch) {
+        console.log("test1");
+
+        axios.post('/Documents/DocumentGeneration/Index', {
+            
+        })
+            .then(res => {
+                console.log("test2");
+            })
     }
 }

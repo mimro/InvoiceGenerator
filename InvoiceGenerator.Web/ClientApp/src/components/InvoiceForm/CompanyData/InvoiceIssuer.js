@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 import {
     setIssuerDetails
-} from "../../actions";
+} from "../../../actions";
 
 type Props = {
     issuerDetails: {
@@ -22,24 +22,28 @@ type Props = {
    setIssuerDetails: Function,
 };
 
+const style = {
+
+	sellerLabel: {
+		"border-left": "3px #34aeeb solid",
+		"width": "100%",
+		 "padding-left": "3px"
+    }
+}
 
  class InvoiceIssuer extends Component {
 
 	constructor(props : Props) {
 		super(props);
-		this.state = {
-			data:this.props.companyData
-		}
+
 	}
-
-
 
 	render() {
 		const { issuerDetails} = this.props;
 		return (
-		 <form noValidate autoComplete="on">
-				<label class="seller">Sprzedawca</label>
-				<Grid container direction={'column'} xs={12} spacing={2} justify="left" alignItems="center" xs={12} spacing={2} >
+			<form noValidate autoComplete="on">
+				<label style={style.sellerLabel} > Dane sprzedawcy</label>
+				<Grid container direction={'column'} xs={12} justify="left" alignItems="center" xs={12} >
 			<Grid item xs={12}>
 						<TextField name="companyName" value={issuerDetails.companyName} onChange={this.handleChange} id="standard-basic" className="comp-data-input" label="Nazwa firmy"  />
 			</Grid>

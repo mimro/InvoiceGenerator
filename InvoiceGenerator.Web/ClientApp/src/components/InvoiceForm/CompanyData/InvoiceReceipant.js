@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 import {
     setRecipientDetails
-} from "../../actions";
+} from "../../../actions";
 
 type Props = {
     recipientDetails: {
@@ -39,8 +39,8 @@ type Props = {
 		const { recipientDetails} = this.props;
 		return (
 		 <form noValidate autoComplete="on">
-		<label className="buyer">Nabywca</label>
-		<Grid container direction={'column'}  xs={12} spacing={2}>
+		<label className="buyer">Dane nabywcy</label>
+		<Grid container direction={'column'}  xs={12} >
 			<Grid item xs={12}>
 			<TextField  name="companyName" value ={recipientDetails.companyName} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Nazwa firmy" />
 			</Grid>

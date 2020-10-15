@@ -1,18 +1,14 @@
 ﻿import React, { Component } from 'react';
-import  InvoiceIssuer  from './InvoiceIssuer'
-import InvoiceReceipant from './InvoiceReceipant'
-import InvoiceAdditionalData from './InvoiceAdditionalData'
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-
-
+import  InvoiceIssuer  from './CompanyData/InvoiceIssuer'
+import DisplayInvoiceIsuer from './CompanyData/DisplayInvoiceIssuer'
 import { connect } from "react-redux";
-
 import {
     setPreviewInvoice
 } from "../../actions";
 
-
+import './styles/InvoiceForm.css'
+import InvoiceReceipant from './CompanyData/InvoiceReceipant';
+import { Grid } from '@material-ui/core';
 
 type Props = {
    setPreviewInvoice: Function,
@@ -24,26 +20,19 @@ type Props = {
 
 	constructor(props:Props) {
 		super(props);
-		this.state={
-        }
 	}
 
 	render() {
 		
-		return (
+        return (
+            <div class="row">
 
-		 <Grid container direction={'row'} align="center"  item xs={12} spacing={15}>
-				<Grid item xs={12} sm={6} xl={3} style={{ 'border': '1px black solid', 'margin': '10px'  }}>
-					<Box p={3} component={InvoiceIssuer}/>					
-			</Grid>
+                    <InvoiceIssuer />
+               
+                <InvoiceReceipant />
 
-				<Grid item xs={12} sm={6} xl={3} style={{ 'border': '1px black solid', 'margin':'10px' }}>
-					<Box p={3} component={InvoiceReceipant}>
-					
-				  </Box>
-
-			</Grid>	
-			</Grid>
+               				
+                </div>
 			)
 	}
 }

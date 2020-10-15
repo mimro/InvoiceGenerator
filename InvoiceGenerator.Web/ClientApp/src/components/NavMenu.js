@@ -3,7 +3,7 @@ import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLi
 import { Link } from 'react-router-dom';
 import { LoginMenu } from './api-authorization/LoginMenu';
 import './NavMenu.css';
-import AppBar from '@material-ui/core/AppBar';
+import { AppBar, Toolbar, IconButton, Typography,Button } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -26,27 +26,17 @@ export class NavMenu extends Component {
   render () {
     return (
         <header>
-            <Navbar className="navbar-expand-sm nav-tabs navbar-toggleable-sm ng-reverse border-bottom box-shadow mb-3" light>
-          <Container>
-            <NavbarBrand tag={Link} to="/">InvoiceGenerator.Web</NavbarBrand>
-            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                </NavItem>
-                <LoginMenu>
-                </LoginMenu>
-              </ul>
-            </Collapse>
-          </Container>
-        </Navbar>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+
+                    </IconButton>
+                    <Typography variant="h6">
+                        Faktura .NET
+    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
       </header>
     );
   }

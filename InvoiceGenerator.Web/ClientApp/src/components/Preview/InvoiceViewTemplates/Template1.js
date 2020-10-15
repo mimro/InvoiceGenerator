@@ -1,42 +1,44 @@
-﻿  import React from 'react';
+﻿ import React from 'react';
 import './Template1.css';
 import { connect } from "react-redux";
 
  function Template1(props) {
 
-  return (
-  <div class="invoice-preview-container">
-	  	<div class="box1" >
-		<div>{props.invoiceData.issuerDetails.companyName}</div>
-		<div>{props.invoiceData.issuerDetails.street}</div>
-		<div>{props.invoiceData.issuerDetails.city} {props.invoiceData.issuerDetails.zipCode}</div>
+	 let style = {
+		 gridTemplateAreas: '"invoiceSpecificData issuerDetails" "recipientDetails additionalData" "invoiceTableSection invoiceTableSection"',
+		 invoiceSpecificData: {
+			 border: "5px solid black"
+		 },
+	 };
+
+	 return (
+		 <div class="invoice-preview-container" style={style}>
+		  <div class="invoiceSpecificData" style={style.invoiceSpecificData} >
+		<div>Miejsce wystawienia: {props.invoiceSpecificData.placeOfIssue}</div>
+		<div>Data wystawienia: {props.invoiceSpecificData.issueDate}</div>
+		<div>Data sprzedaży: {props.invoiceSpecificData.sellingDate}</div>
 		</div>
-		<div class="box2" >
-		<div>Miejsce wystawienia: {props.invoiceData.invoiceSpecificData.placeOfIssue}</div>
-		<div>Data wystawienia: {props.invoiceData.invoiceSpecificData.issueDate}</div>
-		<div>Data sprzedaży: {props.invoiceData.invoiceSpecificData.sellingDate}</div>
+		  <div class="issuerDetails" >
+		<div>{props.issuerDetails.companyName}</div>
+		<div>{props.issuerDetails.street}</div>
+		<div>{props.issuerDetails.street} {props.issuerDetails.city} {props.issuerDetails.zipCode}</div>
+		<div>NIP: {props.issuerDetails.vatId}</div>
 		</div>
-				<div class="box3" >
-		<div>{props.invoiceData.issuerDetails.companyName}</div>
-		<div>{props.invoiceData.issuerDetails.street}</div>
-		<div>{props.invoiceData.issuerDetails.street} {props.invoiceData.issuerDetails.city} {props.invoiceData.issuerDetails.zipCode}</div>
-		<div>NIP: {props.invoiceData.issuerDetails.vatId}</div>
-		</div>
-					<div class="box4" >
-		<div>{props.invoiceData.recipientDetails.companyName}</div>
-		<div>{props.invoiceData.recipientDetails.street}</div>
-		<div>{props.invoiceData.recipientDetails.street} {props.invoiceData.issuerDetails.city} {props.invoiceData.issuerDetails.zipCode}</div>
-		<div>NIP: {props.invoiceData.recipientDetails.vatId}</div>
+		<div class="recipientDetails" >
+		<div>{props.recipientDetails.companyName}</div>
+		<div>{props.recipientDetails.street}</div>
+		<div>{props.recipientDetails.street} {props.issuerDetails.city} {props.issuerDetails.zipCode}</div>
+		<div>NIP: {props.recipientDetails.vatId}</div>
 		</div>
 
-		<div class="box5" >
+		<div class="additionalData" >
 		<div>Faktura VAT</div>
 		<div>orginał / kopia</div>
-		<div>Nr {props.invoiceData.invoiceSpecificData.number}</div>
+		<div>Nr {props.invoiceSpecificData.number}</div>
 		</div>
 
-		<div class="box6" >
-             <table className="table table-borderless table-responsive-sm">
+			 <div class="invoiceTableSection" >
+             <table className="invoiceTable">
                     <thead>
 					<th>Nazwa</th>
                     <th>Ilość</th>
@@ -47,7 +49,7 @@ import { connect } from "react-redux";
                    <th>Wartość vat</th>
                     </thead>
                     <tbody>
-                        {renderRows(props.invoiceData.invoiceTableDetails.table)}
+                        {renderRows(props.invoiceTableDetails.table)}
                     </tbody>
                 </table>
 		</div>

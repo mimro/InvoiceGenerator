@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using jsreport.AspNetCore;
 using jsreport.Local;
 using jsreport.Binary;
+using System;
 
 namespace InvoiceGenerator.Web
 {
@@ -43,9 +44,10 @@ namespace InvoiceGenerator.Web
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+            
 
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorOptions(option => option.ViewLocationFormats.Add("/TemplateViews/{0}Template/{0}Template.cshtml"));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -92,6 +94,7 @@ namespace InvoiceGenerator.Web
 
                 if (env.IsDevelopment())
                 {
+
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });

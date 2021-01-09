@@ -1,37 +1,6 @@
 import axios from 'axios';
 
-export type Action = {
-    type: string,
-    id?: number,
-    value?: Object,
-    order?: Array<number>,
-    discount?: string,
-    tax?: string,
-    amountPaid?: string,
-    paidStatus?: boolean,
-    currency?: Object,
-    dateFormat?: Object,
-    invoiceDetails?: Object,
-    status?: Object,
-    issueDate?: Date,
-    width?: number,
-    downloadStatus?: boolean,
-    dueDate?: Date,
-    name?: string,
-    val?:string,
-	obj:Object,
-	NettoValueSum:?number,
-	VatValueSum:?number,
-	GrossValueSum:?number,
-	previewInvoice:boolean
-};
 
-export function setWidth(width: number): Action {
-    return {
-        type: "SET_WIDTH",
-        width
-    }
-}
 	export function setInvoiceDetails(name: string, val: string): Action {
     return {
         type: "SET_INVOICE_DETAILS",
@@ -123,19 +92,75 @@ export function amountInWords(amount: number) {
         amount
     }
 }
+export function setInvoiceHistoryLoading(status: boolean) {
+    return {
+        type: "SET_INVOICE_HISTORY_LOADING",
+        payload:status
+    }
+}
 
+export function selectListItem(itemId: number) {
+    return {
+        type: "SELECT_LIST_ITEM",
+        payload: itemId
+    }
+}
+export const fetchInvoiceHistoryListSuccess = history => ({
+    type: 'FETCH_INVOICE_HISTORY_SUCCESS',
+    payload: { history }
+})
 
+export function fetchInvoiceHistoryList() {
+    return async dispatch => {
+        try {
+            await axios.get('http://localhost:3003/api/invoicehistory').then(response =>
+                dispatch(fetchInvoiceHistoryListSuccess(response.data))
+            );
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+}
+export const fetchInvoiceHistoryByIdSuccess = data => ({
+    type: 'FETCH_INVOICE_HISTORY_BY_ID_SUCCESS',
+    payload: { data }
+})
 
-export function postInvoiceData()
-{
-    return function (dispatch) {
-        console.log("test1");
+export function fetchInvoiceHistoryById(id) {
+    return async dispatch => {
+        try {
+            await axios.get('http://localhost:3003/api/invoicehistory/'+ id).then(response =>
+                dispatch(fetchInvoiceHistoryByIdSuccess(response.data))
+            );
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+}
 
-        axios.post('/Documents/DocumentGeneration/Index', {
-            
-        })
-            .then(res => {
-                console.log("test2");
-            })
+export const postInvoiceDataSuccess = response => ({
+    type: 'POST_INVOICE_DATA_SUCCESS',
+    payload: { response }
+})
+export function postInvoiceData(invoiceHistory) {
+    return async dispatch => {
+        try {
+            await axios({
+                method: 'post',
+                url: 'http://localhost:3003/api/invoicehistory',
+                data: {
+                    "invoiceNumber": invoiceHistory.invoiceNumber,
+                    "invoiceData": invoiceHistory.invoiceData
+                }
+            }
+            ).then(response =>
+                dispatch(postInvoiceDataSuccess(response))
+            );
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
 }

@@ -5,18 +5,12 @@ export type Action = {
 
 export type recipientDetails = {
         companyName: string,
-        vatId: string,
-        street: string,
-        city: string,
-		zipCode:string
+        address: string
 };
 
 const initialState: recipientDetails = {
         companyName: "",
-        vatId: "",
-        street: "",
-        city: "",
-		zipCode:""
+        address: ""
 };
 
 export default function recipientDetailsReducer(state: recipientDetails = initialState, action: Action) {

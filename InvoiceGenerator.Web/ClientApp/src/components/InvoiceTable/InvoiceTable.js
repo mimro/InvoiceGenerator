@@ -11,7 +11,6 @@ import tableConfig from "./TableConfig"
 import {
     addItem,
 	updateItem,
-	setWidth,
 	calculateTable
 } from "../../actions";
 
@@ -94,7 +93,6 @@ function mapDispatchToProps(dispatch) {
         addItem: (id, value) => dispatch(addItem(id, value)),
 		updateItem: (id, name, value) => dispatch(updateItem(id, name, value)),
 		calculateTable:  () => dispatch(calculateTable()),
-        setWidth: (width) => dispatch(setWidth(width))
     }
 }
 

@@ -1,7 +1,7 @@
 ﻿import type { Action } from "../actions";
 import { $,plus } from 'moneysafe';
-import { calculateRow, calculateSummaryTable } from "../ApplicationLogic/Calculations"
-import { AmountInWords } from "../ApplicationLogic/AmountInWords"
+import { calculateRow, calculateSummaryTable } from "../Services/CalculationService"
+import { AmountInWordsService } from "../Services/AmountInWordsService"
 
 let id =1;
 export type tableRow = {
@@ -81,7 +81,7 @@ export default function invoiceTableDetailsReducer(state: State = initialState, 
 			summaryValues = calculateSummaryTable(newState);
 
 
-			let amountInWords = AmountInWords(summaryValues.NettoValueSum);
+			let amountInWords = AmountInWordsService(summaryValues.NettoValueSum);
 
 			return Object.assign({}, state, {
 				table: newState,
@@ -170,7 +170,7 @@ export default function invoiceTableDetailsReducer(state: State = initialState, 
 		return state;
 	}
 	else if (action.type === "AMOUNT_IN_WORDS") {
-		let aiw = AmountInWords(state.GrossValueSum);
+		let aiw = AmountInWordsService(state.GrossValueSum);
 		return Object.assign({}, state, {
 			AmountInWords: aiw
 		});

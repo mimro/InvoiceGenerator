@@ -1,9 +1,25 @@
 .invoice-preview-container {
 	padding: 10px;
 	display: grid;
-
+	grid-gap:30px;
 	
 }
+
+.invoice-header{
+	font-size: 40px !important;
+}
+
+.invoiceTable {
+	border: 1px solid #000 !important;
+	width:100%;
+}
+
+.invoiceTable th {
+		border-left: 1px solid #000 !important;
+		border-right: 1px solid #000 !important;
+		border-bottom: 1px solid #000 !important;
+	}
+
 
 .invoiceSpecificData {
 	grid-area: invoiceSpecificData;
@@ -23,4 +39,13 @@
 
 .invoiceTableSection {
 	grid-area: invoiceTableSection;
+}
+
+.summaryTableSection {
+	grid-area: summaryTableSection;
+}
+.amountInWordsSection {
+	grid-area: amountInWordsSection;
+	font-size: 20px;
+	font-style: italic;
 }

@@ -9,13 +9,12 @@ import $ from "jquery";
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: 'absolute',
+    incoivePreviewContainer: {
+    height:'700px',
     width: 'auto',
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #66a3ff',
+    border: '1px solid #66a3ff',
     boxShadow: theme.shadows[5],
-	overflow:'scroll',
     padding: theme.spacing(2, 4, 3),
 	top:'5%',
 	left:'25%'
@@ -33,10 +32,11 @@ function InvoicePreview(props) {
     }
 
     return (
-        <div className={classes.paper}>
-            {generatePreview(invoiceData)} 
+        <div className={classes.incoivePreviewContainer} id="preview-container">
+            <Template1 invoiceData={invoiceData} />
            
-        </div>
+            </div>
+
     );
 }
 
@@ -81,23 +81,7 @@ const generatePreview = (invoiceData) => {
     //});
 
 
-    //let element = document.querySelector(".invoice-preview-container");
-    //const pdf = new jsPDF();
-    //if (pdf) {
-    //    html2canvas(element, {
-    //        useCORS: true
-    //    })
-    //        .then(canvas => {
-    //            const imgData = canvas.toDataURL('image/png');
-    //            console.log(imgData);
-    //            let width = (element.offsetWidth * 0.7) ;
-    //            let height = element.offsetHeight * 0.7;
-    //            pdf.deletePage(1);
-    //            pdf.addPage(width, height);
-    //            pdf.addImage(imgData, 'PNG', 10, 10);
-    //            pdf.save('download.pdf');
-    //        });
-    //}
+
 
 
 const mapStateToProps = (state , ownProps) => {

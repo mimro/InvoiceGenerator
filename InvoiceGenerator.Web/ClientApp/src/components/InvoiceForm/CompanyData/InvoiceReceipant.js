@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid';
 import { connect } from "react-redux";
-
+import '../styles/Common.css';
 import {
     setRecipientDetails
 } from "../../../actions";
@@ -38,26 +38,13 @@ type Props = {
 		
 		const { recipientDetails} = this.props;
 		return (
-		 <form noValidate autoComplete="on">
-		<label className="buyer">Dane nabywcy</label>
-		<Grid container direction={'column'}  xs={12} >
-			<Grid item xs={12}>
-			<TextField  name="companyName" value ={recipientDetails.companyName} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Nazwa firmy" />
-			</Grid>
-			<Grid item xs={12}>
-			<TextField  name="vatId" value ={recipientDetails.vatId} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="NIP" />
-			</Grid>
-			<Grid item xs={12}>
-			<TextField  name="street" value ={recipientDetails.street} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Ulica"/>
-			</Grid>
-			<Grid item xs={12}>
-			<TextField  name="city" value ={recipientDetails.city} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Miasto"  />
-			</Grid>
-			<Grid item xs={12}>
-			<TextField  name="zipCode" value ={recipientDetails.zipCode} onChange = {this.handleChange} id="standard-basic" className="comp-data-input" label="Kod pocztowy" />
-			</Grid>
-			</Grid>
-		</form>
+
+			<form noValidate autoComplete="on">
+				<label > Dane nabywcy</label>
+						<TextField name="companyName" value={recipientDetails.companyName} onChange={this.handleChange} id="standard-basic"  label="Nazwa firmy" variant="outlined" />
+
+                <TextField name="address" value={recipientDetails.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres" variant="outlined" />
+			</form>
 		)
 	}
 

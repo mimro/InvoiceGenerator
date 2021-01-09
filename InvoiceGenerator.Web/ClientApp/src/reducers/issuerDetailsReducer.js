@@ -4,19 +4,13 @@ export type Action = {
 }
 
 export type issuerDetails = {
-        companyName: string,
-        vatId: string,
-        street: string,
-        city: string,
-		zipCode:string
+    companyName: string,
+    address:string
 };
 
 const initialState: issuerDetails = {
-        companyName: "",
-        vatId: "",
-        street: "",
-        city: "",
-		zipCode:""
+    companyName: "",
+    address:""
 };
 
 export default function issuerDetailsReducer(state: issuerDetails = initialState, action: Action) {

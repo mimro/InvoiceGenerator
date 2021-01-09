@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid';
 import { connect } from "react-redux";
-
+import '../styles/Common.css';
 import {
     setIssuerDetails
 } from "../../../actions";
@@ -14,22 +14,11 @@ import {
 type Props = {
     issuerDetails: {
         companyName: string,
-        vatId: string,
-        street: string,
-        city: string,
-		zipCode:string
+		address: string
     },
    setIssuerDetails: Function,
 };
 
-const style = {
-
-	sellerLabel: {
-		"border-left": "3px #34aeeb solid",
-		"width": "100%",
-		 "padding-left": "3px"
-    }
-}
 
  class InvoiceIssuer extends Component {
 
@@ -42,24 +31,11 @@ const style = {
 		const { issuerDetails} = this.props;
 		return (
 			<form noValidate autoComplete="on">
-				<label style={style.sellerLabel} > Dane sprzedawcy</label>
-				<Grid container direction={'column'} xs={12} justify="left" alignItems="center" xs={12} >
-			<Grid item xs={12}>
-						<TextField name="companyName" value={issuerDetails.companyName} onChange={this.handleChange} id="standard-basic" className="comp-data-input" label="Nazwa firmy"  />
-			</Grid>
-			<Grid item xs={12}>
-						<TextField name="vatId" value={issuerDetails.vatId} onChange={this.handleChange} id="standard-basic" className="comp-data-input" label="NIP" />
-			</Grid>
-			<Grid item xs={12}>
-						<TextField name="street" value={issuerDetails.street} onChange={this.handleChange} id="standard-basic" className="comp-data-input" label="Ulica"/>
-			</Grid>
-			<Grid item xs={12}>
-						<TextField name="city" value={issuerDetails.city} onChange={this.handleChange} id="standard-basic" className="comp-data-input" label="Miasto" />
-			</Grid>
-			<Grid item xs={12}>
-						<TextField name="zipCode" value={issuerDetails.zipCode} onChange={this.handleChange} id="standard-basic" className="comp-data-input" label="Kod pocztowy" />
-			</Grid>
-			</Grid>
+				<label > Dane sprzedawcy</label>
+
+                <TextField name="companyName" value={issuerDetails.companyName} onChange={this.handleChange} id="standard-basic" label="Nazwa firmy" variant="outlined" />
+
+                <TextField name="address" value={issuerDetails.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres"  variant="outlined"/>
 		</form>
 		)
 	}

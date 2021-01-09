@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
-import invoiceDetails from "./invoiceDetailsReducer";
+import invoiceHistoryReducer from "./invoiceHistoryReducer";
 import widthReducer from "./widthReducer";
 import invoiceDetailsReducer from "./invoiceDetailsReducer";
 import issuerDetailsReducer from "./issuerDetailsReducer";
@@ -17,7 +17,8 @@ const rootReducer = combineReducers({
 	issuerDetails: issuerDetailsReducer,
 	recipientDetails: recipientDetailsReducer,
 	invoiceTableDetails: invoiceTableDetailsReducer,
-	previewInvoice: previewInvoiceReducer
+	previewInvoice: previewInvoiceReducer,
+	invoiceHistory: invoiceHistoryReducer
 });
 
 export default rootReducer;

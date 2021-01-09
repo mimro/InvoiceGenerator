@@ -23,8 +23,8 @@ class Preview extends React.Component {
 
     render() {
         return (
-            <div dangerouslySetInnerHTML={{ __html: this.state.previewHtml }}>
-                
+            <div>
+                {this.props.invoiceSpecificData.number}
             </div>
             );
     }

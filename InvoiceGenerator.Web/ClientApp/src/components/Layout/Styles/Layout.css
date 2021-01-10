@@ -22,6 +22,7 @@
     display: grid;
     grid-gap: 10px 5px;
     grid-template-rows: 30% 70%;
+    padding-bottom:10px;
 }
 .side-bar {
     display: inline-grid;

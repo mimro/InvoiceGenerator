@@ -13,7 +13,6 @@ import html2canvas from "html2canvas";
 import { postInvoiceData } from "../../../actions";
 
 
-
 class SidePanel extends React.Component {
     constructor(props) {
         super(props);
@@ -88,7 +87,7 @@ class SidePanel extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        postInvoiceData: (data) => dispatch(postInvoiceData(data)),
+        postInvoiceData: (data) => dispatch(postInvoiceData(data))
     }
 }
 

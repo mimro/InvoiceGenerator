@@ -17,6 +17,9 @@ export default function recipientDetailsReducer(state: recipientDetails = initia
     if (action.type === "SET_RECIPIENT_DETAILS") {
         return {...state, [action.name]: action.val};
     }
+    else if (action.type === "UPDATE_FETCHED_INVOICE_DETAILS") {
+        return Object.assign({}, state, action.payload.recipientDetails);
+    }
     return state;
 } 
 

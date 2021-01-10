@@ -1,33 +1,33 @@
 ﻿import React, { Component } from 'react';
-import  TableRow  from './TableRow';
+import TableRow from './TableRow';
 import './styles/Table.css'
 import { TableHeader } from './TableHeader';
-import  SummaryTable  from './SummaryTable';
-import {Tooltip,Fab} from '@material-ui/core';
+import SummaryTable from './SummaryTable';
+import { Tooltip, Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
 import { connect } from "react-redux";
 import tableConfig from "./TableConfig"
 
 import {
     addItem,
-	updateItem,
-	calculateTable
+    updateItem,
+    calculateTable
 } from "../../actions";
 
 type Props = {
-  invoiceTableDetails:{
+    invoiceTableDetails: {
         table: Array,
         AmountInWords: string;
-	NettoValueSum:?number,
-	VatValueSum:?number,
-	GrossValueSum:?number
-},
-   addItem:Function,
-   updateItem:Function,
-   calculateTable:Function
+        NettoValueSum: ?number,
+        VatValueSum: ?number,
+        GrossValueSum: ?number
+    },
+    addItem: Function,
+    updateItem: Function,
+    calculateTable: Function
 };
 
- class InvoiceTable extends Component {
+class InvoiceTable extends Component {
 
     constructor(props: Props) {
         super(props)
@@ -40,21 +40,21 @@ type Props = {
             <div className="invoice-table-grid-container">
                 <table id="invoice-table" className="table table-borderless table-responsive-sm table-responsive-md table-hover">
                     <thead>
-                        {this.renderHeaders()}
+                        <tr>
+                            {this.renderHeaders()}
+                        </tr>
                     </thead>
                     <tbody>
                         {this.renderRows()}
                     </tbody>
                 </table>
 
-<Tooltip title="Dodaj wiersz" aria-label="add" onClick={() => this.addEmptyRow()}>
-<Fab color="secondary">
-    <AddIcon />
-	</Fab>
+                <Tooltip title="Dodaj wiersz" aria-label="add" onClick={() => this.addEmptyRow()}>
+                    <Fab color="secondary">
+                        <AddIcon />
+                    </Fab>
                 </Tooltip>
-
                 <SummaryTable />
-
                 <div id="amount-in-words" >
                     Kwota słownie: {this.props.invoiceTableDetails.AmountInWords}
                 </div>
@@ -69,7 +69,7 @@ type Props = {
     }
 
     renderRows() {
-	let {invoiceTableDetails} =this.props;
+        let { invoiceTableDetails } = this.props;
         return invoiceTableDetails.table.map((data, i) => (
             <TableRow key={data.id} id={i} value={data} onChange={this.props.calculateTable} onMoveRowUp={this.moveRowUp} onMoveRowDown={this.moveRowDown} />
         ))
@@ -77,7 +77,7 @@ type Props = {
     }
 
     addEmptyRow() {
-		this.props.addItem()
+        this.props.addItem()
     }
 }
 
@@ -91,8 +91,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         addItem: (id, value) => dispatch(addItem(id, value)),
-		updateItem: (id, name, value) => dispatch(updateItem(id, name, value)),
-		calculateTable:  () => dispatch(calculateTable()),
+        updateItem: (id, name, value) => dispatch(updateItem(id, name, value)),
+        calculateTable: () => dispatch(calculateTable()),
     }
 }
 

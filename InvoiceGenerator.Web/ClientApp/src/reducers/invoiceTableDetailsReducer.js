@@ -175,6 +175,11 @@ export default function invoiceTableDetailsReducer(state: State = initialState, 
 			AmountInWords: aiw
 		});
 	}
+	else if (action.type === "UPDATE_FETCHED_INVOICE_DETAILS") {
+		//let new_state = state;
+		return action.payload.invoiceTableDetails;
+		//return Object.assign({}, state, action.payload.invoiceTableDetails);	
+    }
 	else {
 		return state;
     }

@@ -1,4 +1,4 @@
-import { $,multiply,divide,minus,plus } from 'moneysafe';
+import { $,multiply,divide} from 'moneysafe';
 
 export  function calculateRow(NettoPrice, Quantity, Vat)
 {

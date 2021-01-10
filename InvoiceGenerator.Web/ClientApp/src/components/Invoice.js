@@ -1,11 +1,7 @@
 ﻿import React, { Component } from 'react';
 import InvoiceForm from './InvoiceForm/InvoiceForm';
 import InvoiceTable from './InvoiceTable/InvoiceTable';
-import InvoiceSpecificData from './InvoiceForm/InvoiceSpecificData'
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider, Theme } from '@material-ui/core';
 import InvoiceInfo from './InvoiceForm/InvoiceInfo';
 

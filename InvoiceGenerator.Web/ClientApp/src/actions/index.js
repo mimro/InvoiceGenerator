@@ -1,89 +1,91 @@
 import axios from 'axios';
+import { SET_INVOICE_DETAILS, SET_RECIPIENT_DETAILS } from './actionTypes';
 
-
-	export function setInvoiceDetails(name: string, val: string): Action {
+export function setInvoiceDetails(name: string, val: string) {
     return {
-        type: "SET_INVOICE_DETAILS",
+        type: SET_INVOICE_DETAILS,
         name,
         val
     }
 }
-		export function setRecipientDetails(name: string, val: string): Action {
+export function setRecipientDetails(name: string, val: string) {
     return {
-        type: "SET_RECIPIENT_DETAILS",
+        type: SET_RECIPIENT_DETAILS,
         name,
         val
     }
 }
-		export function setIssuerDetails(name: string, val: string): Action {
+export function setIssuerDetails(name: string, val: string) {
     return {
         type: "SET_ISSUER_DETAILS",
         name,
         val
-    }}
+    }
+}
 
-	export function setInvoiceTable(name: string, val: string): Action {
+export function setInvoiceTable(name: string, val: string) {
     return {
         type: "SET_INVOICE_TABLE",
         name,
         val
-    }}
-
-	export function addItem(obj: Object): Action {
-    return {
-        type: "ADD_ITEM",
-		obj
     }
 }
 
-export function updateItem(id: string,field:string, val: string): Action {
+export function addItem(obj: Object) {
+    return {
+        type: "ADD_ITEM",
+        obj
+    }
+}
+
+export function updateItem(id: string, field: string, val: string) {
     return {
         type: "UPDATE_ITEM",
         id,
         field,
-		val
+        val
     }
 }
 
-export function removeItem(id: number): Action {
+export function removeItem(id: number) {
     return {
         type: "REMOVE_ITEM",
         id
     }
-	}
+}
 
 export function calculateTable(): Action {
     return {
         type: "CALCULATE_TABLE",
     }
 }
-	
-export function setPreviewInvoice(previewInvoiceFlag:boolean): Action {
+
+export function setPreviewInvoice(previewInvoiceFlag: boolean) {
     return {
         type: "PREVIEW_INVOICE",
-		previewInvoiceFlag
+        previewInvoiceFlag
     }
 }
 
-export function moveRowUp(rowId:number){
-return{
-	type: "MOVE_ROW_UP",
-	rowId
-}
-}
-
-export function moveRowDown(rowId:number){
-return{
-	type: "MOVE_ROW_DOWN",
-	rowId
-}
+export function moveRowUp(rowId: number) {
+    return {
+        type: "MOVE_ROW_UP",
+        rowId
+    }
 }
 
-export function setIsInvoicePaidOff(isInvoicePaidOff:boolean){
-return{
-	type: "SET_INVOICE_PAID_OFF",
-	isInvoicePaidOff
+export function moveRowDown(rowId: number) {
+    return {
+        type: "MOVE_ROW_DOWN",
+        rowId
+    }
 }
+
+export function setIsInvoicePaidOff(isInvoicePaidOff: boolean) {
+    return {
+        type: "SET_INVOICE_PAID_OFF",
+        isInvoicePaidOff
+    }
 }
 
 export function amountInWords(amount: number) {
@@ -95,7 +97,7 @@ export function amountInWords(amount: number) {
 export function setInvoiceHistoryLoading(status: boolean) {
     return {
         type: "SET_INVOICE_HISTORY_LOADING",
-        payload:status
+        payload: status
     }
 }
 
@@ -113,6 +115,7 @@ export const fetchInvoiceHistoryListSuccess = history => ({
 export function fetchInvoiceHistoryList() {
     return async dispatch => {
         try {
+            dispatch(setInvoiceHistoryLoading(true))
             await axios.get('http://localhost:3003/api/invoicehistory').then(response =>
                 dispatch(fetchInvoiceHistoryListSuccess(response.data))
             );
@@ -123,15 +126,17 @@ export function fetchInvoiceHistoryList() {
     }
 }
 export const fetchInvoiceHistoryByIdSuccess = data => ({
-    type: 'FETCH_INVOICE_HISTORY_BY_ID_SUCCESS',
-    payload: { data }
+    type: 'UPDATE_FETCHED_INVOICE_DETAILS',
+    payload: data
 })
 
 export function fetchInvoiceHistoryById(id) {
     return async dispatch => {
         try {
-            await axios.get('http://localhost:3003/api/invoicehistory/'+ id).then(response =>
-                dispatch(fetchInvoiceHistoryByIdSuccess(response.data))
+            await axios.get('http://localhost:3003/api/invoicehistory/' + id).then(response => {
+                const tableDetails = JSON.parse(response.data.invoiceData.jsonEncodedInvoice);
+                dispatch(fetchInvoiceHistoryByIdSuccess(tableDetails))
+            }
             );
         }
         catch (e) {
@@ -155,8 +160,10 @@ export function postInvoiceData(invoiceHistory) {
                     "invoiceData": invoiceHistory.invoiceData
                 }
             }
-            ).then(response =>
+            ).then(response => {
                 dispatch(postInvoiceDataSuccess(response))
+                dispatch(fetchInvoiceHistoryList())
+            }
             );
         }
         catch (e) {

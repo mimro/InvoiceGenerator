@@ -1,9 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Name } from './Inputs/Name' ;
-import { TextInput} from './Inputs/TextInput';
 import { NumberInput } from './Inputs/NumberInput';
-import { SelectInput } from './Inputs/SelectInput';
-import { Label } from './Inputs/Label';
 import { connect } from "react-redux";
 import { NameInput, QuantityInput,JmInput,NettoPriceInput,VatInput  } from './Inputs/Inputs';
 
@@ -41,8 +37,8 @@ class TableCell extends Component {
 			VatValue: [NumberInput, false,''],
 			GrossValue: [NumberInput,false,'']
 		}
-		console.log("value" + this.props.value)
 		if (this.props.value === "") {
+
 			this.state.editing = true;
 		}
 		let current = components[this.props.name];

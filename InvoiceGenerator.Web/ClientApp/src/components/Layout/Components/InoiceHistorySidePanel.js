@@ -8,8 +8,7 @@ import { fetchInvoiceHistoryList, setInvoiceHistoryLoading, selectListItem, fetc
 import RefreshOutlinedIcon from '@material-ui/icons/RefreshOutlined';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText'
-import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
 
 class InoiceHistorySidePanel extends React.Component {
 
@@ -36,16 +35,14 @@ class InoiceHistorySidePanel extends React.Component {
     }
 
     reloadData() {
-        this.props.setLoadingStatus(true);
         this.props.fetchData();
     }
 
     handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-        index: number,
         id:number
     ) => {
-        this.props.setSelectedIndex(index);
+        this.props.setSelectedIndex(id);
         this.props.fetchInvoiceHistoryById(id)
     };
 
@@ -53,10 +50,9 @@ class InoiceHistorySidePanel extends React.Component {
         let { invoiceHistory } = this.props;
         return invoiceHistory.table.map((data, i) => (
             <ListItem button key={i} /*style={{ borderTop: '1px solid #A6A6A6' }}*/
-                selected={invoiceHistory.selectedListItemIndex === i}
-                onClick={(event, index,id) => this.handleListItemClick(event, index, data.id)}>
+                selected={invoiceHistory.selectedListItemIndex === data.id}
+                onClick={(event, id) => this.handleListItemClick(event, data.id)}>
                 <ListItemText primary={data.invoiceNumber} secondary={data.creationDate.replace("T"," ") }/>
-                <Divider />
             </ListItem>
            
         ))

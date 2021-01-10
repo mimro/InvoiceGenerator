@@ -1,51 +1,56 @@
 .invoice-preview-container {
-	padding: 10px;
-	display: grid;
-	grid-gap:30px;
-	
+    padding: 10px;
+    display: grid;
+    grid-gap: 30px;
 }
 
-.invoice-header{
-	font-size: 40px !important;
+.invoice-header {
+    font-size: 40px !important;
 }
 
 .invoiceTable {
-	border: 1px solid #000 !important;
-	width:100%;
+    border: 1px solid #000 !important;
+    width: 100%;
 }
 
 .invoiceTable th {
-		border-left: 1px solid #000 !important;
-		border-right: 1px solid #000 !important;
-		border-bottom: 1px solid #000 !important;
-	}
+        border-left: 1px solid #000 !important;
+        border-right: 1px solid #000 !important;
+        border-bottom: 1px solid #000 !important;
+    }
 
+.invoiceTable td {
+        padding: 5px;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+    }
 
 .invoiceSpecificData {
-	grid-area: invoiceSpecificData;
+    grid-area: invoiceSpecificData;
 }
 
 .issuerDetails {
-	grid-area: issuerDetails;
+    grid-area: issuerDetails;
 }
 
 .recipientDetails {
-	grid-area: recipientDetails;
+    grid-area: recipientDetails;
 }
 
 .additionalData {
-	grid-area: additionalData;
+    grid-area: additionalData;
 }
 
 .invoiceTableSection {
-	grid-area: invoiceTableSection;
+    grid-area: invoiceTableSection;
 }
 
 .summaryTableSection {
-	grid-area: summaryTableSection;
+    grid-area: summaryTableSection;
 }
+
 .amountInWordsSection {
-	grid-area: amountInWordsSection;
-	font-size: 20px;
-	font-style: italic;
+    grid-area: amountInWordsSection;
+    font-size: 20px;
+    font-style: italic;
 }

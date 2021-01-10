@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import { Route } from 'react-router-dom'
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import { postInvoiceData } from "../../../actions";
+import { postInvoiceData } from "../../../redux-legacy/actions";
 
 
 class SidePanel extends React.Component {

@@ -13,7 +13,7 @@ import {
 	removeItem,
 	moveRowUp,
 	moveRowDown
-} from "../../actions";
+} from "../../redux-legacy/actions";
 
 type Props = {
    removeItem:Function,

@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import { connect } from "react-redux";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
-import { fetchInvoiceHistoryList, setInvoiceHistoryLoading, selectListItem, fetchInvoiceHistoryById } from "../../../actions";
+import { fetchInvoiceHistoryList, setInvoiceHistoryLoading, selectListItem, fetchInvoiceHistoryById } from "../../../redux-legacy/actions";
 import RefreshOutlinedIcon from '@material-ui/icons/RefreshOutlined';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

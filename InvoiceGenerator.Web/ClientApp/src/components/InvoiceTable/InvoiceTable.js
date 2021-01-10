@@ -12,7 +12,7 @@ import {
     addItem,
     updateItem,
     calculateTable
-} from "../../actions";
+} from "../../redux-legacy/actions";
 
 type Props = {
     invoiceTableDetails: {

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import '../styles/Common.css';
 import {
     setRecipientDetails
-} from "../../../actions";
+} from "../../../redux-legacy/actions";
 
 type Props = {
     recipientDetails: {

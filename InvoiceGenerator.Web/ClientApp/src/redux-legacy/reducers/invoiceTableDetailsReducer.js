@@ -1,7 +1,6 @@
-﻿import type { Action } from "../actions";
-import { $,plus } from 'moneysafe';
-import { calculateRow, calculateSummaryTable } from "../Services/CalculationService"
-import { AmountInWordsService } from "../Services/AmountInWordsService"
+﻿import { $,plus } from 'moneysafe';
+import { calculateRow, calculateSummaryTable } from "../../Services/CalculationService"
+import { AmountInWordsService } from "../../Services/AmountInWordsService"
 
 let id =1;
 export type tableRow = {
@@ -69,8 +68,6 @@ export default function invoiceTableDetailsReducer(state: State = initialState, 
 		let newState = [...state.table];
 		let { id, field, val } = action;
 		let summaryValues = { NettoValueSum: 0, VatValueSum: 0, GrossValueSum: 0 };
-
-
 
 		newState[id][field] = val;
 		if (field === 'Quantity' || field === 'NettoPrice' || field === 'Vat') {

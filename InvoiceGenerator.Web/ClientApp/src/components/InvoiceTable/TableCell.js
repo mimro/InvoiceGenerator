@@ -5,7 +5,7 @@ import { NameInput, QuantityInput,JmInput,NettoPriceInput,VatInput  } from './In
 
 import {
 	updateItem,
-} from "../../actions";
+} from "../../redux-legacy/actions";
 
 import './styles/TableCell.css'
 
@@ -24,6 +24,7 @@ class TableCell extends Component {
 
 
 	render() {
+		
 
 		const { value, onChange } = this.props;
 
@@ -62,6 +63,10 @@ class TableCell extends Component {
 	}
 
 	onBlur() {
+		this.setState({ editing: false });
+	}
+	componentDidMount() {
+		console.log('mount');
 		this.setState({ editing: false });
 	}
 

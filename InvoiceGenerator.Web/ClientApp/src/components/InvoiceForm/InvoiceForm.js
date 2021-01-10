@@ -4,7 +4,7 @@ import InvoiceSpecificData from './InvoiceSpecificData'
 import { connect } from "react-redux";
 import {
     setPreviewInvoice
-} from "../../actions";
+} from "../../redux-legacy/actions";
 
 import './styles/InvoiceForm.css'
 import InvoiceReceipant from './CompanyData/InvoiceReceipant';

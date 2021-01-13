@@ -6,6 +6,9 @@ import issuerDetailsReducer from "./issuerDetailsReducer";
 import recipientDetailsReducer from "./recipientDetailsReducer";
 import invoiceTableDetailsReducer from "./invoiceTableDetailsReducer";
 
+import invoiceTableReducer from "../../redux-toolkit/features/invoieTableSlice";
+//import invoiceHistoryReducer from "../../redux-toolkit/features/invoiceHistorySlice";
+
 
 const rootReducer = combineReducers({
 	invoiceSpecificData: invoiceDetailsReducer,

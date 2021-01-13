@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { SET_INVOICE_DETAILS, SET_RECIPIENT_DETAILS } from './actionTypes';
+import { SET_INVOICE_DETAILS, SET_RECIPIENT_DETAILS, SET_ISSUER_DETAILS, SET_INVOICE_TABLE, ADD_ITEM, UPDATE_ITEM } from '../constants/actionTypes';
 
-export function setInvoiceDetails(name: string, val: string) {
+export function setInvoiceDetails(name, val) {
     return {
         type: SET_INVOICE_DETAILS,
-        name,
-        val
+        payload: {
+            name,
+            val
+        }
     }
 }
 export function setRecipientDetails(name: string, val: string) {
@@ -17,7 +19,7 @@ export function setRecipientDetails(name: string, val: string) {
 }
 export function setIssuerDetails(name: string, val: string) {
     return {
-        type: "SET_ISSUER_DETAILS",
+        type: SET_ISSUER_DETAILS,
         name,
         val
     }
@@ -25,15 +27,15 @@ export function setIssuerDetails(name: string, val: string) {
 
 export function setInvoiceTable(name: string, val: string) {
     return {
-        type: "SET_INVOICE_TABLE",
+        type: SET_INVOICE_TABLE,
         name,
         val
     }
 }
 
-export function addItem(obj: Object) {
+export function addItem(obj) {
     return {
-        type: "ADD_ITEM",
+        type: ADD_ITEM,
         obj
     }
 }
@@ -94,10 +96,9 @@ export function amountInWords(amount: number) {
         amount
     }
 }
-export function setInvoiceHistoryLoading(status: boolean) {
+export function getInvoiceHistoryPending() {
     return {
-        type: "SET_INVOICE_HISTORY_LOADING",
-        payload: status
+        type: "GET_INVOICE_HISTORY_PENDING",
     }
 }
 
@@ -114,8 +115,8 @@ export const fetchInvoiceHistoryListSuccess = history => ({
 
 export function fetchInvoiceHistoryList() {
     return async dispatch => {
+        dispatch(getInvoiceHistoryPending());
         try {
-            dispatch(setInvoiceHistoryLoading(true))
             await axios.get('http://localhost:3003/api/invoicehistory').then(response =>
                 dispatch(fetchInvoiceHistoryListSuccess(response.data))
             );

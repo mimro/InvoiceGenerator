@@ -1,7 +1,4 @@
 ﻿import React, { Component } from 'react';
-//import { Button } from 'reactstrap';
-import { faTrashAlt, faArrowUp,faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './styles/EditButtons.css'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -14,6 +11,8 @@ import {
 	moveRowUp,
 	moveRowDown
 } from "../../redux-legacy/actions";
+//import { removeItem } from "../../redux-toolkit/features/invoieTableSlice";
+
 
 type Props = {
    removeItem:Function,

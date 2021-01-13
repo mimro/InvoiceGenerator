@@ -24,7 +24,8 @@ namespace InvoiceGenerator.History.Api.Repository
 
         public void Delete(int Id)
         {
-            throw new NotImplementedException();
+            var removeEntity = this.invoiceHistoryContext.InvoiceHistories.Where(h => h.Id == Id);
+            this.invoiceHistoryContext.Remove(removeEntity);
         }
 
         public async Task<IEnumerable<InvoiceHistory>> GetAllInvoiceHistories()

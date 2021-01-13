@@ -4,8 +4,11 @@ import Paper from '@material-ui/core/Paper'
 import { connect } from "react-redux";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
-import { fetchInvoiceHistoryList, setInvoiceHistoryLoading, selectListItem, fetchInvoiceHistoryById } from "../../../redux-legacy/actions";
+import { fetchInvoiceHistoryList, selectListItem, fetchInvoiceHistoryById } from "../../../redux-legacy/actions";
+//import { fetchInvoiceHistoryList, fetchInvoiceHistoryById, selectListItem  } from "../../../redux-toolkit/features/invoiceHistorySlice";
+
 import RefreshOutlinedIcon from '@material-ui/icons/RefreshOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -31,7 +34,7 @@ class InoiceHistorySidePanel extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchData();
+       this.props.fetchData();
     }
 
     reloadData() {
@@ -49,10 +52,11 @@ class InoiceHistorySidePanel extends React.Component {
     renderList() {
         let { invoiceHistory } = this.props;
         return invoiceHistory.table.map((data, i) => (
+
             <ListItem button key={i} /*style={{ borderTop: '1px solid #A6A6A6' }}*/
                 selected={invoiceHistory.selectedListItemIndex === data.id}
                 onClick={(event, id) => this.handleListItemClick(event, data.id)}>
-                <ListItemText primary={data.invoiceNumber} secondary={data.creationDate.replace("T"," ") }/>
+                <ListItemText primary={data.invoiceNumber} secondary={data.creationDate.replace("T", " ")} /> 
             </ListItem>
            
         ))
@@ -64,7 +68,6 @@ class InoiceHistorySidePanel extends React.Component {
 function mapDispatchToProps(dispatch) {
     return {
         fetchData: () => dispatch(fetchInvoiceHistoryList()),
-        setLoadingStatus: (status) => dispatch(setInvoiceHistoryLoading(status)),
         setSelectedIndex: (index) => dispatch(selectListItem(index)),
         fetchInvoiceHistoryById: (id) => dispatch(fetchInvoiceHistoryById(id))
     }

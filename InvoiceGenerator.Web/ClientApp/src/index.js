@@ -9,7 +9,8 @@ import configureReduxToolkitStore from "./redux-toolkit/store/configureReduxTool
 
 import rootReducer from "./redux-legacy/reducers";
 
-let store = configureReduxToolkitStore(); //createReduxStore();
+let store = createReduxStore(); //createReduxStore();
+   // configureReduxToolkitStore(); //
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');

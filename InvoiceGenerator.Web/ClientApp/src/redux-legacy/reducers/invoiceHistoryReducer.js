@@ -3,11 +3,11 @@
     invoiceNumber: "",
     jsonEncodedInvoice: "",
 }
-const initialState= {
+const initialState = {
     table: [history],
-    isLoading: true,
+    isLoading: false,
     error: "",
-    selectedListItemIndex:-1
+    selectedListItemIndex: -1
 }
 
 const invoiceHistoryReducer = (state = initialState, action) => {
@@ -17,9 +17,9 @@ const invoiceHistoryReducer = (state = initialState, action) => {
             isLoading: false
         });
     }
-    else if (action.type === "SET_INVOICE_HISTORY_LOADING") {
+    else if (action.type === "GET_INVOICE_HISTORY_PENDING") {
         return Object.assign({}, state, {
-            isLoading: action.payload,
+            isLoading: true,
         }); 
     }
     else if (action.type === "SELECT_LIST_ITEM") {

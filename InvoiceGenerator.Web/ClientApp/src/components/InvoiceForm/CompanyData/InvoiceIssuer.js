@@ -7,32 +7,21 @@ import {
     setIssuerDetails
 } from "../../../redux-legacy/actions";
 
-type Props = {
-    issuerDetails: {
-        companyName: string,
-        address: string
-    },
-    setIssuerDetails: Function,
-};
-
-
 class InvoiceIssuer extends Component {
 
-    constructor(props: Props) {
+    constructor(props) {
         super(props);
-
     }
 
     render() {
         const { issuerDetails } = this.props;
         return (
-            <div>
-                <h5 style={{ marginBottom: "15px" }}> Dane sprzedawcy</h5>
+            <div class="company-data-form-container">
+                <h5 class="company-data-header" style={{ marginBottom: "15px" }}> Dane sprzedawcy</h5>
+                    <TextField name="companyName" value={issuerDetails.companyName} onChange={this.handleChange} id="standard-basic" label="Nazwa firmy" variant="outlined" />
 
-                <TextField name="companyName" value={issuerDetails.companyName} onChange={this.handleChange} id="standard-basic" label="Nazwa firmy" variant="outlined" />
-
-                <TextField name="address" value={issuerDetails.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres" variant="outlined" />
-            </div>
+                    <TextField name="address" value={issuerDetails.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres" variant="outlined" />
+                </div>
         )
     }
 

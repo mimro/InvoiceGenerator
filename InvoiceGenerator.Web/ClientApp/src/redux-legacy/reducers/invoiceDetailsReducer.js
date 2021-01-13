@@ -1,8 +1,4 @@
-export type invoiceDetailState = {
-        number: string,
-        issueDate: string,
-        sellingDate: string,
-};
+import { SET_INVOICE_DETAILS } from '../constants/actionTypes';
 
 const initialState: invoiceSpecificData = {
         number: "",
@@ -11,8 +7,8 @@ const initialState: invoiceSpecificData = {
 };
 
 export default function invoiceDetailsReducer(state: invoiceDetailState = initialState, action) {
-    if (action.type === "SET_INVOICE_DETAILS") {
-        return {...state, [action.name]: action.val};
+    if (action.type === SET_INVOICE_DETAILS) {
+        return { ...state, [action.payload.name]: action.payload.val};
     }
     else if (action.type === "UPDATE_FETCHED_INVOICE_DETAILS") {
         return Object.assign({}, state, action.payload.invoiceSpecificData);

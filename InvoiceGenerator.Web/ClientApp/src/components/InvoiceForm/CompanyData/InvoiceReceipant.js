@@ -7,21 +7,9 @@ import {
     setRecipientDetails
 } from "../../../redux-legacy/actions";
 
-type Props = {
-    recipientDetails: {
-        companyName: string,
-        vatId: string,
-        street: string,
-        city: string,
-        zipCode: string
-    },
-    setRecipientDetails: Function,
-};
-
-
 class InvoiceReceipant extends Component {
 
-    constructor(props: Props) {
+    constructor(props) {
         super(props);
         this.state = {
             data: this.props.companyData
@@ -35,13 +23,12 @@ class InvoiceReceipant extends Component {
         const { recipientDetails } = this.props;
         return (
 
-            <div>
-                <h5 style={{ marginBottom: "15px" }}> Dane nabywcy</h5>
+            <div class="company-data-form-container">
+                <h5 class="company-data-header" style={{ marginBottom: "15px" }}> Dane nabywcy</h5>
+                    <TextField name="companyName" value={recipientDetails.companyName} onChange={this.handleChange} id="standard-basic" label="Nazwa firmy" variant="outlined" />
 
-                <TextField name="companyName" value={recipientDetails.companyName} onChange={this.handleChange} id="standard-basic" label="Nazwa firmy" variant="outlined" />
-
-                <TextField name="address" value={recipientDetails.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres" variant="outlined" />
-            </div>
+                    <TextField name="address" value={recipientDetails.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres" variant="outlined" />
+                </div>
         )
     }
 

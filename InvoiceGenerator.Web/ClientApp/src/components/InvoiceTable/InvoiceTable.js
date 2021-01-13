@@ -14,22 +14,11 @@ import {
     calculateTable
 } from "../../redux-legacy/actions";
 
-type Props = {
-    invoiceTableDetails: {
-        table: Array,
-        AmountInWords: string;
-        NettoValueSum: ?number,
-        VatValueSum: ?number,
-        GrossValueSum: ?number
-    },
-    addItem: Function,
-    updateItem: Function,
-    calculateTable: Function
-};
+//import { addItem, updateItem } from "../../redux-toolkit/features/invoieTableSlice";
 
 class InvoiceTable extends Component {
 
-    constructor(props: Props) {
+    constructor(props) {
         super(props)
         this.state = {
             config: tableConfig

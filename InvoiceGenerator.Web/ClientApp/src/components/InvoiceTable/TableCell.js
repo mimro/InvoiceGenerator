@@ -9,9 +9,7 @@ import {
 
 import './styles/TableCell.css'
 
-type Props = {
-   updateItem:Function,
-};
+
 class TableCell extends Component {
 
     constructor(props) {
@@ -44,7 +42,7 @@ class TableCell extends Component {
 		}
 		let current = components[this.props.name];
 		const TagName = current[0];
-		const isEditable =current[1];
+		const isEditable = current[1];
 		const additionalDisplayChar = current[2];
 		return this.state.editing ?
 			<td className="no-pad"><TagName value={this.props.value} ref={this.child} onChange={value=>this.onChange(this.props.id,this.props.name,value)} onBlur={this.onBlur} /></td> :

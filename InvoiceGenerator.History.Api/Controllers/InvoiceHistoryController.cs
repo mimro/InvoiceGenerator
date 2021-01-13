@@ -55,7 +55,16 @@ namespace InvoiceGenerator.History.Api.Controllers
             this.historyRepository.Add<InvoiceHistory>(invoiceHistory);
             await this.historyRepository.SaveChangesAsync();
 
-            return Ok("stored ok");
+            return Ok(invoiceHistory);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<InvoiceHistoryDto>> Delete(int id)
+        {
+            this.historyRepository.Delete(id);
+            await this.historyRepository.SaveChangesAsync();
+
+            return Ok();
         }
 
     }

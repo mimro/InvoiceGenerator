@@ -2,10 +2,14 @@
 import TextField from '@material-ui/core/TextField';
 
 import { connect } from "react-redux";
-import '../styles/Common.css';
+import '../../styles/Common.css';
+////import {
+////    setIssuerDetails
+////} from "../../../../redux-legacy/actions";
 import {
     setIssuerDetails
-} from "../../../redux-legacy/actions";
+} from "../../../../redux-toolkit/features/issuerSlice";
+import { ISSUER_DATA_LABEL } from '../../../../Resources/wordings_PL';
 
 class InvoiceIssuer extends Component {
 
@@ -16,8 +20,8 @@ class InvoiceIssuer extends Component {
     render() {
         const { issuerDetails } = this.props;
         return (
-            <div class="company-data-form-container">
-                <h5 class="company-data-header" style={{ marginBottom: "15px" }}> Dane sprzedawcy</h5>
+            <div className="company-data-form-container">
+                <h5 className="company-data-header" style={{ marginBottom: "15px" }}> {ISSUER_DATA_LABEL}</h5>
                     <TextField name="companyName" value={issuerDetails.companyName} onChange={this.handleChange} id="standard-basic" label="Nazwa firmy" variant="outlined" />
 
                     <TextField name="address" value={issuerDetails.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres" variant="outlined" />
@@ -35,7 +39,7 @@ class InvoiceIssuer extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setIssuerDetails: (name, value) => dispatch(setIssuerDetails(name, value)),
+        setIssuerDetails: (name, value) => dispatch(setIssuerDetails({ name, value })),
     }
 }
 

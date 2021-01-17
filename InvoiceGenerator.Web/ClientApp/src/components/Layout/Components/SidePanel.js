@@ -10,8 +10,10 @@ import Button from '@material-ui/core/Button';
 import { Route } from 'react-router-dom'
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import { postInvoiceData } from "../../../redux-legacy/actions";
+//import { postInvoiceData } from "../../../redux-legacy/actions";
+import { postInvoiceData } from "../../../redux-toolkit/actions";
 
+import { INVOICE_GENERATE_BUTTON, INVOICE_SAVE_BUTTON, INVOICE_PREVIEW_BUTTON} from "../../../Resources/wordings_PL"
 
 class SidePanel extends React.Component {
     constructor(props) {
@@ -25,11 +27,11 @@ class SidePanel extends React.Component {
 
         return (
             <Paper elevation={6}>
-                <div class="side-panel-container">
+                <div className="side-panel-container">
                     <Route render={({ history, location }) => (
 
                         <Button variant="outlined" color="primary" onClick={() => { location.pathname === "/" ? history.push('/preview') : history.push('/')}} style={{ margin: '10px', width: '60%' }}>
-                            {location.pathname === "/" ? <span><VisibilityOutlinedIcon /> &nbsp; Podgląd faktury</span> : <span><CreateOutlinedIcon /> &nbsp; Edycja faktury</span>}
+                            {location.pathname === "/" ? <span><VisibilityOutlinedIcon /> &nbsp; {INVOICE_PREVIEW_BUTTON}</span> : <span><CreateOutlinedIcon /> &nbsp; Edycja faktury</span>}
                         </Button>
 
                     )} />
@@ -42,7 +44,7 @@ class SidePanel extends React.Component {
                                 jsonEncodedInvoice: JSON.stringify({
                                     invoiceSpecificData: this.props.invoiceSpecificData,
                                     issuerDetails: this.props.issuerDetails,
-                                    recipientDetails: this.props.recipientDetails,
+                                    recipantDetails: this.props.recipantDetails,
                                     invoiceTableDetails: this.props.invoiceTableDetails,
                                 })
                             }
@@ -50,11 +52,11 @@ class SidePanel extends React.Component {
 
                         this.props.postInvoiceData(invoiceHistory);
                     }}>
-                        <SaveOutlinedIcon />&nbsp;&nbsp;  Zapisz fakturę
+                        <SaveOutlinedIcon />&nbsp;&nbsp;  {INVOICE_SAVE_BUTTON}
                         </Button>
 
                     <Route render={({ location }) => (
-                        
+
                         <Button disabled={location.pathname !== "/preview"} variant="outlined" color="primary" onClick={() => {
                             let element = document.querySelector("#preview-container");
                             const pdf = new jsPDF();
@@ -73,7 +75,7 @@ class SidePanel extends React.Component {
                                         pdf.save('invoice.pdf');
                                     });
                             } }} style={{ margin: '10px', width: '60%' }}>
-                            <PictureAsPdfOutlinedIcon /> &nbsp; Generuj fakturę pdf
+                            <PictureAsPdfOutlinedIcon /> &nbsp; {INVOICE_GENERATE_BUTTON}
                         </Button>
                     )} />
 
@@ -95,7 +97,7 @@ function mapStateToProps(state, ownProps) {
     return {
         invoiceSpecificData: state.invoiceSpecificData,
         issuerDetails: state.issuerDetails,
-        recipientDetails: state.recipientDetails,
+        recipantDetails: state.recipantDetails,
         invoiceTableDetails: state.invoiceTableDetails,
     }
 }

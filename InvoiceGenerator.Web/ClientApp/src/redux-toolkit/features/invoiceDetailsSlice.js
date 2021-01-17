@@ -1,4 +1,5 @@
 ﻿import { createSlice } from '@reduxjs/toolkit'
+import { updateInvoiceData } from '../actions'
 
 const invoiceDetailsSlice = createSlice({
     name: 'invoiceDetails',
@@ -9,18 +10,18 @@ const invoiceDetailsSlice = createSlice({
     },
     reducers: {
         setInvoiceDetails(state, action) {
-            const { id, text } = action.payload
-            state.push({ id, text, completed: false })
+            state[action.payload.name] = action.payload.value;
         },
-        fetchInvoiceHistoryByIdSuccess(state, action) {
-            const todo = state.find(todo => todo.id === action.payload)
-            if (todo) {
-                todo.completed = !todo.completed
-            }
+    },
+    extraReducers: {
+        [updateInvoiceData]: (state, action) => {
+            state.number = action.payload.invoiceSpecificData.number;
+            state.issueDate = action.payload.invoiceSpecificData.issueDate;
+            state.sellingDate = action.payload.invoiceSpecificData.sellingDate;
         }
     }
 })
 
-export const { addTodo, toggleTodo } = todosSlice.actions
+export const { setInvoiceDetails } = invoiceDetailsSlice.actions
 
-export default todosSlice.reducer
+export default invoiceDetailsSlice.reducer

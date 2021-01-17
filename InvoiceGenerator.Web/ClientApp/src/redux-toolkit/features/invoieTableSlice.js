@@ -1,4 +1,7 @@
 ﻿import { createSlice } from '@reduxjs/toolkit'
+import { calculateRow, calculateSummaryTable } from "../../Services/CalculationService";
+import { AmountInWordsService } from "../../Services/AmountInWordsService";
+import { updateInvoiceData } from '../actions'
 
 const newRow = (id) => {
     return {
@@ -31,7 +34,7 @@ const initialState = {
     VatValueSum: 0,
     GrossValueSum: 0,
     AmountInWords: "",
-    payedOff: true
+    editing: true
 }
 
 const invoiceTableSlice = createSlice({
@@ -43,25 +46,65 @@ const invoiceTableSlice = createSlice({
         },
         removeItem(state, action) {
             state.table.splice(action.payload.id, 1);
+            state.table.map((item, i) => { item.id = i });
         },
         updateItem(state, action) {
-            let { id, field } = action.payload;
-            let summaryValues = { NettoValueSum: 0, VatValueSum: 0, GrossValueSum: 0 };
-            console.log("value "+ action.payload.value);
+            let { id, field, value } = action.payload;
 
-            //state.table.splice(id,)
+            state.table[id][field] = value;
 
+            if (field === 'Quantity' || field === 'NettoPrice' || field === 'Vat') {
+                let summaryValues = { NettoValueSum: 0, VatValueSum: 0, GrossValueSum: 0 };
+                let calcResult = calculateRow(state.table[id].NettoPrice, state.table[id].Quantity, state.table[id].Vat);
+                state.table[id].GrossValue = calcResult.GrossValue;
+                state.table[id].VatValue = calcResult.VatValue;
+                state.table[id].NettoValue = calcResult.NettoValue;
+                summaryValues = calculateSummaryTable(state.table);
 
-            state.table[id] = initialStateRow;
-            //state.table[id][field] = action.payload.value;
-            //console.log(state.table[id][field]);
+                let amountInWords = AmountInWordsService(summaryValues.NettoValueSum);
+
+                state.NettoValueSum = summaryValues.NettoValueSum.toFixed(2);
+                state.VatValueSum = summaryValues.VatValueSum.toFixed(2);
+                state.GrossValueSum = summaryValues.GrossValueSum.toFixed(2);
+                state.AmountInWords = amountInWords
+            }
+        },
+        moveRowUp(state, action) {
+            if (action.payload !== 0) {
+                let tempRow = state.table[action.payload - 1];
+                state.table[action.payload - 1] = state.table[action.payload];
+                state.table[action.payload] = tempRow;
+            }
+        },
+        moveRowDown(state, action) {
+            if (action.payload !== state.table.length-1) {
+
+                let tempRow = state.table[action.payload + 1];
+                state.table[action.payload + 1] = state.table[action.payload];
+                state.table[action.payload] = tempRow;
+            }
+        },
+        changeEditingState(state, action) {
+            state.editing = action.payload;
         }
-    }
+
+    },
+        extraReducers: {
+            [updateInvoiceData]: (state, action) => {
+                state.table = action.payload.invoiceTableDetails.table
+                state.AmountInWords = action.payload.invoiceTableDetails.AmountInWords
+                state.GrossValueSum = action.payload.invoiceTableDetails.GrossValueSum
+                state.NettoValueSum = action.payload.invoiceTableDetails.NettoValueSum
+                state.VatValueSum = action.payload.invoiceTableDetails.VatValueSum
+                state.editing = false
+            }
+        }
+    
 });
 
 
 
 
-export const { addItem, removeItem, updateItem } = invoiceTableSlice.actions
+export const { addItem, removeItem, updateItem, moveRowDown, moveRowUp, changeEditingState } = invoiceTableSlice.actions
 
 export default invoiceTableSlice.reducer

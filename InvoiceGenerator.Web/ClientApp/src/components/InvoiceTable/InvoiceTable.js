@@ -8,13 +8,13 @@ import AddIcon from '@material-ui/icons/Add'
 import { connect } from "react-redux";
 import tableConfig from "./TableConfig"
 
-import {
-    addItem,
-    updateItem,
-    calculateTable
-} from "../../redux-legacy/actions";
+//import {
+//    addItem,
+//    updateItem,
+//    calculateTable
+//} from "../../redux-legacy/actions";
 
-//import { addItem, updateItem } from "../../redux-toolkit/features/invoieTableSlice";
+import { addItem } from "../../redux-toolkit/features/invoieTableSlice";
 
 class InvoiceTable extends Component {
 
@@ -53,14 +53,14 @@ class InvoiceTable extends Component {
 
     renderHeaders() {
         return this.state.config.headers.map((data, i) => (
-            <TableHeader value={data} id={i} />
+            <TableHeader value={data} id={i} key={i} />
         ))
     }
 
     renderRows() {
         let { invoiceTableDetails } = this.props;
         return invoiceTableDetails.table.map((data, i) => (
-            <TableRow key={data.id} id={i} value={data} onChange={this.props.calculateTable} onMoveRowUp={this.moveRowUp} onMoveRowDown={this.moveRowDown} />
+            <TableRow key={data.id} id={i} value={data}  onMoveRowUp={this.moveRowUp} onMoveRowDown={this.moveRowDown} />
         ))
 
     }
@@ -80,8 +80,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         addItem: (id, value) => dispatch(addItem(id, value)),
-        updateItem: (id, name, value) => dispatch(updateItem(id, name, value)),
-        calculateTable: () => dispatch(calculateTable()),
+       // updateItem: (id, name, value) => dispatch(updateItem(id, name, value)),
+      // calculateTable: () => dispatch(calculateTable()),
     }
 }
 

@@ -1,38 +1,32 @@
 ﻿import React, { Component } from 'react';
-import InvoiceIssuer from './CompanyData/InvoiceIssuer'
-import InvoiceSpecificData from './InvoiceSpecificData'
 import { connect } from "react-redux";
+
+import InvoiceReceipant from "./CompanyData/InvoiceReceipant";
+import InvoiceIssuer from "./CompanyData/InvoiceIssuer";
+import InvoiceSpecificData from './InvoiceSpecificData';
+
 import {
     setPreviewInvoice
-} from "../../redux-legacy/actions";
-
-import './styles/InvoiceForm.css'
-import InvoiceReceipant from './CompanyData/InvoiceReceipant';
-import { Grid } from '@material-ui/core';
-
-type Props = {
-    setPreviewInvoice: Function,
-    previewInvoice: boolean
-};
-
+} from "../../../redux-legacy/actions";
+import '../styles/InvoiceForm.css';
 
 class InvoiceForm extends Component {
 
-    constructor(props: Props) {
+    constructor(props) {
         super(props);
     }
 
     render() {
 
         return (
-            <div class="invoice-form-container">
-                <div class="invoice-form-elem1">
+            <div className="invoice-form-container">
+                <div className="invoice-form-elem1">
                     <InvoiceSpecificData />
                 </div>
-                <div class="invoice-form-elem2">
+                <div className="invoice-form-elem2">
                     <InvoiceIssuer />
                 </div>
-                <div class="invoice-form-elem3">
+                <div className="invoice-form-elem3">
                     <InvoiceReceipant />
                 </div>
             </div>

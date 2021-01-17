@@ -1,35 +1,29 @@
 ﻿import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField'
+import TextField from '@material-ui/core/TextField';
 import { connect } from "react-redux";
+
+//import {
+//    setInvoiceDetails
+//} from "../../../redux-legacy/actions";
+
 import {
     setInvoiceDetails
-} from "../../redux-legacy/actions";
-
-import './styles/Common.css'
-
-type Props = {
-    invoiceSpecificData: {
-        number: string,
-        issueDate: string,
-        sellingDate: string,
-    },
-    setInvoiceDetails: Function,
-};
+} from "../../../redux-toolkit/features/invoiceDetailsSlice";
+import '../styles/Common.css';
 
 class InvoiceSpecificData extends Component {
 
-    constructor(props: Props) {
+    constructor(props) {
         super(props);
-
     }
 
     render() {
         const { invoiceSpecificData } = this.props;
         return (
-            <div class="flex-container">
+            <div className="flex-container">
                 <TextField id="standard-basic" name="number" onChange={this.handleChange} value={invoiceSpecificData.number} label="numer faktury" variant="outlined" />
 
-                <TextField id="date" name="issueDate" onChange={this.handleChange} label="data wystawienia" type="date" name="issueDate" defaultValue="" value={invoiceSpecificData.issueDate} style={{ marginTop: '20px' }} onChange={this.handleChange} variant="outlined" />
+                <TextField id="date" name="issueDate" onChange={this.handleChange} label="data wystawienia" type="date" name="issueDate"  value={invoiceSpecificData.issueDate} style={{ marginTop: '20px' }} onChange={this.handleChange} variant="outlined" />
 
                 <TextField id="date" name="sellingDate" required onChange={this.handleChange} label="data sprzedaży" type="date" value={invoiceSpecificData.sellingDate} style={{ marginTop: '20px' }} InputLabelProps={{ shrink: true }} onChange={this.handleChange} variant="outlined" />
                 </div>
@@ -45,7 +39,7 @@ class InvoiceSpecificData extends Component {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        setInvoiceDetails: (name, value) => dispatch(setInvoiceDetails(name, value)),
+        setInvoiceDetails: (name, value) => dispatch(setInvoiceDetails({ name, value })),
     }
 }
 

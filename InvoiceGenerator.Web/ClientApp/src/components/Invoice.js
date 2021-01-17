@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
-import InvoiceForm from './InvoiceForm/InvoiceForm';
+import InvoiceForm from "./InvoiceForm/Components/InvoiceForm";
 import InvoiceTable from './InvoiceTable/InvoiceTable';
 import Box from '@material-ui/core/Box';
 import { createMuiTheme, ThemeProvider, Theme } from '@material-ui/core';
-import InvoiceInfo from './InvoiceForm/InvoiceInfo';
+import InvoiceInfo from "./InvoiceForm/Components/InvoiceInfo";
 
 
 export class Invoice extends Component {

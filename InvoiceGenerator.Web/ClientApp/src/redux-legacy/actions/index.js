@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_INVOICE_DETAILS, SET_RECIPIENT_DETAILS, SET_ISSUER_DETAILS, SET_INVOICE_TABLE, ADD_ITEM, UPDATE_ITEM } from '../constants/actionTypes';
+import { SET_INVOICE_DETAILS, SET_RECIPANT_DETAILS, SET_ISSUER_DETAILS, SET_INVOICE_TABLE, ADD_ITEM, UPDATE_ITEM } from '../constants/actionTypes';
 
 export function setInvoiceDetails(name, val) {
     return {
@@ -10,9 +10,9 @@ export function setInvoiceDetails(name, val) {
         }
     }
 }
-export function setRecipientDetails(name: string, val: string) {
+export function setRecipantDetails(name: string, val: string) {
     return {
-        type: SET_RECIPIENT_DETAILS,
+        type: SET_RECIPANT_DETAILS,
         name,
         val
     }
@@ -117,12 +117,15 @@ export function fetchInvoiceHistoryList() {
     return async dispatch => {
         dispatch(getInvoiceHistoryPending());
         try {
-            await axios.get('http://localhost:3003/api/invoicehistory').then(response =>
-                dispatch(fetchInvoiceHistoryListSuccess(response.data))
+            await axios.get('http://localhost:3003/api/invoicehistory').then(response => {
+            dispatch(fetchInvoiceHistoryListSuccess(response.data))
+            dispatch(snackBarSuccess("Pobrano liste historii faktur"))
+            }
             );
         }
         catch (e) {
             console.log(e);
+            dispatch(snackBarError("Wystapil blad podczas pobierania historii faktur "))
         }
     }
 }
@@ -137,11 +140,13 @@ export function fetchInvoiceHistoryById(id) {
             await axios.get('http://localhost:3003/api/invoicehistory/' + id).then(response => {
                 const tableDetails = JSON.parse(response.data.invoiceData.jsonEncodedInvoice);
                 dispatch(fetchInvoiceHistoryByIdSuccess(tableDetails))
+                dispatch(snackBarSuccess("Zaladowano dane z faktury "))
             }
             );
         }
         catch (e) {
             console.log(e);
+            dispatch(snackBarError("Wystapil blad podczas ladowania danych z faktury "))
         }
     }
 }
@@ -164,11 +169,41 @@ export function postInvoiceData(invoiceHistory) {
             ).then(response => {
                 dispatch(postInvoiceDataSuccess(response))
                 dispatch(fetchInvoiceHistoryList())
+                dispatch(snackBarInfo("Poprawnie zapisano dane faktury"))
             }
             );
         }
         catch (e) {
             console.log(e);
+            dispatch(snackBarError("Wystapil blad podczas zapisywania faktury"))
+
         }
+    }
+}
+
+export function snackBarSuccess(message) {
+    return {
+        type: "SNACKBAR_SUCCESS",
+        payload: message
+    }
+}
+
+export function snackBarError(message) {
+    return {
+        type: "SNACKBAR_ERROR",
+        payload: message
+    }
+}
+
+export function snackBarInfo(message) {
+    return {
+        type: "SNACKBAR_INFO",
+        payload: message
+    }
+}
+
+export function snackBarClear() {
+    return {
+        type: "SNACKBAR_CLEAR"
     }
 }

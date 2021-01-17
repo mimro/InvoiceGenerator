@@ -22,7 +22,7 @@ function InvoicePreview(props) {
     const invoiceData = {
         invoiceSpecificData: props.invoiceSpecificData,
         issuerDetails: props.issuerDetails,
-        recipientDetails: props.recipientDetails,
+        recipantDetails: props.recipantDetails,
         invoiceTableDetails: props.invoiceTableDetails,
     }
 
@@ -40,7 +40,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         invoiceSpecificData: state.invoiceSpecificData,
         issuerDetails: state.issuerDetails,
-        recipientDetails: state.recipientDetails,
+        recipantDetails: state.recipantDetails,
         invoiceTableDetails: state.invoiceTableDetails,
     }
 }

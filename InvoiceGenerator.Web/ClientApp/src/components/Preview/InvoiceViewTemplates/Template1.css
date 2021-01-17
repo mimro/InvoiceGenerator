@@ -33,8 +33,8 @@
     grid-area: issuerDetails;
 }
 
-.recipientDetails {
-    grid-area: recipientDetails;
+.recipantDetails {
+    grid-area: recipantDetails;
 }
 
 .additionalData {

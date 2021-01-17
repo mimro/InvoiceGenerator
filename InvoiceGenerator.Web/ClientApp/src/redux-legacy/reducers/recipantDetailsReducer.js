@@ -3,22 +3,22 @@ export type Action = {
     val: string
 }
 
-export type recipientDetails = {
+export type recipantDetails = {
         companyName: string,
         address: string
 };
 
-const initialState: recipientDetails = {
+const initialState: recipantDetails = {
         companyName: "",
         address: ""
 };
 
-export default function recipientDetailsReducer(state: recipientDetails = initialState, action: Action) {
-    if (action.type === "SET_RECIPIENT_DETAILS") {
+export default function recipantDetailsReducer(state: recipantDetails = initialState, action: Action) {
+    if (action.type === "SET_REcipant_DETAILS") {
         return {...state, [action.name]: action.val};
     }
     else if (action.type === "UPDATE_FETCHED_INVOICE_DETAILS") {
-        return Object.assign({}, state, action.payload.recipientDetails);
+        return Object.assign({}, state, action.payload.recipantDetails);
     }
     return state;
 } 

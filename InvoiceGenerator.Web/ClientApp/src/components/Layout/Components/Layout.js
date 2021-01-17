@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import Container from '@material-ui/core/Container';
 import SidePanel from './SidePanel';
 import InoiceHistorySidePanel from './InoiceHistorySidePanel';
+import MessageSnackBar from './MessageSnackBar';
 
 import '../Styles/Layout.css';
 
@@ -14,17 +15,19 @@ export class Layout extends Component {
         return (
             <div>
                 <NavMenu />
-                <div class="grid-container">
+                <div className="grid-container">
                     <Container class="main-container">
                         <Paper elevation={6}>
                             {this.props.children}
                         </Paper>
                     </Container>
-                    <div class="side-bar-container">
-                        <div class="side-bar">
+                    <div className="side-bar-container">
+                        <div className="side-bar">
+                            
                             <SidePanel />
                         </div>
-                        <div class="side-bar-history">
+                        <div className="side-bar-history">
+                            <MessageSnackBar />
                             <InoiceHistorySidePanel />
                         </div>
                     </div>

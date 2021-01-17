@@ -7,28 +7,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  textField: {
-    width: '25ch',
-  },
-}));
 
 export function NameInput(props){
 		return <TextField label="Nazwa" value={props.value} onChange={e => props.onChange(e.target.value)}  onBlur={props.onBlur }/>
 		}
 
 export function QuantityInput(props){
-		return <TextField type="number" label="Ilosc" value={props.value} onChange={e => props.onChange(e.target.value)}  onBlur={props.onBlur }/>
+	return <TextField style={{ width: '60px' }}  type="number" label="Ilosc" value={props.value} onChange={e => props.onChange(e.target.value)}  onBlur={props.onBlur }/>
 		}
 
 		
@@ -55,11 +40,11 @@ export function NettoPriceInput(props){
             endAdornment: <InputAdornment position="end">zł</InputAdornment>,
           }}
 		
- label="Cena netto" value={props.value} onChange={e => props.onChange(e.target.value)}  onBlur={props.onBlur }/>
+			label="Cena netto"  value={props.value} onChange={e => props.onChange(e.target.value)}  onBlur={props.onBlur }/>
 		}
 
-		export function VatInput(props){
-		return <TextField type="number"  
+export function VatInput(props) {
+	return <TextField type="number" style={{ width: '60px' }} 
 		 InputProps={{
             endAdornment: <InputAdornment position="end">%</InputAdornment>,
           }}

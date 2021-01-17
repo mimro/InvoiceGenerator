@@ -6,22 +6,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import { connect } from "react-redux";
 
-import {
-	removeItem,
-	moveRowUp,
-	moveRowDown
-} from "../../redux-legacy/actions";
-//import { removeItem } from "../../redux-toolkit/features/invoieTableSlice";
+//import {
+//	removeItem,
+//	moveRowUp,
+//	moveRowDown
+//} from "../../redux-legacy/actions";
+import { removeItem, moveRowDown, moveRowUp } from "../../redux-toolkit/features/invoieTableSlice";
 
-
-type Props = {
-   removeItem:Function,
-   moveRowUp:Function,
-	moveRowDown:Function
-};
 class EditButton extends Component {
 
-    constructor(props : Props) {
+    constructor(props) {
         super(props);
     }
 
@@ -30,7 +24,7 @@ class EditButton extends Component {
         return (
             <td>
                 <a id="removeBin" title="Usuń" onClick={()=>removeItem(this.props.id)}><DeleteIcon/></a>
-                <div class="up-down-buttons">
+                <div className="up-down-buttons">
 				
 				<a id="moveRowUp" title="Przenieś do góry" onClick={() => moveRowUp(this.props.id)}><ArrowDropUpIcon id="arrowUpIcon"  /></a>
 				<a id="moveRowDown" title="Przenieś do dołu" onClick={() => moveRowDown(this.props.id)}><ArrowDropDownIcon  id="arrowDownIcon" /></a>

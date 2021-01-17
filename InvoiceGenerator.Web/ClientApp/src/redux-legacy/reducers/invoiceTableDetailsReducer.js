@@ -3,18 +3,7 @@ import { calculateRow, calculateSummaryTable } from "../../Services/CalculationS
 import { AmountInWordsService } from "../../Services/AmountInWordsService"
 
 let id =1;
-export type tableRow = {
-	
-                id: number, // TODO - fix key repetition
-                Name: string,
-                Quantity: ?number,
-                jm: string,
-                NettoPrice: ?number,
-                NettoValue: ?number,
-                Vat: string,
-                VatValue: number
-}
-const initialStateRow:tableRow={
+const initialStateRow={
                 "id": id, // TODO - fix key repetition
                 "Name": "",
                 "Quantity": "",
@@ -25,7 +14,7 @@ const initialStateRow:tableRow={
                 "VatValue": 0,
 				"GrossValue":0
             }
-const newRow:tableRow=(id)=>{
+const newRow=(id)=>{
 	        return{  
 				"id": id, 
                 "Name": "",
@@ -39,16 +28,7 @@ const newRow:tableRow=(id)=>{
 				}
 }
 
-export type invoiceTableDetails ={
-	table: Array,
-	NettoValueSum:?number,
-	VatValueSum:?number,
-	GrossValueSum: ?number,
-	AmountInWords: string,
-	payedOff:boolean
-}
-
-const initialState:invoiceTableDetails={
+const initialState={
 	table: [initialStateRow],
 	NettoValueSum:0,
 	VatValueSum:0,
@@ -57,7 +37,7 @@ const initialState:invoiceTableDetails={
 	payedOff:true
 }
 
-export default function invoiceTableDetailsReducer(state: State = initialState, action: Action): State {
+export default function invoiceTableDetailsReducer(state: State = initialState, action): State {
 	if (action.type === "ADD_ITEM") {
 		return Object.assign({}, state, {
 			table: state.table.concat([newRow(state.table.length + 1)])
@@ -90,10 +70,10 @@ export default function invoiceTableDetailsReducer(state: State = initialState, 
 		}
 		else {
 			return Object.assign({}, state, {
-				table: newState,
+				table: newState
 			})
-		}
 
+		}
 	}
 	else if (action.type === "REMOVE_ITEM") {
 		let newState = [...state.table];

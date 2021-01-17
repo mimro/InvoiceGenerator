@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 function Template1(props) {
 
     let style = {
-        gridTemplateAreas: '"invoiceSpecificData invoiceSpecificData" "recipientDetails issuerDetails" "invoiceTableSection invoiceTableSection" "signSection summaryTableSection" "signSection amountInWordsSection"',
+        gridTemplateAreas: '"invoiceSpecificData invoiceSpecificData" "recipantDetails issuerDetails" "invoiceTableSection invoiceTableSection" "signSection summaryTableSection" "signSection amountInWordsSection"',
     };
 
     return (
@@ -14,7 +14,6 @@ function Template1(props) {
             <div class="invoice-preview-container" style={style}>
 
                 <div class="invoiceSpecificData" style={style.invoiceSpecificData} >
-                    <div>Miejsce wystawienia: {props.invoiceSpecificData.placeOfIssue}</div>
                     <div>Data wystawienia: {props.invoiceSpecificData.issueDate}</div>
                     <div>Data sprzedaży: {props.invoiceSpecificData.sellingDate}</div>
                 </div>
@@ -23,10 +22,10 @@ function Template1(props) {
                     <div>Nazwa firmy: {props.issuerDetails.companyName}</div>
                     <div>Adress: {props.issuerDetails.address}</div>
                 </div>
-                <div class="recipientDetails" >
+                <div class="recipantDetails" >
                     <div>Dane nabywcy </div>
-                    <div>Nazwa firmy: {props.recipientDetails.companyName}</div>
-                    <div>Adress: {props.recipientDetails.address}</div>
+                    <div>Nazwa firmy: {props.recipantDetails.companyName}</div>
+                    <div>Adress: {props.recipantDetails.address}</div>
                 </div>
 
 
@@ -96,7 +95,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         invoiceSpecificData: state.invoiceSpecificData,
         issuerDetails: state.issuerDetails,
-        recipientDetails: state.recipientDetails,
+        recipantDetails: state.recipantDetails,
         invoiceTableDetails: state.invoiceTableDetails,
     }
 }

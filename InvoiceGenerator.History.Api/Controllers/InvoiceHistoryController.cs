@@ -27,44 +27,71 @@ namespace InvoiceGenerator.History.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<InvoiceHistoryDto>>> Get()
         {
+            try
+            {
+                IEnumerable<InvoiceHistory> histories = await this.historyRepository.GetAllInvoiceHistories();
+                var dto = mapper.Map<List<InvoiceHistoryDto>>(histories).OrderByDescending(d => d.CreationDate);
 
-            IEnumerable<InvoiceHistory> histories = await this.historyRepository.GetAllInvoiceHistories();
-            var dto = mapper.Map<List<InvoiceHistoryDto>>(histories).OrderByDescending(d => d.CreationDate);
-
-            return Ok(dto);
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);               
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<InvoiceHistoryDto>>> Get(int id)
         {
-            var history = await this.historyRepository.GetInvoiceHistoryWithDataById(id);
-            var dto = mapper.Map<InvoiceHistoryDto>(history);
-          
-            if (dto == null)
+            try
             {
-                  return StatusCode(404);
-            }
+                var history = await this.historyRepository.GetInvoiceHistoryWithDataById(id);
+                var dto = mapper.Map<InvoiceHistoryDto>(history);
 
-            return Ok(dto);
+                if (dto == null)
+                {
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
+
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         [HttpPost]
         public async Task<ActionResult<InvoiceHistoryDto>> Post([FromBody] InvoiceHistory invoiceHistory)
         {
-            invoiceHistory.CreationDate = DateTime.UtcNow;
-            this.historyRepository.Add<InvoiceHistory>(invoiceHistory);
-            await this.historyRepository.SaveChangesAsync();
+            try
+            {
+                invoiceHistory.CreationDate = DateTime.UtcNow;
+                this.historyRepository.Add<InvoiceHistory>(invoiceHistory);
+                await this.historyRepository.SaveChangesAsync();
 
-            return Ok(invoiceHistory);
+                return Ok(invoiceHistory);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<InvoiceHistoryDto>> Delete(int id)
         {
-            this.historyRepository.Delete(id);
-            await this.historyRepository.SaveChangesAsync();
+            try
+            {
+                this.historyRepository.Delete(id);
+                await this.historyRepository.SaveChangesAsync();
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
     }

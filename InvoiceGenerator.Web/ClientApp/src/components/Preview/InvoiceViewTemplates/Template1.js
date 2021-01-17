@@ -10,22 +10,22 @@ function Template1(props) {
 
     return (
         <div id="template1-container">
-            <h1 class="invoice-header">Faktura VAT Nr {props.invoiceSpecificData.number}</h1>
+            <h1 class="invoice-header">Faktura VAT Nr {props.invoice.number}</h1>
             <div class="invoice-preview-container" style={style}>
 
                 <div class="invoiceSpecificData" style={style.invoiceSpecificData} >
-                    <div>Data wystawienia: {props.invoiceSpecificData.issueDate}</div>
-                    <div>Data sprzedaży: {props.invoiceSpecificData.sellingDate}</div>
+                    <div>Data wystawienia: {props.invoice.issueDate}</div>
+                    <div>Data sprzedaży: {props.invoice.sellingDate}</div>
                 </div>
                 <div class="issuerDetails" >
                     <div>Dane sprzedawcy </div>
-                    <div>Nazwa firmy: {props.issuerDetails.companyName}</div>
-                    <div>Adress: {props.issuerDetails.address}</div>
+                    <div>Nazwa firmy: {props.issuer.companyName}</div>
+                    <div>Adress: {props.issuer.address}</div>
                 </div>
                 <div class="recipantDetails" >
                     <div>Dane nabywcy </div>
-                    <div>Nazwa firmy: {props.recipantDetails.companyName}</div>
-                    <div>Adress: {props.recipantDetails.address}</div>
+                    <div>Nazwa firmy: {props.recipant.companyName}</div>
+                    <div>Adress: {props.recipant.address}</div>
                 </div>
 
 
@@ -44,7 +44,7 @@ function Template1(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {renderRows(props.invoiceTableDetails.table)}
+                            {renderRows(props.invoiceTable.table)}
                         </tbody>
                     </table>
                 </div>
@@ -60,15 +60,15 @@ function Template1(props) {
                         </thead>
                         <tbody>
                             <tr>
-                            <td>{props.invoiceTableDetails.NettoValueSum}</td>
-                            <td>{props.invoiceTableDetails.VatValueSum}</td>
-                            <td>{props.invoiceTableDetails.GrossValueSum}</td>
+                            <td>{props.invoiceTable.NettoValueSum}</td>
+                            <td>{props.invoiceTable.VatValueSum}</td>
+                            <td>{props.invoiceTable.GrossValueSum}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="amountInWordsSection" >
-                    {props.invoiceTableDetails.AmountInWords}
+                    {props.invoiceTable.AmountInWords}
                 </div>
             </div>
         </div>
@@ -93,10 +93,10 @@ const renderRows = (arr) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        invoiceSpecificData: state.invoiceSpecificData,
-        issuerDetails: state.issuerDetails,
-        recipantDetails: state.recipantDetails,
-        invoiceTableDetails: state.invoiceTableDetails,
+        invoice: state.invoice,
+        issuer: state.issuer,
+        recipant: state.recipant,
+        invoiceTable: state.invoiceTable,
     }
 }
 

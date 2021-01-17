@@ -9,13 +9,14 @@ const issuerDetails = createSlice({
     },
     reducers: {
         setIssuerDetails(state, action) {
+            console.log("asdaSD");
             state[action.payload.name] = action.payload.value;
         }
     },
     extraReducers: {
         [updateInvoiceData]: (state, action) => {
-            state.companyName = action.payload.issuerDetails.companyName;
-            state.address = action.payload.issuerDetails.address;
+            state.companyName = action.payload.issuer.companyName;
+            state.address = action.payload.issuer.address;
         }
     }
 })

@@ -45,7 +45,7 @@ class InvoiceTable extends Component {
                 </Tooltip>
                 <SummaryTable />
                 <div id="amount-in-words" >
-                    Kwota słownie: {this.props.invoiceTableDetails.AmountInWords}
+                    Kwota słownie: {this.props.invoiceTable.AmountInWords}
                 </div>
             </div>
         );
@@ -58,8 +58,8 @@ class InvoiceTable extends Component {
     }
 
     renderRows() {
-        let { invoiceTableDetails } = this.props;
-        return invoiceTableDetails.table.map((data, i) => (
+        let { invoiceTable } = this.props;
+        return invoiceTable.table.map((data, i) => (
             <TableRow key={data.id} id={i} value={data}  onMoveRowUp={this.moveRowUp} onMoveRowDown={this.moveRowDown} />
         ))
 
@@ -72,7 +72,7 @@ class InvoiceTable extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        invoiceTableDetails: state.invoiceTableDetails,
+        invoiceTable: state.invoiceTable,
         width: state.width
     }
 }

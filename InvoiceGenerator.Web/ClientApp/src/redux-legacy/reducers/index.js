@@ -20,12 +20,12 @@ import userInterfaceReducer from "../../redux-toolkit/features/userInterfaceSlic
 
 
 const rootReducer = combineReducers({
-	invoiceSpecificData: invoiceDetailsReducer,
-	issuerDetails: issuerReducer,
-	recipantDetails: recipantReducer,
-	invoiceTableDetails: invoiceTableReducer,//invoiceTableDetailsReducer,
-	invoiceHistory: invoiceHistoryReducer,
-	userInterface: userInterfaceReducer
+	invoice: invoiceDetailsReducer,
+	issuer: issuerReducer,
+	recipant: recipantReducer,
+	invoiceTable: invoiceTableReducer,//invoiceTableReducer,
+	history: invoiceHistoryReducer,
+	ui: userInterfaceReducer
 });
 
 export default rootReducer;

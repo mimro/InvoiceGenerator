@@ -42,7 +42,7 @@ class EditButton extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        invoiceTableDetails: state.invoiceTableDetails,
+        invoiceTable: state.invoiceTable,
     }
 }
 function mapDispatchToProps(dispatch) {

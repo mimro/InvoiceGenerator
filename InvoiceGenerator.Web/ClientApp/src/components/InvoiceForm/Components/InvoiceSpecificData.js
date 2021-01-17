@@ -18,19 +18,19 @@ class InvoiceSpecificData extends Component {
     }
 
     render() {
-        const { invoiceSpecificData } = this.props;
+        const { invoice } = this.props;
         return (
             <div className="flex-container">
-                <TextField id="standard-basic" name="number" onChange={this.handleChange} value={invoiceSpecificData.number} label="numer faktury" variant="outlined" />
+                <TextField id="standard-basic" name="number" onChange={this.handleChange} value={invoice.number} label="numer faktury" variant="outlined" />
 
-                <TextField id="date" name="issueDate" onChange={this.handleChange} label="data wystawienia" type="date" name="issueDate"  value={invoiceSpecificData.issueDate} style={{ marginTop: '20px' }} onChange={this.handleChange} variant="outlined" />
+                <TextField id="date" name="issueDate" onChange={this.handleChange} label="data wystawienia" type="date" name="issueDate" value={invoice.issueDate} style={{ marginTop: '20px' }} onChange={this.handleChange} variant="outlined" />
 
-                <TextField id="date" name="sellingDate" required onChange={this.handleChange} label="data sprzedaży" type="date" value={invoiceSpecificData.sellingDate} style={{ marginTop: '20px' }} InputLabelProps={{ shrink: true }} onChange={this.handleChange} variant="outlined" />
+                <TextField id="date" name="sellingDate" required onChange={this.handleChange} label="data sprzedaży" type="date" value={invoice.sellingDate} style={{ marginTop: '20px' }} InputLabelProps={{ shrink: true }} onChange={this.handleChange} variant="outlined" />
                 </div>
                 )
     }
 
-    handleChange = (e: Event) => {
+    handleChange = (e) => {
         if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
             const { name, value } = e.target;
             this.props.setInvoiceDetails(name, value);
@@ -45,7 +45,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
     return {
-        invoiceSpecificData: state.invoiceSpecificData,
+        invoice: state.invoice,
     }
 }
 

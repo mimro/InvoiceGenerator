@@ -39,13 +39,13 @@ class SidePanel extends React.Component {
                     <Button variant="outlined" color="primary" style={{ margin: '10px', width: '60%' }} onClick={() => {
                         
                         const invoiceHistory = {
-                            invoiceNumber: this.props.invoiceSpecificData.number,                      
+                            invoiceNumber: this.props.invoice.number,                      
                             invoiceData: {
                                 jsonEncodedInvoice: JSON.stringify({
-                                    invoiceSpecificData: this.props.invoiceSpecificData,
-                                    issuerDetails: this.props.issuerDetails,
-                                    recipantDetails: this.props.recipantDetails,
-                                    invoiceTableDetails: this.props.invoiceTableDetails,
+                                    invoice: this.props.invoice,
+                                    issuer: this.props.issuer,
+                                    recipant: this.props.recipant,
+                                    invoiceTable: this.props.invoiceTable,
                                 })
                             }
                         }
@@ -95,10 +95,10 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
     return {
-        invoiceSpecificData: state.invoiceSpecificData,
-        issuerDetails: state.issuerDetails,
-        recipantDetails: state.recipantDetails,
-        invoiceTableDetails: state.invoiceTableDetails,
+        invoice: state.invoice,
+        issuer: state.issuer,
+        recipant: state.recipant,
+        invoiceTable: state.invoiceTable,
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SidePanel);

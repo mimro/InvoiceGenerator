@@ -22,7 +22,7 @@ class SummaryTable extends Component {
     }
 
     render() {
-        let { invoiceTableDetails } = this.props;
+        let { invoiceTable } = this.props;
         return (
             <table id="summary-table" className="table table-borderless table-responsive-sm table-hover">
                 <thead>
@@ -32,9 +32,9 @@ class SummaryTable extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{invoiceTableDetails.NettoValueSum}</td>
-                        <td>{invoiceTableDetails.VatValueSum}</td>
-                        <td>{invoiceTableDetails.GrossValueSum}</td>
+                        <td>{invoiceTable.NettoValueSum}</td>
+                        <td>{invoiceTable.VatValueSum}</td>
+                        <td>{invoiceTable.GrossValueSum}</td>
                     </tr>
                 </tbody>
             </table>
@@ -56,7 +56,7 @@ class SummaryTable extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        invoiceTableDetails: state.invoiceTableDetails,
+        invoiceTable: state.invoiceTable,
     }
 }
 

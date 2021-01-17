@@ -23,7 +23,7 @@ class InoiceHistorySidePanel extends React.Component {
             <Paper elevation={6}>
                 <h4 className="invoice-history-header">{INVOICE_HISTORY_LABEL} <IconButton color="primary" aria-label="refresh" component="span" onClick={() => this.reloadData()}><RefreshOutlinedIcon color="primary" /></IconButton></h4>
                 {
-                    this.props.invoiceHistory.isLoading === true &&
+                    this.props.history.isLoading === true &&
                     <CircularProgress style={{ marginLeft: '20px' }} />
                 }
                 <List>
@@ -54,11 +54,11 @@ class InoiceHistorySidePanel extends React.Component {
     };
 
     renderList() {
-        let { invoiceHistory } = this.props;
-        return invoiceHistory.table.map((data, i) => (
+        let { history } = this.props;
+        return history.table.map((data, i) => (
 
             <ListItem button key={i} 
-                selected={invoiceHistory.selectedListItemIndex === data.id}
+                selected={history.selectedListItemIndex === data.id}
                 onClick={(event, id) => this.handleListItemClick(event, data.id)}>
                 <ListItemText primary={data.invoiceNumber} secondary={data.creationDate.replace("T", " ")} /> 
             </ListItem>
@@ -81,7 +81,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
     return {
-        invoiceHistory: state.invoiceHistory,
+        history: state.history,
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(InoiceHistorySidePanel);

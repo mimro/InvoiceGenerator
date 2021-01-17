@@ -20,10 +20,10 @@ function InvoicePreview(props) {
     const classes = useStyles();
 
     const invoiceData = {
-        invoiceSpecificData: props.invoiceSpecificData,
-        issuerDetails: props.issuerDetails,
-        recipantDetails: props.recipantDetails,
-        invoiceTableDetails: props.invoiceTableDetails,
+        invoiceSpecificData: props.invoice,
+        issuerDetails: props.issuer,
+        recipantDetails: props.recipant,
+        invoiceTable: props.invoiceTable,
     }
 
     return (
@@ -38,10 +38,10 @@ function InvoicePreview(props) {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        invoiceSpecificData: state.invoiceSpecificData,
-        issuerDetails: state.issuerDetails,
-        recipantDetails: state.recipantDetails,
-        invoiceTableDetails: state.invoiceTableDetails,
+        invoice: state.invoice,
+        issuer: state.issuer,
+        recipant: state.recipant,
+        invoiceTable: state.invoiceTable,
     }
 }
 

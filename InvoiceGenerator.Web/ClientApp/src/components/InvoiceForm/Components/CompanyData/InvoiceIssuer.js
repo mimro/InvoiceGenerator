@@ -18,18 +18,18 @@ class InvoiceIssuer extends Component {
     }
 
     render() {
-        const { issuerDetails } = this.props;
+        const { issuer } = this.props;
         return (
             <div className="company-data-form-container">
                 <h5 className="company-data-header" style={{ marginBottom: "15px" }}> {ISSUER_DATA_LABEL}</h5>
-                    <TextField name="companyName" value={issuerDetails.companyName} onChange={this.handleChange} id="standard-basic" label="Nazwa firmy" variant="outlined" />
+                    <TextField name="companyName" value={issuer.companyName} onChange={this.handleChange} id="standard-basic" label="Nazwa firmy" variant="outlined" />
 
-                    <TextField name="address" value={issuerDetails.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres" variant="outlined" />
+                    <TextField name="address" value={issuer.address} onChange={this.handleChange} id="standard-basic" style={{ marginTop: '20px' }} label="Adres" variant="outlined" />
                 </div>
         )
     }
 
-    handleChange = (e: Event) => {
+    handleChange = (e) => {
         if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
             const { name, value } = e.target;
             this.props.setIssuerDetails(name, value);
@@ -43,9 +43,9 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
-        issuerDetails: state.issuerDetails,
+        issuer: state.issuer,
     }
 }
 

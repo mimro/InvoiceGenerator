@@ -14,8 +14,8 @@ const recipantSlice = createSlice({
     },
     extraReducers: {
         [updateInvoiceData]: (state, action) => {
-            state.companyName = action.payload.recipantDetails.companyName;
-            state.address = action.payload.recipantDetails.address;
+            state.companyName = action.payload.recipant.companyName;
+            state.address = action.payload.recipant.address;
         }
     }
 })

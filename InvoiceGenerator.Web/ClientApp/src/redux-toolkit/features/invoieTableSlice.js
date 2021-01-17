@@ -91,11 +91,11 @@ const invoiceTableSlice = createSlice({
     },
         extraReducers: {
             [updateInvoiceData]: (state, action) => {
-                state.table = action.payload.invoiceTableDetails.table
-                state.AmountInWords = action.payload.invoiceTableDetails.AmountInWords
-                state.GrossValueSum = action.payload.invoiceTableDetails.GrossValueSum
-                state.NettoValueSum = action.payload.invoiceTableDetails.NettoValueSum
-                state.VatValueSum = action.payload.invoiceTableDetails.VatValueSum
+                state.table = action.payload.invoiceTable.table
+                state.AmountInWords = action.payload.invoiceTable.AmountInWords
+                state.GrossValueSum = action.payload.invoiceTable.GrossValueSum
+                state.NettoValueSum = action.payload.invoiceTable.NettoValueSum
+                state.VatValueSum = action.payload.invoiceTable.VatValueSum
                 state.editing = false
             }
         }

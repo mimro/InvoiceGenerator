@@ -19,7 +19,7 @@ class MessageSnackBar extends React.Component {
 
 
     render() {
-        let { successSnackbarOpen, errorSnackbarOpen, infoSnackbarOpen } = this.props.userInterface;
+        let { successSnackbarOpen, errorSnackbarOpen, infoSnackbarOpen } = this.props.ui;
         return (
             <Snackbar style={{width:'400px'}} open={successSnackbarOpen || errorSnackbarOpen || infoSnackbarOpen}
                 anchorOrigin={{
@@ -31,7 +31,7 @@ class MessageSnackBar extends React.Component {
             >
                 <Alert onClose={() => this.handleClose()} severity={successSnackbarOpen ?
                     "success" : errorSnackbarOpen ? "error" : infoSnackbarOpen ? "info" : "info"}>
-                    {this.props.userInterface.snackBarMessage}
+                    {this.props.ui.snackBarMessage}
                 </Alert>
             </Snackbar>
         );
@@ -54,7 +54,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
     return {
-        userInterface: state.userInterface,
+        ui: state.ui,
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MessageSnackBar);

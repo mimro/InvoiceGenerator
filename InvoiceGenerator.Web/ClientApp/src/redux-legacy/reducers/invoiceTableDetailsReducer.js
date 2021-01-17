@@ -154,7 +154,7 @@ export default function invoiceTableDetailsReducer(state: State = initialState, 
 	}
 	else if (action.type === "UPDATE_FETCHED_INVOICE_DETAILS") {
 		//let new_state = state;
-		return action.payload.invoiceTableDetails;
+		return action.payload.invoiceTable;
 		//return Object.assign({}, state, action.payload.invoiceTableDetails);	
     }
 	else {

@@ -15,9 +15,9 @@ const invoiceDetailsSlice = createSlice({
     },
     extraReducers: {
         [updateInvoiceData]: (state, action) => {
-            state.number = action.payload.invoiceSpecificData.number;
-            state.issueDate = action.payload.invoiceSpecificData.issueDate;
-            state.sellingDate = action.payload.invoiceSpecificData.sellingDate;
+            state.number = action.payload.invoice.number;
+            state.issueDate = action.payload.invoice.issueDate;
+            state.sellingDate = action.payload.invoice.sellingDate;
         }
     }
 })

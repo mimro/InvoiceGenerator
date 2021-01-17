@@ -18,7 +18,7 @@ class TableCell extends Component {
 
     constructor(props) {
 		super(props);
-		this.state = { editing: this.props.invoiceTableDetails.editing };
+		this.state = { editing: this.props.invoiceTable.editing };
 
 		this.onBlur = this.onBlur.bind(this)
     }
@@ -47,7 +47,7 @@ class TableCell extends Component {
 		const TagName = current[0];
 		const isEditable = current[1];
 		const additionalDisplayChar = current[2];
-		return (this.state.editing && this.props.invoiceTableDetails.editing) ?
+		return (this.state.editing && this.props.invoiceTable.editing) ?
 			<td className="no-pad"><TagName value={this.props.value} ref={this.child} onChange={value=>this.onChange(this.props.id,this.props.name,value)} onBlur={this.onBlur} /></td> :
 			<td className = "displayValue" onClick={() => this.onFocus(isEditable)}>{value + additionalDisplayChar}</td>
 	}
@@ -75,7 +75,7 @@ class TableCell extends Component {
 
 function mapStateToProps(state) {
     return {
-        invoiceTableDetails: state.invoiceTableDetails,
+        invoiceTable: state.invoiceTable,
     }
 }
 

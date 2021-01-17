@@ -3,12 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-//import registerServiceWorker from './registerServiceWorker';
 import { Provider } from "react-redux";
-import configureStore from "./store/configureStore";
-import rootReducer from "./reducers";
+import createReduxStore from "./redux-legacy/store/createReduxStore";
+import configureReduxToolkitStore from "./redux-toolkit/store/configureReduxToolkitStore";
 
-let store = configureStore(rootReducer);
+import rootReducer from "./redux-legacy/reducers";
+
+let store = configureReduxToolkitStore(); //createReduxStore();
+   // configureReduxToolkitStore(); //
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');

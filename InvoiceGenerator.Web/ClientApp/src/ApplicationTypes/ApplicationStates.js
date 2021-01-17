@@ -1,6 +1,0 @@
-﻿export const applicationStates = {
-    HOMEPAGE:'HOMEPAGE',
-    TEMPLATESELECT: 'TEMPLATESELECT',
-    FILL_INVOICE: 'FILL_INVOICE',
-    GET_INVOICE: 'GET_INVOICE'
-}

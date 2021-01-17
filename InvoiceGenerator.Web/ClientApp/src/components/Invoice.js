@@ -1,69 +1,51 @@
 ﻿import React, { Component } from 'react';
-import  InvoiceForm  from './InvoiceForm/InvoiceForm';
-import  InvoiceTable  from './InvoiceTable/InvoiceTable';
-import  InvoiceSpecificData  from './InvoiceForm/InvoiceSpecificData'
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import InvoiceForm from "./InvoiceForm/Components/InvoiceForm";
+import InvoiceTable from './InvoiceTable/InvoiceTable';
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import InvoiceInfo from './InvoiceForm/InvoiceInfo';
+import { createMuiTheme, ThemeProvider, Theme } from '@material-ui/core';
+import InvoiceInfo from "./InvoiceForm/Components/InvoiceInfo";
 
 
 export class Invoice extends Component {
 
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
 
-	}
+    }
 
-	render() {
-		return (
-            <ThemeProvider theme={theme}>
-               
-                    <InvoiceInfo />
 
-                    <Grid container direction={'row'} justify="center" alignItems="center" spacing={2}>
+    render() {
 
-			  <Grid item xs={12}>
-			  
-			  <Box  p={5} mt={3}>
-                <InvoiceSpecificData />
-				</Box>
-                        </Grid>
+        const mtheme: Theme = createMuiTheme({
+            palette: {
+                primary: {
+                    light: '#757ce8',
+                    main: '#4791db',
+                    dark: '#002884',
+                    contrastText: '#fff',
+                },
+                secondary: {
+                    light: '#ff7961',
+                    main: '#fa4b5f',
+                    dark: '#ba000d',
+                    contrastText: '#000',
+                },
+            },
+        });
 
+        return (
+            <ThemeProvider theme={mtheme}>
+                <InvoiceInfo />
                 <InvoiceForm />
-				 <Grid item xs={12}>
-			  
-			  <Box  p={5}>
-                <InvoiceTable/>
-				</Box>
-				
-				</Grid>
-                 </Grid>
-                 
-                 
-				</ThemeProvider>
-		)
-	}
+                <Box p={5}>
+                    <InvoiceTable />
+                </Box>
+            </ThemeProvider>
+        )
+    }
 
 
 
 }
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#757ce8',
-      main: '#0366fc',
-      dark: '#002884',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#fa4b5f',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
+

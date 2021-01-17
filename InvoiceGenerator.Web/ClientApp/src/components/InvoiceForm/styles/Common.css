@@ -1,0 +1,21 @@
+﻿.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.company-data-form-container {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.company-data-header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #8F8F8F;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

@@ -38,7 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\components\Invoice\" />
     <Folder Include="Views\" />
   </ItemGroup>
 

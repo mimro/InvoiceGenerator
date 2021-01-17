@@ -1,28 +1,28 @@
 ﻿import React, { Component } from 'react';
-import  TableCell  from './TableCell';
-import  EditButton from './EditButton';
+import TableCell from './TableCell';
+import EditButton from './EditButton';
+import tableConfig from './TableConfig'
 
 export default class TableRow extends Component {
 
-    constructor(props:Props) {
+    constructor(props) {
         super(props);
-
     }
 
     render() {
         return (
             <tr>
-				{
-					this.renderCells()
-				}
-                <EditButton id={this.props.id}   />
+                {
+                    this.renderCells()
+                }
+                <EditButton id={this.props.id} />
             </tr>
         );
     }
 
-    renderCells() {    
-        return ['Name', 'Quantity', 'jm', 'NettoPrice', 'NettoValue', 'Vat', 'VatValue', 'GrossValue'].map(field => (
-            <TableCell key={field} id={this.props.id} name={field} value={this.props.value[field]} />
+    renderCells() {
+        return tableConfig.properties.map((field, i) => (
+            <TableCell key={i} id={this.props.id} name={field.name} value={this.props.value[field.name]} />
         ))
     }
 

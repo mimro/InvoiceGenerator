@@ -5,9 +5,9 @@ import { connect } from "react-redux";
 
 
 
- class SummaryTable extends Component {
+class SummaryTable extends Component {
 
-    constructor(props ) {
+    constructor(props) {
         super(props);
         this.state = {
             config: {
@@ -16,22 +16,26 @@ import { connect } from "react-redux";
                     "Wartość netto",
                     "Vat",
                     "Wartość brutto",
-                    ]
+                ]
             }
         }
     }
 
     render() {
-	let {invoiceTableDetails} = this.props;
+        let { invoiceTable } = this.props;
         return (
             <table id="summary-table" className="table table-borderless table-responsive-sm table-hover">
                 <thead>
-                    {this.renderHeaders()}
+                    <tr>
+                        {this.renderHeaders()}
+                    </tr>
                 </thead>
                 <tbody>
-                    <td>{invoiceTableDetails.NettoValueSum}</td>
-                    <td>{invoiceTableDetails.VatValueSum}</td>
-                    <td>{invoiceTableDetails.GrossValueSum}</td>
+                    <tr>
+                        <td>{invoiceTable.NettoValueSum}</td>
+                        <td>{invoiceTable.VatValueSum}</td>
+                        <td>{invoiceTable.GrossValueSum}</td>
+                    </tr>
                 </tbody>
             </table>
         );
@@ -39,7 +43,7 @@ import { connect } from "react-redux";
 
     renderHeaders() {
         return this.state.config.headers.map((data, i) => (
-            <TableHeader value={data} id={i} />
+            <TableHeader value={data} id={i} key={i} />
         ))
     }
 
@@ -52,7 +56,7 @@ import { connect } from "react-redux";
 
 function mapStateToProps(state, ownProps) {
     return {
-        invoiceTableDetails: state.invoiceTableDetails,
+        invoiceTable: state.invoiceTable,
     }
 }
 

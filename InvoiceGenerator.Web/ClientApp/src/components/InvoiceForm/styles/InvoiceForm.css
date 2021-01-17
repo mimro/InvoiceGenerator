@@ -4,3 +4,39 @@
    background-color: #0094ff;
    position:relative;
 }
+
+.invoice-form-container {
+    width: 100%;
+    display: inline-grid;
+    padding: 20px;
+    grid-gap: 20px 20px;
+    grid-template-columns: 30% 2% 30% 2% 30%;
+    align-items: stretch;
+}
+
+.invoice-form-elem1 {
+    margin-left: 10px;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    padding: 10px;
+
+}
+
+.invoice-form-elem2 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    padding: 10px;
+
+}
+.invoice-form-elem3 {
+    grid-column-start: 5;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    padding: 10px;
+
+}
